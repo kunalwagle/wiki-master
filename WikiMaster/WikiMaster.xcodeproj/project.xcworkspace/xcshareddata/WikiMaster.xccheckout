@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CA66D829-762F-47A0-8962-FACC618A8983</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WikiMaster</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1EBA6E7DE48D790CA60BF3707FF50FA3014C2D1A</key>
+		<string>https://gitlab.doc.ic.ac.uk/kmw13/wiki-master.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>WikiMaster/WikiMaster.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1EBA6E7DE48D790CA60BF3707FF50FA3014C2D1A</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://gitlab.doc.ic.ac.uk/kmw13/wiki-master.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1EBA6E7DE48D790CA60BF3707FF50FA3014C2D1A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1EBA6E7DE48D790CA60BF3707FF50FA3014C2D1A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>wiki-master</string>
+		</dict>
+	</array>
+</dict>
+</plist>
