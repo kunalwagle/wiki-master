@@ -15,6 +15,16 @@
 		0C5F14551B0CDBF4009946CA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14541B0CDBF4009946CA /* Images.xcassets */; };
 		0C5F14581B0CDBF4009946CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14561B0CDBF4009946CA /* LaunchScreen.xib */; };
 		0C5F14641B0CDBF5009946CA /* WikiMasterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F14631B0CDBF5009946CA /* WikiMasterTests.m */; };
+		0C5F14781B10C226009946CA /* Black.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F146E1B10C226009946CA /* Black.png */; };
+		0C5F14791B10C227009946CA /* Blue-Grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F146F1B10C226009946CA /* Blue-Grey.png */; };
+		0C5F147A1B10C227009946CA /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14701B10C226009946CA /* Blue.png */; };
+		0C5F147B1B10C227009946CA /* Brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14711B10C226009946CA /* Brown.png */; };
+		0C5F147C1B10C227009946CA /* Dark Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14721B10C226009946CA /* Dark Green.png */; };
+		0C5F147D1B10C227009946CA /* Maroon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14731B10C226009946CA /* Maroon.png */; };
+		0C5F147E1B10C227009946CA /* Olive Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14741B10C226009946CA /* Olive Green.png */; };
+		0C5F147F1B10C227009946CA /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14751B10C226009946CA /* Red.png */; };
+		0C5F14801B10C227009946CA /* Turquoise.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14761B10C226009946CA /* Turquoise.png */; };
+		0C5F14811B10C227009946CA /* Violet.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14771B10C226009946CA /* Violet.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +53,16 @@
 		0C5F145D1B0CDBF5009946CA /* WikiMasterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WikiMasterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C5F14621B0CDBF5009946CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C5F14631B0CDBF5009946CA /* WikiMasterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WikiMasterTests.m; sourceTree = "<group>"; };
+		0C5F146E1B10C226009946CA /* Black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Black.png; sourceTree = "<group>"; };
+		0C5F146F1B10C226009946CA /* Blue-Grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue-Grey.png"; sourceTree = "<group>"; };
+		0C5F14701B10C226009946CA /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue.png; sourceTree = "<group>"; };
+		0C5F14711B10C226009946CA /* Brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brown.png; sourceTree = "<group>"; };
+		0C5F14721B10C226009946CA /* Dark Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark Green.png"; sourceTree = "<group>"; };
+		0C5F14731B10C226009946CA /* Maroon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Maroon.png; sourceTree = "<group>"; };
+		0C5F14741B10C226009946CA /* Olive Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Olive Green.png"; sourceTree = "<group>"; };
+		0C5F14751B10C226009946CA /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
+		0C5F14761B10C226009946CA /* Turquoise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Turquoise.png; sourceTree = "<group>"; };
+		0C5F14771B10C226009946CA /* Violet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Violet.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +86,7 @@
 		0C5F14381B0CDBF4009946CA = {
 			isa = PBXGroup;
 			children = (
+				0C5F146D1B10C226009946CA /* Colours */,
 				0C5F14431B0CDBF4009946CA /* WikiMaster */,
 				0C5F14601B0CDBF5009946CA /* WikiMasterTests */,
 				0C5F14421B0CDBF4009946CA /* Products */,
@@ -122,6 +143,23 @@
 				0C5F14621B0CDBF5009946CA /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0C5F146D1B10C226009946CA /* Colours */ = {
+			isa = PBXGroup;
+			children = (
+				0C5F146E1B10C226009946CA /* Black.png */,
+				0C5F146F1B10C226009946CA /* Blue-Grey.png */,
+				0C5F14701B10C226009946CA /* Blue.png */,
+				0C5F14711B10C226009946CA /* Brown.png */,
+				0C5F14721B10C226009946CA /* Dark Green.png */,
+				0C5F14731B10C226009946CA /* Maroon.png */,
+				0C5F14741B10C226009946CA /* Olive Green.png */,
+				0C5F14751B10C226009946CA /* Red.png */,
+				0C5F14761B10C226009946CA /* Turquoise.png */,
+				0C5F14771B10C226009946CA /* Violet.png */,
+			);
+			path = Colours;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,8 +243,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5F14531B0CDBF4009946CA /* Main.storyboard in Resources */,
+				0C5F14781B10C226009946CA /* Black.png in Resources */,
+				0C5F147E1B10C227009946CA /* Olive Green.png in Resources */,
 				0C5F14581B0CDBF4009946CA /* LaunchScreen.xib in Resources */,
+				0C5F147A1B10C227009946CA /* Blue.png in Resources */,
+				0C5F147D1B10C227009946CA /* Maroon.png in Resources */,
+				0C5F147C1B10C227009946CA /* Dark Green.png in Resources */,
+				0C5F147F1B10C227009946CA /* Red.png in Resources */,
+				0C5F14811B10C227009946CA /* Violet.png in Resources */,
+				0C5F147B1B10C227009946CA /* Brown.png in Resources */,
+				0C5F14801B10C227009946CA /* Turquoise.png in Resources */,
 				0C5F14551B0CDBF4009946CA /* Images.xcassets in Resources */,
+				0C5F14791B10C227009946CA /* Blue-Grey.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
