@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 module.exports = router;
 
 
-/* CREATE /api/v1/wikimaster Create a single user */
+/* CREATE /api/v1/wikimaster/users Create a single user */
 router.post('/api/v1/wikimaster/users', function(req, res) {
 
     var results = [];
@@ -47,7 +47,7 @@ router.post('/api/v1/wikimaster/users', function(req, res) {
     });
 });
 
-/* READ /api/v1/wikimaster Get all users */
+/* READ /api/v1/wikimaster/users Get all users */
 router.get('/api/v1/wikimaster/users', function(req, res) {
 
     var results = [];
@@ -79,7 +79,7 @@ router.get('/api/v1/wikimaster/users', function(req, res) {
 });
 
 
-/* READ /api/v1/wikimaster Get user by id */
+/* READ /api/v1/wikimaster/users/:userId Get user by id */
 router.get('/api/v1/wikimaster/users/:userId', function(req, res) {
 
     var results = [];
