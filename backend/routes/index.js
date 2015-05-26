@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/wikimasterdb';
+var connectionString = process.env.DATABASE_URL || 'postgres://g1427127_u:X3s8Llhgo2@db.doc.ic.ac.uk:5432/g1427127_u';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
