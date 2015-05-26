@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C26DB4A1B14951400902409 /* ServerCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C26DB491B14951400902409 /* ServerCommunication.m */; };
+		0C3AAAC61B1257580058D233 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */; };
+		0C3AAAC91B12580B0058D233 /* ManualSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */; };
 		0C5F14471B0CDBF4009946CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F14461B0CDBF4009946CA /* main.m */; };
 		0C5F144A1B0CDBF4009946CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F14491B0CDBF4009946CA /* AppDelegate.m */; };
 		0C5F144D1B0CDBF4009946CA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F144C1B0CDBF4009946CA /* FirstViewController.m */; };
@@ -40,6 +43,23 @@
 		0C5F149E1B10EA63009946CA /* Slide7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14951B10EA63009946CA /* Slide7.jpg */; };
 		0C5F149F1B10EA63009946CA /* Slide8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14961B10EA63009946CA /* Slide8.jpg */; };
 		0C5F14A01B10EA63009946CA /* Slide9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14971B10EA63009946CA /* Slide9.jpg */; };
+		0C5F14A61B120B90009946CA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14A31B120B90009946CA /* FBSDKCoreKit.framework */; };
+		0C5F14A71B120B90009946CA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14A41B120B90009946CA /* FBSDKLoginKit.framework */; };
+		0C5F14A81B120B90009946CA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14A51B120B90009946CA /* FBSDKShareKit.framework */; };
+		0C5F14AB1B120D48009946CA /* InitialLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F14AA1B120D48009946CA /* InitialLoginViewController.m */; };
+		0C5F14B61B120EB3009946CA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14AC1B120EB2009946CA /* AddressBook.framework */; };
+		0C5F14B71B120EB3009946CA /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14AD1B120EB3009946CA /* AssetsLibrary.framework */; };
+		0C5F14B81B120EB3009946CA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14AE1B120EB3009946CA /* CoreGraphics.framework */; };
+		0C5F14B91B120EB3009946CA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14AF1B120EB3009946CA /* CoreLocation.framework */; };
+		0C5F14BA1B120EB3009946CA /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14B01B120EB3009946CA /* CoreMotion.framework */; };
+		0C5F14BB1B120EB3009946CA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14B11B120EB3009946CA /* CoreText.framework */; };
+		0C5F14BC1B120EB3009946CA /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14B21B120EB3009946CA /* MediaPlayer.framework */; };
+		0C5F14BD1B120EB3009946CA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14B31B120EB3009946CA /* Security.framework */; };
+		0C5F14BE1B120EB3009946CA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14B41B120EB3009946CA /* SystemConfiguration.framework */; };
+		0C5F14BF1B120EB3009946CA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14B51B120EB3009946CA /* UIKit.framework */; };
+		0C5F14C21B120EDD009946CA /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14C01B120EDD009946CA /* GoogleOpenSource.framework */; };
+		0C5F14C31B120EDD009946CA /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14C11B120EDD009946CA /* GooglePlus.framework */; };
+		0C5F14C51B120F00009946CA /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14C41B120F00009946CA /* GooglePlus.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +73,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C26DB481B14951400902409 /* ServerCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunication.h; sourceTree = "<group>"; };
+		0C26DB491B14951400902409 /* ServerCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunication.m; sourceTree = "<group>"; };
+		0C3AAAC41B1257580058D233 /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
+		0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
+		0C3AAAC71B12580B0058D233 /* ManualSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualSignInViewController.h; sourceTree = "<group>"; };
+		0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualSignInViewController.m; sourceTree = "<group>"; };
 		0C5F14411B0CDBF4009946CA /* WikiMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C5F14451B0CDBF4009946CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C5F14461B0CDBF4009946CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,6 +119,25 @@
 		0C5F14951B10EA63009946CA /* Slide7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Slide7.jpg; sourceTree = "<group>"; };
 		0C5F14961B10EA63009946CA /* Slide8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Slide8.jpg; sourceTree = "<group>"; };
 		0C5F14971B10EA63009946CA /* Slide9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Slide9.jpg; sourceTree = "<group>"; };
+		0C5F14A11B120A4E009946CA /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		0C5F14A31B120B90009946CA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		0C5F14A41B120B90009946CA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		0C5F14A51B120B90009946CA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		0C5F14A91B120D48009946CA /* InitialLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialLoginViewController.h; sourceTree = "<group>"; };
+		0C5F14AA1B120D48009946CA /* InitialLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialLoginViewController.m; sourceTree = "<group>"; };
+		0C5F14AC1B120EB2009946CA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		0C5F14AD1B120EB3009946CA /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		0C5F14AE1B120EB3009946CA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0C5F14AF1B120EB3009946CA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0C5F14B01B120EB3009946CA /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0C5F14B11B120EB3009946CA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		0C5F14B21B120EB3009946CA /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		0C5F14B31B120EB3009946CA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		0C5F14B41B120EB3009946CA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0C5F14B51B120EB3009946CA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0C5F14C01B120EDD009946CA /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
+		0C5F14C11B120EDD009946CA /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.framework"; sourceTree = "<group>"; };
+		0C5F14C41B120F00009946CA /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +145,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5F14C21B120EDD009946CA /* GoogleOpenSource.framework in Frameworks */,
+				0C5F14C31B120EDD009946CA /* GooglePlus.framework in Frameworks */,
+				0C5F14B61B120EB3009946CA /* AddressBook.framework in Frameworks */,
+				0C5F14B71B120EB3009946CA /* AssetsLibrary.framework in Frameworks */,
+				0C5F14B81B120EB3009946CA /* CoreGraphics.framework in Frameworks */,
+				0C5F14B91B120EB3009946CA /* CoreLocation.framework in Frameworks */,
+				0C5F14BA1B120EB3009946CA /* CoreMotion.framework in Frameworks */,
+				0C5F14BB1B120EB3009946CA /* CoreText.framework in Frameworks */,
+				0C5F14BC1B120EB3009946CA /* MediaPlayer.framework in Frameworks */,
+				0C5F14BD1B120EB3009946CA /* Security.framework in Frameworks */,
+				0C5F14BE1B120EB3009946CA /* SystemConfiguration.framework in Frameworks */,
+				0C5F14BF1B120EB3009946CA /* UIKit.framework in Frameworks */,
+				0C5F14A61B120B90009946CA /* FBSDKCoreKit.framework in Frameworks */,
+				0C5F14A71B120B90009946CA /* FBSDKLoginKit.framework in Frameworks */,
+				0C5F14A81B120B90009946CA /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +176,23 @@
 		0C5F14381B0CDBF4009946CA = {
 			isa = PBXGroup;
 			children = (
+				0C5F14C41B120F00009946CA /* GooglePlus.bundle */,
+				0C5F14C01B120EDD009946CA /* GoogleOpenSource.framework */,
+				0C5F14C11B120EDD009946CA /* GooglePlus.framework */,
+				0C5F14AC1B120EB2009946CA /* AddressBook.framework */,
+				0C5F14AD1B120EB3009946CA /* AssetsLibrary.framework */,
+				0C5F14AE1B120EB3009946CA /* CoreGraphics.framework */,
+				0C5F14AF1B120EB3009946CA /* CoreLocation.framework */,
+				0C5F14B01B120EB3009946CA /* CoreMotion.framework */,
+				0C5F14B11B120EB3009946CA /* CoreText.framework */,
+				0C5F14B21B120EB3009946CA /* MediaPlayer.framework */,
+				0C5F14B31B120EB3009946CA /* Security.framework */,
+				0C5F14B41B120EB3009946CA /* SystemConfiguration.framework */,
+				0C5F14B51B120EB3009946CA /* UIKit.framework */,
+				0C5F14A31B120B90009946CA /* FBSDKCoreKit.framework */,
+				0C5F14A41B120B90009946CA /* FBSDKLoginKit.framework */,
+				0C5F14A51B120B90009946CA /* FBSDKShareKit.framework */,
+				0C5F14A11B120A4E009946CA /* FacebookSDK.framework */,
 				0C5F146D1B10C226009946CA /* Colours */,
 				0C5F14431B0CDBF4009946CA /* WikiMaster */,
 				0C5F14601B0CDBF5009946CA /* WikiMasterTests */,
@@ -142,6 +219,14 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0C3AAAC71B12580B0058D233 /* ManualSignInViewController.h */,
+				0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */,
+				0C3AAAC41B1257580058D233 /* CreateAccountViewController.h */,
+				0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */,
+				0C5F14A91B120D48009946CA /* InitialLoginViewController.h */,
+				0C5F14AA1B120D48009946CA /* InitialLoginViewController.m */,
+				0C26DB481B14951400902409 /* ServerCommunication.h */,
+				0C26DB491B14951400902409 /* ServerCommunication.m */,
 				0C5F148E1B10EA63009946CA /* Actual Colours */,
 				0C5F148A1B10E8D3009946CA /* dislike-157252_640.png */,
 				0C5F148B1B10E8D3009946CA /* hand-157251_640.png */,
@@ -264,6 +349,7 @@
 				TargetAttributes = {
 					0C5F14401B0CDBF4009946CA = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = VNK5G843Y9;
 					};
 					0C5F145C1B0CDBF5009946CA = {
 						CreatedOnToolsVersion = 6.1;
@@ -305,6 +391,7 @@
 				0C5F14A01B10EA63009946CA /* Slide9.jpg in Resources */,
 				0C5F14851B10E088009946CA /* rectangle-34969_64.png in Resources */,
 				0C5F147E1B10C227009946CA /* Olive Green.png in Resources */,
+				0C5F14C51B120F00009946CA /* GooglePlus.bundle in Resources */,
 				0C5F149C1B10EA63009946CA /* Slide5.jpg in Resources */,
 				0C5F149F1B10EA63009946CA /* Slide8.jpg in Resources */,
 				0C5F14991B10EA63009946CA /* Slide2.jpg in Resources */,
@@ -340,8 +427,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C3AAAC91B12580B0058D233 /* ManualSignInViewController.m in Sources */,
 				0C5F14501B0CDBF4009946CA /* SecondViewController.m in Sources */,
+				0C5F14AB1B120D48009946CA /* InitialLoginViewController.m in Sources */,
+				0C3AAAC61B1257580058D233 /* CreateAccountViewController.m in Sources */,
 				0C5F144A1B0CDBF4009946CA /* AppDelegate.m in Sources */,
+				0C26DB4A1B14951400902409 /* ServerCommunication.m in Sources */,
 				0C5F144D1B0CDBF4009946CA /* FirstViewController.m in Sources */,
 				0C5F14471B0CDBF4009946CA /* main.m in Sources */,
 			);
@@ -468,9 +559,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Kunal/Documents/FacebookSDK,
+					"/Users/Kunal/Downloads/google-plus-ios-sdk-1.7.1",
+				);
 				INFOPLIST_FILE = WikiMaster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -479,9 +581,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Kunal/Documents/FacebookSDK,
+					"/Users/Kunal/Downloads/google-plus-ios-sdk-1.7.1",
+				);
 				INFOPLIST_FILE = WikiMaster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(OTHER_LDFLAGS)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -538,6 +651,7 @@
 				0C5F14691B0CDBF5009946CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C5F146A1B0CDBF5009946CA /* Build configuration list for PBXNativeTarget "WikiMasterTests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +660,7 @@
 				0C5F146C1B0CDBF5009946CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

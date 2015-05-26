@@ -14,6 +14,17 @@
 
 @implementation FirstViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([[defaults valueForKey:@"LoggedIn"] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"InitialLoginViewController"];
+    [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+    
+    [self presentViewController:vc animated:YES completion:nil];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
