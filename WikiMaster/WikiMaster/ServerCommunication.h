@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+//#import "ASIHTTPRequest.h"
 
 @class UIViewController;
 
-@interface ServerCommunication : NSObject <NSStreamDelegate>
+@interface ServerCommunication : NSObject <NSURLConnectionDelegate, NSURLConnectionDataDelegate>
 
-+ (void)initNetworkCommunication: (UIViewController*) del;
-+ (void)sendMessage:(NSString*)message;
+//    ASIHTTPRequest *myRequest_;
+
+//- (void)initNetworkCommunication;
+//- (void)sendMessage:(NSString*)message;
+
+-(void)addUser:(NSString*)userID;
 
 @end

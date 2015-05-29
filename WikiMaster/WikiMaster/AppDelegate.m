@@ -10,6 +10,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <GooglePlus/GooglePlus.h>
+#import "ServerCommunication.h"
 
 
 
@@ -28,6 +29,7 @@ NSString *GOOGLE_PLUS_SCHEME = @"com.googleusercontent.apps.976248599268-4u6e0nj
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+          [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"LoggedIn"];
     if (![defaults objectForKey:@"wasLaunchedBefore"]) {
         [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"LoggedIn"];
         [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"wasLaunchedBefore"];

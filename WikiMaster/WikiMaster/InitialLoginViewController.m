@@ -21,11 +21,15 @@
 @implementation InitialLoginViewController
 
 @synthesize signInButton;
+@synthesize loading;
+
+UIAlertView *alert;
 
 static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dmu4h.apps.googleusercontent.com";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    FBSDKProfile *profile = [FBSDKProfile currentProfile];
 //    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
 //    loginButton.center = self.view.center;
 //    [self.view addSubview:loginButton];
@@ -37,6 +41,7 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
     // You previously set kClientId in the "Initialize the Google+ client" step
     signIn.clientID = kClientId;
     signIn.useClientIDForURLScheme = YES;
+    [loading setHidden:YES];
     
     // Uncomment one of these two statements for the scope you chose in the previous step
     signIn.scopes = @[ kGTLAuthScopePlusLogin ];  // "https://www.googleapis.com/auth/plus.login" scope
@@ -45,8 +50,14 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
     // Optional: declare signIn.actions, see "app activities"
     signIn.delegate = self;
     [GPPSignIn sharedInstance].shouldFetchGoogleUserEmail = YES;
-    [signIn trySilentAuthentication];
+    //[signIn trySilentAuthentication];
     self.loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginViewFetchedUserInfo)
+                                                 name:FBSDKProfileDidChangeNotification
+                                               object:nil];
+    
 //    if ([FBSDKAccessToken currentAccessToken]) {
 //        // User is logged in, do work such as go to next view controller.
 //      //  [self performSegueWithIdentifier:@"googleSignIn" sender:self];
@@ -64,6 +75,35 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
         [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"LoggedIn"];
         [defaults synchronize];
     }
+    //[loading setHidden:YES];
+}
+
+-(void)loginViewFetchedUserInfo{
+    NSLog(@"Reached here");
+    if ([FBSDKAccessToken currentAccessToken]) {
+        // User is logged in, do work such as go to next view controller.
+        //  [self performSegueWithIdentifier:@"googleSignIn" sender:self];
+        FBSDKProfile *profile = [FBSDKProfile currentProfile];
+        NSString *userID = profile.userID;
+        ServerCommunication *comms = [[ServerCommunication alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receivedNotification:)
+                                                     name:@"Notification" object:nil];
+        alert = [[UIAlertView alloc] initWithTitle:@"Signing you in" message:@"This may take a moment."
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:nil];
+        //
+        //            UIActivityIndicatorView *loading = [[UIActivityIndicatorView alloc]
+        //                                                initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        //            [alert setValue:loading forKey:@"accessoryView"];
+        [loading startAnimating];
+        [loading setHidden:NO];
+        [alert show];
+        //   [comms initNetworkCommunication];
+        //   NSString *message = @"ident:";
+        [comms addUser:userID];
+    }
 }
 
 
@@ -78,34 +118,65 @@ error:	(NSError *)error {
         if ([FBSDKAccessToken currentAccessToken]) {
             // User is logged in, do work such as go to next view controller.
             //  [self performSegueWithIdentifier:@"googleSignIn" sender:self];
-            FBSDKProfile *profile = [FBSDKProfile currentProfile];
-            NSString *userID = profile.userID;
-            [ServerCommunication initNetworkCommunication:self];
-            [ServerCommunication sendMessage:userID];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"LoggedIn"];
-            [defaults synchronize];
-            [self dismissViewControllerAnimated:YES completion:nil];
+                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+                 startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id profile, NSError *error) {
+                     if (!error) {
+                         NSLog(@"fetched user:%@", profile);
+                         //NSString *userID = @"akjsfnd";
+                         ServerCommunication *comms = [[ServerCommunication alloc] init];
+                         [[NSNotificationCenter defaultCenter] addObserver:self
+                                                                  selector:@selector(receivedNotification:)
+                                                                      name:@"Notification" object:nil];
+                         alert = [[UIAlertView alloc] initWithTitle:@"Signing you in" message:@"This may take a moment."
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:nil];
+                         //
+                         //            UIActivityIndicatorView *loading = [[UIActivityIndicatorView alloc]
+                         //                                                initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                         //            [alert setValue:loading forKey:@"accessoryView"];
+                         [loading startAnimating];
+                         [loading setHidden:NO];
+                         [alert show];
+                         //   [comms initNetworkCommunication];
+                         //   NSString *message = @"ident:";
+                         [comms addUser:[FBSDKAccessToken currentAccessToken]];
+                     }
+                 }];
+            
         }
     }
 }
 
-- (void) loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+- (void)receivedNotification:(NSNotification*) notification {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //name of the notification
+    NSString * name =notification.name;
     
+    //notification userinfo
+    NSDictionary * info =notification.userInfo;
+    NSLog(@"Received Notification with name =%@",name);
+    NSLog(@"Information =%@",info);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+    [loading stopAnimating];
+    [loading setHidden:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"LoggedIn"];
+    [defaults synchronize];
 }
 
--(void)refreshInterfaceBasedOnSignIn {
-    if ([[GPPSignIn sharedInstance] authentication]) {
-        // The user is signed in.
-        //[self performSegueWithIdentifier:@"googleSignIn" sender:self];
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"LoggedIn"];
-        [defaults synchronize];
-        [self dismissViewControllerAnimated:YES completion:nil];
-        // Perform other actions here, such as showing a sign-out button
-    }
-}
+//-(void)refreshInterfaceBasedOnSignIn {
+//    if ([[GPPSignIn sharedInstance] authentication]) {
+//        // The user is signed in.
+//        //[self performSegueWithIdentifier:@"googleSignIn" sender:self];
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"LoggedIn"];
+//        [defaults synchronize];
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        // Perform other actions here, such as showing a sign-out button
+//    }
+//}
 
 - (void)finishedWithAuth: (GTMOAuth2Authentication *)auth
                    error: (NSError *) error {
@@ -132,9 +203,24 @@ error:	(NSError *)error {
 //        
 //
         NSString *userAuthentication = [GPPSignIn sharedInstance].userEmail;
-        [ServerCommunication initNetworkCommunication:self];
-        [ServerCommunication sendMessage:userAuthentication];
-        [self refreshInterfaceBasedOnSignIn];
+        ServerCommunication *comms = [[ServerCommunication alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receivedNotification:)
+                                                     name:@"Login" object:nil];
+        alert = [[UIAlertView alloc] initWithTitle:@"Signing you in" message:@"This may take a moment."
+                                         delegate:self
+                                cancelButtonTitle:nil
+                                otherButtonTitles:nil];
+        //
+        //            UIActivityIndicatorView *loading = [[UIActivityIndicatorView alloc]
+        //                                                initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        //            [alert setValue:loading forKey:@"accessoryView"];
+        [loading startAnimating];
+        [loading setHidden:NO];
+        [alert show];
+       // [comms initNetworkCommunication];
+       // NSString *message = @"ident:";
+        [comms addUser:userAuthentication];
     }
 }
 
