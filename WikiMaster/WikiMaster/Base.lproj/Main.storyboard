@@ -1691,11 +1691,17 @@
                                     <action selector="stepper:" destination="1NV-6r-c94" eventType="valueChanged" id="c5Y-Uq-CYr"/>
                                 </connections>
                             </stepper>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3w-D5-5h7">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3w-D5-5h7" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Log Out">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="172" y="686" width="56" height="30"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="1NV-6r-c94" id="x83-lS-u3T"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XL7-JL-fBi">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -1929,6 +1935,7 @@
                         <outlet property="colourSlider" destination="SoU-jV-FNE" id="tih-Fl-rQg"/>
                         <outlet property="stepper" destination="4u2-Qt-G0n" id="gt0-TX-Htl"/>
                         <outlet property="timeDisplay" destination="XL7-JL-fBi" id="lZn-jl-LSc"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="loggedOut" id="Ii8-7I-TKT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Qh-ks-L9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2473,8 +2480,9 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cTU-Q2-1cg"/>
-        <segue reference="MCF-Z3-6f0"/>
         <segue reference="69J-SK-jFE"/>
+        <segue reference="MCF-Z3-6f0"/>
+        <segue reference="Ii8-7I-TKT"/>
+        <segue reference="cTU-Q2-1cg"/>
     </inferredMetricsTieBreakers>
 </document>

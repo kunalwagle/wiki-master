@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController <FBSDKLoginButtonDelegate>
 @property (weak, nonatomic) IBOutlet UISlider *colourSlider;
 - (IBAction)stepper:(id)sender;
 - (IBAction)colourChange:(id)sender;

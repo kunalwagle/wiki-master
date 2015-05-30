@@ -32,6 +32,12 @@
 
 }
 
+-(void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithBool:NO] forKey:@"LoggedIn"];
+    [self performSegueWithIdentifier:@"loggedOut" sender:self];
+}
+
 - (void)updateBackground {
     self.view.backgroundColor = [UtilityMethods getColour];
 }
