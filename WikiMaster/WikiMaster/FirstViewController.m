@@ -16,11 +16,6 @@
 @implementation FirstViewController
 
 - (void)viewDidAppear:(BOOL)animated {
-
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    self.view.backgroundColor = [UtilityMethods getColour];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([[defaults valueForKey:@"LoggedIn"] isEqualToNumber:[NSNumber numberWithBool:NO]]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -29,6 +24,11 @@
         
         [self presentViewController:vc animated:YES completion:nil];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.view.backgroundColor = [UtilityMethods getColour];
+
 }
 
 - (void)viewDidLoad {

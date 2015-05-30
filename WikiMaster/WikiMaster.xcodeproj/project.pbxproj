@@ -10,6 +10,8 @@
 		0C26DB4A1B14951400902409 /* ServerCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C26DB491B14951400902409 /* ServerCommunication.m */; };
 		0C3AAAC61B1257580058D233 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */; };
 		0C3AAAC91B12580B0058D233 /* ManualSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */; };
+		0C5E58731B19F1EF00A87A3F /* FriendsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E58721B19F1EF00A87A3F /* FriendsListTableViewController.m */; };
+		0C5E58751B19F5E300A87A3F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5E58741B19F5E300A87A3F /* QuartzCore.framework */; };
 		0C5F14471B0CDBF4009946CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F14461B0CDBF4009946CA /* main.m */; };
 		0C5F144A1B0CDBF4009946CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F14491B0CDBF4009946CA /* AppDelegate.m */; };
 		0C5F144D1B0CDBF4009946CA /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5F144C1B0CDBF4009946CA /* FirstViewController.m */; };
@@ -87,6 +89,9 @@
 		0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		0C3AAAC71B12580B0058D233 /* ManualSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualSignInViewController.h; sourceTree = "<group>"; };
 		0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualSignInViewController.m; sourceTree = "<group>"; };
+		0C5E58711B19F1EF00A87A3F /* FriendsListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListTableViewController.h; sourceTree = "<group>"; };
+		0C5E58721B19F1EF00A87A3F /* FriendsListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListTableViewController.m; sourceTree = "<group>"; };
+		0C5E58741B19F5E300A87A3F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0C5F14411B0CDBF4009946CA /* WikiMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WikiMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C5F14451B0CDBF4009946CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C5F14461B0CDBF4009946CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -168,6 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5E58751B19F5E300A87A3F /* QuartzCore.framework in Frameworks */,
 				0C5F14C21B120EDD009946CA /* GoogleOpenSource.framework in Frameworks */,
 				0C5F14C31B120EDD009946CA /* GooglePlus.framework in Frameworks */,
 				0C5F14B61B120EB3009946CA /* AddressBook.framework in Frameworks */,
@@ -199,6 +205,7 @@
 		0C5F14381B0CDBF4009946CA = {
 			isa = PBXGroup;
 			children = (
+				0C5E58741B19F5E300A87A3F /* QuartzCore.framework */,
 				0C5F14C41B120F00009946CA /* GooglePlus.bundle */,
 				0C5F14C01B120EDD009946CA /* GoogleOpenSource.framework */,
 				0C5F14C11B120EDD009946CA /* GooglePlus.framework */,
@@ -242,6 +249,8 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0C5E58711B19F1EF00A87A3F /* FriendsListTableViewController.h */,
+				0C5E58721B19F1EF00A87A3F /* FriendsListTableViewController.m */,
 				0C878D9A1B18A2F700780F54 /* SettingsViewController.h */,
 				0C878D9B1B18A2F700780F54 /* SettingsViewController.m */,
 				0C878D9D1B18A45100780F54 /* UtilityMethods.h */,
@@ -468,6 +477,7 @@
 			files = (
 				0C3AAAC91B12580B0058D233 /* ManualSignInViewController.m in Sources */,
 				0C5F14501B0CDBF4009946CA /* SecondViewController.m in Sources */,
+				0C5E58731B19F1EF00A87A3F /* FriendsListTableViewController.m in Sources */,
 				0C5F14AB1B120D48009946CA /* InitialLoginViewController.m in Sources */,
 				0CEF69071B14DE9B0009F137 /* QuizLoadingViewController.m in Sources */,
 				0CEF698F1B1634A80009F137 /* AnswerDebriefViewController.m in Sources */,
