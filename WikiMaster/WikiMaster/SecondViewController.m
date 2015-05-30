@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import "UtilityMethods.h"
 
 @interface SecondViewController ()
 
@@ -18,6 +19,10 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.view.backgroundColor = [UtilityMethods getColour];
 }
 
 -(BOOL)prefersStatusBarHidden {

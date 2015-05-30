@@ -9,12 +9,15 @@
 #import "AnswerDebriefViewController.h"
 #import "GamePlayViewController.h"
 #import "FinalTotalsViewController.h"
+#import "UtilityMethods.h"
 
 @interface AnswerDebriefViewController ()
 
 @end
 
 @implementation AnswerDebriefViewController
+
+#define MAX(a,b) ( ((a) > (b)) ? (a) : (b) )
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,10 +26,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.answer.text = [self truncateString:[self.question getCorrect]];
-    if (((30-self.time)%60)<10) {
-        self.timeTaken.text = [NSString stringWithFormat:@"%d:0%d", (30 - self.time)/60, (30-self.time)%60];
+    int timer = [UtilityMethods getTimer];
+    if (((timer-self.time)%60)<10) {
+        self.timeTaken.text = [NSString stringWithFormat:@"%d:0%d", (timer - self.time)/60, (timer-self.time)%60];
     } else {
-        self.timeTaken.text = [NSString stringWithFormat:@"%d:%d", (30 - self.time)/60, (30-self.time)%60];
+        self.timeTaken.text = [NSString stringWithFormat:@"%d:%d", (timer - self.time)/60, (timer-self.time)%60];
     }
     BOOL correctness = [self.question isCorrect:self.guess];
     if (correctness) {
@@ -35,9 +39,10 @@
     } else {
         self.correctAnswerBonus.text = @"0";
     }
+    int finalTime = MAX(0, (self.time+30)-timer);
     if (correctness) {
         self.tick.image = [UIImage imageNamed:@"Tick.png"];
-        self.totalPoints.text = [NSString stringWithFormat:@"%d", [self.correctAnswerBonus.text intValue] + self.time];
+        self.totalPoints.text = [NSString stringWithFormat:@"%d", [self.correctAnswerBonus.text intValue] + finalTime];
     } else {
         self.tick.image = [UIImage imageNamed:@"Cross.png"];
         self.totalPoints.text = @"0";
@@ -45,6 +50,7 @@
             self.tick.image = [UIImage imageNamed:@"exclamation.png"];
         }
     }
+    self.view.backgroundColor = [UtilityMethods getColour];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,17 +85,18 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    int timer = [UtilityMethods getTimer];
     if ([[segue identifier] isEqualToString:@"back"]) {
         GamePlayViewController* vc = (GamePlayViewController*)[segue destinationViewController];
         vc.questions = self.questions;
         vc.question = 7-[self.questions count];
         vc.runningScore = self.runningScore + [self.totalPoints.text intValue];
-        vc.totalTime = self.totalTime + (30-self.time);
+        vc.totalTime = self.totalTime + (timer-self.time);
         vc.correctAnswers = self.correctAnswers;
     } else {
         FinalTotalsViewController* vc = (FinalTotalsViewController*)[segue destinationViewController];
         vc.runningScore = self.runningScore + [self.totalPoints.text intValue];
-        vc.totalTime = self.totalTime + (30-self.time);
+        vc.totalTime = self.totalTime + (timer-self.time);
         vc.correctAnswers = self.correctAnswers;
     }
 }

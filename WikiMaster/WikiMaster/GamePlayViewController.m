@@ -9,12 +9,15 @@
 #import "GamePlayViewController.h"
 #import "Question.h"
 #import "AnswerDebriefViewController.h"
+#import "UtilityMethods.h"
 
 @interface GamePlayViewController ()
 
 @end
 
 @implementation GamePlayViewController
+
+
 
 Question *currentQuestion;
 int timer;
@@ -28,7 +31,12 @@ int timer;
     currentQuestion = [self.questions objectAtIndex:0];
     [self.questions removeObjectAtIndex:0];
     self.questionNumber.text = [NSString stringWithFormat:@"%d", self.question];
-    self.timer.text = @"0:30";
+    timer = [UtilityMethods getTimer];
+    if ((timer%60)<10) {
+        self.timer.text = [NSString stringWithFormat:@"%d:0%d", timer/60, timer%60];
+    } else {
+        self.timer.text = [NSString stringWithFormat:@"%d:%d", timer/60, timer%60];
+    }
     NSMutableArray *answers = [currentQuestion getAnswers];
     // Call a method that truncates the string I want to use
     [self.button1 setTitle:[self truncateString:[answers objectAtIndex:0]] forState:UIControlStateNormal];
@@ -66,7 +74,7 @@ int timer;
         default:
             break;
     }
-    timer = 30;
+    self.view.backgroundColor = [UtilityMethods getColour];
 }
 
 - (NSString *)truncateString:(NSString *)stringToTruncate

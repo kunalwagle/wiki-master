@@ -61,6 +61,8 @@
 		0C5F14C31B120EDD009946CA /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14C11B120EDD009946CA /* GooglePlus.framework */; };
 		0C5F14C51B120F00009946CA /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14C41B120F00009946CA /* GooglePlus.bundle */; };
 		0C878D991B17525200780F54 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C878D981B17525200780F54 /* exclamation.png */; };
+		0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9B1B18A2F700780F54 /* SettingsViewController.m */; };
+		0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9E1B18A45100780F54 /* UtilityMethods.m */; };
 		0CEF69071B14DE9B0009F137 /* QuizLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF69061B14DE9B0009F137 /* QuizLoadingViewController.m */; };
 		0CEF69421B1606F70009F137 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF69411B1606F70009F137 /* Question.m */; };
 		0CEF698C1B162E370009F137 /* GamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF698B1B162E370009F137 /* GamePlayViewController.m */; };
@@ -145,6 +147,10 @@
 		0C5F14C11B120EDD009946CA /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.framework"; sourceTree = "<group>"; };
 		0C5F14C41B120F00009946CA /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"; sourceTree = "<group>"; };
 		0C878D981B17525200780F54 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
+		0C878D9A1B18A2F700780F54 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		0C878D9B1B18A2F700780F54 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		0C878D9D1B18A45100780F54 /* UtilityMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityMethods.h; sourceTree = "<group>"; };
+		0C878D9E1B18A45100780F54 /* UtilityMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilityMethods.m; sourceTree = "<group>"; };
 		0CEF69051B14DE9B0009F137 /* QuizLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizLoadingViewController.h; sourceTree = "<group>"; };
 		0CEF69061B14DE9B0009F137 /* QuizLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizLoadingViewController.m; sourceTree = "<group>"; };
 		0CEF69401B1606F70009F137 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
@@ -236,6 +242,10 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0C878D9A1B18A2F700780F54 /* SettingsViewController.h */,
+				0C878D9B1B18A2F700780F54 /* SettingsViewController.m */,
+				0C878D9D1B18A45100780F54 /* UtilityMethods.h */,
+				0C878D9E1B18A45100780F54 /* UtilityMethods.m */,
 				0CEF69901B163A7E0009F137 /* FinalTotalsViewController.h */,
 				0CEF69911B163A7E0009F137 /* FinalTotalsViewController.m */,
 				0CEF698D1B1634A80009F137 /* AnswerDebriefViewController.h */,
@@ -461,6 +471,7 @@
 				0C5F14AB1B120D48009946CA /* InitialLoginViewController.m in Sources */,
 				0CEF69071B14DE9B0009F137 /* QuizLoadingViewController.m in Sources */,
 				0CEF698F1B1634A80009F137 /* AnswerDebriefViewController.m in Sources */,
+				0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */,
 				0C3AAAC61B1257580058D233 /* CreateAccountViewController.m in Sources */,
 				0C5F144A1B0CDBF4009946CA /* AppDelegate.m in Sources */,
 				0CEF698C1B162E370009F137 /* GamePlayViewController.m in Sources */,
@@ -469,6 +480,7 @@
 				0C5F144D1B0CDBF4009946CA /* FirstViewController.m in Sources */,
 				0CEF69921B163A7E0009F137 /* FinalTotalsViewController.m in Sources */,
 				0C5F14471B0CDBF4009946CA /* main.m in Sources */,
+				0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "UtilityMethods.h"
 
 @interface FirstViewController ()
 
@@ -23,6 +24,10 @@
     
     [self presentViewController:vc animated:YES completion:nil];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.view.backgroundColor = [UtilityMethods getColour];
 }
 
 - (void)viewDidLoad {

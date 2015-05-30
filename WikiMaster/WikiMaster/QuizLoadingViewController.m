@@ -9,6 +9,7 @@
 #import "QuizLoadingViewController.h"
 #import "Question.h"
 #import "GamePlayViewController.h"
+#import "UtilityMethods.h"
 
 @interface QuizLoadingViewController ()
 
@@ -36,6 +37,10 @@ NSMutableArray *questions;
     quizName.hidden = NO;
     [self createQuestions];
     [self performSelector:@selector(initiateCountdown) withObject:nil afterDelay:1.0];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.view.backgroundColor = [UtilityMethods getColour];
 }
 
 -(void)createQuestions {

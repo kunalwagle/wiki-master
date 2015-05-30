@@ -7,6 +7,7 @@
 //
 
 #import "InitialLoginViewController.h"
+#import "UtilityMethods.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "ServerCommunication.h"
 #import <FBSDKCoreKit/FBSDKProfile.h>
@@ -78,6 +79,10 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
     //[loading setHidden:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.view.backgroundColor = [UtilityMethods getColour];
+}
+
 -(void)loginViewFetchedUserInfo{
     NSLog(@"Reached here");
     if ([FBSDKAccessToken currentAccessToken]) {
@@ -140,7 +145,7 @@ error:	(NSError *)error {
                          [alert show];
                          //   [comms initNetworkCommunication];
                          //   NSString *message = @"ident:";
-                         [comms addUser:[FBSDKAccessToken currentAccessToken]];
+                         [comms addUser:[[FBSDKAccessToken currentAccessToken] tokenString]];
                      }
                  }];
             

@@ -7,6 +7,7 @@
 //
 
 #import "FinalTotalsViewController.h"
+#import "UtilityMethods.h"
 
 @interface FinalTotalsViewController ()
 
@@ -30,6 +31,7 @@
     if (self.correctAnswers<=3) {
         self.thumbs.image = [UIImage imageNamed:@"dislike-157252_640.png"];
     }
+    self.view.backgroundColor = [UtilityMethods getColour];
 }
 
 - (void)didReceiveMemoryWarning {

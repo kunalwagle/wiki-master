@@ -11,8 +11,9 @@
 @implementation ServerCommunication
 
 
--(void)addUser:(id)userID {
-    NSString *post = [NSString stringWithFormat:@"%@", userID];
+-(void)addUser:(NSString*)userID {
+    NSString *post = [NSString stringWithFormat:@"access_token=%@", userID];
+    NSLog(post);
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
