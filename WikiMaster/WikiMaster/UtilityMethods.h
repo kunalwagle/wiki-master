@@ -14,6 +14,5 @@
 +(UIColor*)getColour;
 +(void)initColours;
 +(int)getTimer;
-+(NSArray*)getQuestionTypes;
 
 @end

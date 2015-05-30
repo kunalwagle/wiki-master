@@ -42,13 +42,4 @@ static NSMutableArray *colours;
     return [[defaults objectForKey:@"timer"] intValue];
 }
 
-+(NSArray*)getQuestionTypes {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [[NSArray alloc] initWithObjects:
-            [defaults objectForKey:@"imageQuestion"],
-            [defaults objectForKey:@"guessQuestion"],
-            [defaults objectForKey:@"quickfactQuestion"],
-            nil];
-}
-
 @end

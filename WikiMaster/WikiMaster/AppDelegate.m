@@ -37,9 +37,6 @@ NSString *GOOGLE_PLUS_SCHEME = @"com.googleusercontent.apps.976248599268-4u6e0nj
         [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"wasLaunchedBefore"];
         [defaults setObject:[NSNumber numberWithInt:7] forKey:@"colourIndex"];
         [defaults setObject:[NSNumber numberWithInt:30] forKey:@"timer"];
-        [defaults setBool:YES forKey:@"imageQuestion"];
-        [defaults setBool:YES forKey:@"guessQuestion"];
-        [defaults setBool:YES forKey:@"quickfactQuestion"];
     }
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
