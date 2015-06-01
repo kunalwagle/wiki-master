@@ -9,6 +9,8 @@
 #import "FriendsListTableViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "FriendTableViewCell.h"
+#import "UtilityMethods.h"
+#import "InviteTableViewCell.h"
 
 
 
@@ -49,11 +51,18 @@ NSMutableArray *images;
             [self.tableView reloadData];
         }
     }];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.backgroundColor = [UtilityMethods getColour];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 #pragma mark - Table view data source
@@ -63,7 +72,41 @@ NSMutableArray *images;
     return 2;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return 40;
+        default:
+            return 0;
+    }
+}
+
+-(UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    switch (section) {
+        case 0: {
+            UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+            footer.backgroundColor = [UIColor clearColor];
+            return footer;
+        }
+            
+        default:
+            return nil;
+    }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return 40;
+            
+        default:
+            return 0;
+    }
+}
+
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:[UIColor whiteColor]];
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:@"AvenirNext-DemiBold" size:19.0]];
     switch (section) {
         case 0:
             return @"Friends on WikiMaster";
@@ -73,13 +116,39 @@ NSMutableArray *images;
     }
 }
 
+//- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    if (section == 0) {
+//        CGRect screenRect = [[UIScreen mainScreen] applicationFrame];
+//        UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenRect.size.width, 44.0)];
+//        //headerView.contentMode = UIViewContentModeScaleToFill;
+//        
+//        // Add the label
+//        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, -5.0, 300.0, 90.0)];
+//        headerLabel.backgroundColor = [UIColor clearColor];
+//        headerLabel.opaque = NO;
+//        headerLabel.text = @"Friends on WikiMaster";
+//        headerLabel.textColor = [UIColor whiteColor];
+//        
+//        //this is what you asked
+//        headerLabel.font = [UIFont fontWithName:@"Avenir Next Bold" size:14.0];
+//        headerLabel.numberOfLines = 1;
+//        [headerView addSubview: headerLabel];
+//        
+//        // Return the headerView
+//        return headerView;
+//    }
+//    else return nil;
+//}
+
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
             return [self.friends count];
             
         default:
-            return [self.invitableFriends count];
+            return 1;
     }
 }
 
@@ -89,20 +158,53 @@ NSMutableArray *images;
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friend"];
-    if (cell == nil) {
-       cell = [[FriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friend"];
+    switch ([indexPath section]) {
+        case 0: {
+            FriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friend"];
+            if (cell == nil) {
+                cell = [[FriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friend"];
+            }
+            cell.image.image = [images objectAtIndex:[indexPath row]];
+            cell.image.layer.cornerRadius = 30;
+            cell.image.layer.masksToBounds = YES;
+            cell.image.layer.shouldRasterize = YES;
+            cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
+            cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
+            cell.online.text = @"Offline";
+            cell.contentView.backgroundColor = [UtilityMethods getColour];
+            return cell;
+        }
+            
+        default: {
+//            if ([indexPath row] == 1) {
+//                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+//                if (cell==nil) {
+//                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+//                }
+//                [cell setFrame:CGRectMake(0, 0, self.view.frame.size.width, 0)];
+//                [
+//                return cell;
+//            }
+            InviteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"invite"];
+            if (cell==nil) {
+                cell = [[InviteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"invite"];
+            }
+            cell.contentView.backgroundColor = [UtilityMethods getColour];
+            cell.table = self;
+            cell.separatorInset = UIEdgeInsetsMake(0, CGRectGetWidth(self.tableView.bounds)/2.0, 0, CGRectGetWidth(self.tableView.bounds)/2.0);
+            
+            return cell;
+        }
     }
-    cell.image.image = [images objectAtIndex:[indexPath row]];
-    cell.image.layer.cornerRadius = 30;
-    cell.image.layer.masksToBounds = YES;
-    cell.image.layer.shouldRasterize = YES;
-    cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
-    cell.online.text = @"Offline";
-    return cell;
 }
 
+-(NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath section]==1) {
+        return nil;
+    } else {
+        return indexPath;
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.
