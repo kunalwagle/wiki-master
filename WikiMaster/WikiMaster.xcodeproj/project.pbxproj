@@ -70,6 +70,7 @@
 		0CEF698C1B162E370009F137 /* GamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF698B1B162E370009F137 /* GamePlayViewController.m */; };
 		0CEF698F1B1634A80009F137 /* AnswerDebriefViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF698E1B1634A80009F137 /* AnswerDebriefViewController.m */; };
 		0CEF69921B163A7E0009F137 /* FinalTotalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF69911B163A7E0009F137 /* FinalTotalsViewController.m */; };
+		0CF80C201B1C808900C7CA35 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C1F1B1C808900C7CA35 /* FriendTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,8 @@
 		0CEF698E1B1634A80009F137 /* AnswerDebriefViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerDebriefViewController.m; sourceTree = "<group>"; };
 		0CEF69901B163A7E0009F137 /* FinalTotalsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinalTotalsViewController.h; sourceTree = "<group>"; };
 		0CEF69911B163A7E0009F137 /* FinalTotalsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinalTotalsViewController.m; sourceTree = "<group>"; };
+		0CF80C1E1B1C808900C7CA35 /* FriendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendTableViewCell.h; sourceTree = "<group>"; };
+		0CF80C1F1B1C808900C7CA35 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +252,8 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0CF80C1E1B1C808900C7CA35 /* FriendTableViewCell.h */,
+				0CF80C1F1B1C808900C7CA35 /* FriendTableViewCell.m */,
 				0C5E58711B19F1EF00A87A3F /* FriendsListTableViewController.h */,
 				0C5E58721B19F1EF00A87A3F /* FriendsListTableViewController.m */,
 				0C878D9A1B18A2F700780F54 /* SettingsViewController.h */,
@@ -489,6 +494,7 @@
 				0CEF69421B1606F70009F137 /* Question.m in Sources */,
 				0C5F144D1B0CDBF4009946CA /* FirstViewController.m in Sources */,
 				0CEF69921B163A7E0009F137 /* FinalTotalsViewController.m in Sources */,
+				0CF80C201B1C808900C7CA35 /* FriendTableViewCell.m in Sources */,
 				0C5F14471B0CDBF4009946CA /* main.m in Sources */,
 				0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */,
 			);

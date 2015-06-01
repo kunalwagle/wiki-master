@@ -8,6 +8,7 @@
 
 #import "FriendsListTableViewController.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "FriendTableViewCell.h"
 
 
 
@@ -20,18 +21,32 @@
 
 @implementation FriendsListTableViewController
 
+NSMutableArray *images;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    images = [[NSMutableArray alloc] initWithObjects: nil];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/me/friends"
-                                  parameters:nil
+                                  parameters:@{@"fields":@"picture, name"}
                                   HTTPMethod:@"GET"];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
                                           id result,
                                           NSError *error) {
+        if (!error) {
         self.friends = [result objectForKey:@"data"];
+        //NSLog(result);
         for (NSDictionary* dict in self.friends) {
-            NSLog(@"I have a friend named %@", [dict objectForKey:@"name"]);
+            for (id key in dict) {
+                NSLog(@"key: %@, value: %@ \n", key, [dict objectForKey:key]);
+            }
+            NSDictionary *pictureData = [dict objectForKey:@"picture"];
+            NSString *pictureURL = [NSString stringWithFormat:@"%@",[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
+            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:pictureURL]];
+            UIImage *image = [UIImage imageWithData:imageData];
+            [images addObject:image];
+        }
+            [self.tableView reloadData];
         }
     }];
 }
@@ -68,15 +83,26 @@
     }
 }
 
-/*
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 75;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    FriendTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"friend"];
+    if (cell == nil) {
+       cell = [[FriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friend"];
+    }
+    cell.image.image = [images objectAtIndex:[indexPath row]];
+    cell.image.layer.cornerRadius = 30;
+    cell.image.layer.masksToBounds = YES;
+    cell.image.layer.shouldRasterize = YES;
+    cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
+    cell.online.text = @"Offline";
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
