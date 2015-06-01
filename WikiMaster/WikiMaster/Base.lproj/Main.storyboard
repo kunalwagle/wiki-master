@@ -1689,7 +1689,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Black.png" translatesAutoresizingMaskIntoConstraints="NO" id="QtY-d0-uDX">
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Black.png" translatesAutoresizingMaskIntoConstraints="NO" id="QtY-d0-uDX">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="41" id="Sd3-m8-jaE">
@@ -1710,19 +1710,19 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zET-el-JEO">
+                            <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zET-el-JEO">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hkt-Qm-fjI">
+                            <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hkt-Qm-fjI">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="e63-ig-rOR">
+                            <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="e63-ig-rOR">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uRg-bZ-IMV">
+                            <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uRg-bZ-IMV">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide5.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hHS-RM-pL6">
+                            <imageView userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide5.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hHS-RM-pL6">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="seconds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxQ-QV-4hR">
@@ -1734,17 +1734,17 @@
                                     <rect key="frame" x="200" y="193" width="76" height="21"/>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide6.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="tyV-hK-I1P">
+                            <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide6.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="tyV-hK-I1P">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide9.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="cyq-M4-65m">
+                            <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide9.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="cyq-M4-65m">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide7.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="EX9-rb-Qzd">
+                            <imageView userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide7.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="EX9-rb-Qzd">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide8.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Ydf-W7-TvA">
+                            <imageView userInteractionEnabled="NO" tag="9" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide8.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Ydf-W7-TvA">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7" minValue="0.0" maxValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="SoU-jV-FNE">
