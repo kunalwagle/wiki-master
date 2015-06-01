@@ -56,6 +56,12 @@ NSMutableArray *images;
             [self.tableView reloadData];
         }
     }];
+    UINib *nib = [UINib nibWithNibName:@"InviteTableViewCell" bundle:nil];
+    [[self tableView] registerNib:nib forCellReuseIdentifier:@"invite"];
+    [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"invite"];
+    nib = [UINib nibWithNibName:@"FriendTableViewCell" bundle:nil];
+    [[self tableView] registerNib:nib forCellReuseIdentifier:@"friend"];
+    [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"friend"];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.backgroundColor = [UtilityMethods getColour];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -64,13 +70,15 @@ NSMutableArray *images;
     self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    self.tableView.backgroundColor = [UtilityMethods getColour];
+    self.searchDisplayController.searchResultsTableView.backgroundColor = [UtilityMethods getColour];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(BOOL)prefersStatusBarHidden {
-    return YES;
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
@@ -207,7 +215,7 @@ NSMutableArray *images;
             cell.image.layer.masksToBounds = YES;
             cell.image.layer.shouldRasterize = YES;
             cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
-            
+            cell.backgroundColor = [UtilityMethods getColour];
             cell.contentView.backgroundColor = [UtilityMethods getColour];
             return cell;
         }
@@ -226,6 +234,7 @@ NSMutableArray *images;
             if (cell==nil) {
                 cell = [[InviteTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"invite"];
             }
+            cell.backgroundColor = [UtilityMethods getColour];
             cell.contentView.backgroundColor = [UtilityMethods getColour];
             cell.table = self;
             cell.separatorInset = UIEdgeInsetsMake(0, CGRectGetWidth(self.tableView.bounds)/2.0, 0, CGRectGetWidth(self.tableView.bounds)/2.0);
@@ -240,6 +249,12 @@ NSMutableArray *images;
         return nil;
     } else {
         return indexPath;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([indexPath section]==0) {
+        [self performSegueWithIdentifier:@"showProfile" sender:self];
     }
 }
 

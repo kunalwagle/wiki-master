@@ -10,8 +10,12 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="75"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-9b-aKf">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCt-9b-aKf">
                     <rect key="frame" x="100" y="13" width="200" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="VdJ-fY-JyA"/>
+                        <constraint firstAttribute="height" constant="50" id="sfb-C7-D2p"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
                     <state key="normal" title="Invite your Friends" backgroundImage="rectangle-34969_64.png">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -26,6 +30,10 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.2470588235" green="0.43529411759999997" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="OCt-9b-aKf" secondAttribute="centerY" constant="-0.5" id="PaQ-as-DNt"/>
+                <constraint firstAttribute="centerX" secondItem="OCt-9b-aKf" secondAttribute="centerX" id="pUt-FQ-QxR"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="inviteButton" destination="OCt-9b-aKf" id="G9B-fu-h0M"/>
