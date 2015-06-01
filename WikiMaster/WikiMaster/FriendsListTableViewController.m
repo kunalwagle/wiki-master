@@ -16,8 +16,8 @@
 
 @interface FriendsListTableViewController ()
 
-@property NSArray *friends;
-@property NSArray *invitableFriends;
+@property NSMutableArray *friends;
+@property NSArray *searchFriends;
 
 @end
 
@@ -27,6 +27,7 @@ NSMutableArray *images;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.friends = [[NSMutableArray alloc] initWithObjects: nil];
     images = [[NSMutableArray alloc] initWithObjects: nil];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/me/friends"
@@ -36,9 +37,10 @@ NSMutableArray *images;
                                           id result,
                                           NSError *error) {
         if (!error) {
-        self.friends = [result objectForKey:@"data"];
+            NSArray *temp = [result objectForKey:@"data"];
+        //self.friends = [result objectForKey:@"data"];
         //NSLog(result);
-        for (NSDictionary* dict in self.friends) {
+        for (NSDictionary* dict in temp) {
             for (id key in dict) {
                 NSLog(@"key: %@, value: %@ \n", key, [dict objectForKey:key]);
             }
@@ -46,7 +48,10 @@ NSMutableArray *images;
             NSString *pictureURL = [NSString stringWithFormat:@"%@",[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
             NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:pictureURL]];
             UIImage *image = [UIImage imageWithData:imageData];
+            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:dict];
+            [dictionary setValue:[NSNumber numberWithInt:[images count]] forKey:@"imageNumber"];
             [images addObject:image];
+            [self.friends addObject:dictionary];
         }
             [self.tableView reloadData];
         }
@@ -54,6 +59,9 @@ NSMutableArray *images;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.backgroundColor = [UtilityMethods getColour];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.searchDisplayController.searchResultsTableView.backgroundColor = [UtilityMethods getColour];
+    self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +72,24 @@ NSMutableArray *images;
 -(BOOL)prefersStatusBarHidden {
     return YES;
 }
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    NSPredicate *p = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+    self.searchFriends = [self.friends filteredArrayUsingPredicate:p];
+    NSLog(@"Hello");
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    
+    return YES;
+}
+
 
 #pragma mark - Table view data source
 
@@ -145,8 +171,11 @@ NSMutableArray *images;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
-            return [self.friends count];
-            
+            if (tableView == self.tableView) {
+                return [self.friends count];
+            } else {
+                return [self.searchFriends count];
+            }
         default:
             return 1;
     }
@@ -164,13 +193,21 @@ NSMutableArray *images;
             if (cell == nil) {
                 cell = [[FriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friend"];
             }
-            cell.image.image = [images objectAtIndex:[indexPath row]];
+            if (tableView == self.tableView) {
+                cell.image.image = [images objectAtIndex:[indexPath row]];
+                cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
+                cell.online.text = @"Offline";
+            } else {
+                cell.name.text = [[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"name"];
+                cell.image.image = [images objectAtIndex:[[[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"imageNumber"] intValue]];
+                cell.online.text = @"Offline";
+            }
+            
             cell.image.layer.cornerRadius = 30;
             cell.image.layer.masksToBounds = YES;
             cell.image.layer.shouldRasterize = YES;
             cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
-            cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
-            cell.online.text = @"Offline";
+            
             cell.contentView.backgroundColor = [UtilityMethods getColour];
             return cell;
         }

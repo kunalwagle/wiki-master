@@ -72,6 +72,7 @@
 		0CEF69921B163A7E0009F137 /* FinalTotalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF69911B163A7E0009F137 /* FinalTotalsViewController.m */; };
 		0CF80C201B1C808900C7CA35 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C1F1B1C808900C7CA35 /* FriendTableViewCell.m */; };
 		0CF80C231B1C9D0700C7CA35 /* InviteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C221B1C9D0700C7CA35 /* InviteTableViewCell.m */; };
+		0CF80C251B1CBF1E00C7CA35 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C241B1CBF1E00C7CA35 /* FriendTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,7 @@
 		0CF80C1F1B1C808900C7CA35 /* FriendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendTableViewCell.m; sourceTree = "<group>"; };
 		0CF80C211B1C9D0700C7CA35 /* InviteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteTableViewCell.h; sourceTree = "<group>"; };
 		0CF80C221B1C9D0700C7CA35 /* InviteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteTableViewCell.m; sourceTree = "<group>"; };
+		0CF80C241B1CBF1E00C7CA35 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 				0CF80C1F1B1C808900C7CA35 /* FriendTableViewCell.m */,
 				0C5E58711B19F1EF00A87A3F /* FriendsListTableViewController.h */,
 				0C5E58721B19F1EF00A87A3F /* FriendsListTableViewController.m */,
+				0CF80C241B1CBF1E00C7CA35 /* FriendTableViewCell.xib */,
 				0C878D9A1B18A2F700780F54 /* SettingsViewController.h */,
 				0C878D9B1B18A2F700780F54 /* SettingsViewController.m */,
 				0C878D9D1B18A45100780F54 /* UtilityMethods.h */,
@@ -439,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C5F14891B10E850009946CA /* Tick.png in Resources */,
+				0CF80C251B1CBF1E00C7CA35 /* FriendTableViewCell.xib in Resources */,
 				0C5F148D1B10E8D3009946CA /* hand-157251_640.png in Resources */,
 				0C5F14531B0CDBF4009946CA /* Main.storyboard in Resources */,
 				0C5F149D1B10EA63009946CA /* Slide6.jpg in Resources */,
