@@ -73,6 +73,7 @@
 		0CF80C201B1C808900C7CA35 /* FriendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C1F1B1C808900C7CA35 /* FriendTableViewCell.m */; };
 		0CF80C231B1C9D0700C7CA35 /* InviteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C221B1C9D0700C7CA35 /* InviteTableViewCell.m */; };
 		0CF80C251B1CBF1E00C7CA35 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C241B1CBF1E00C7CA35 /* FriendTableViewCell.xib */; };
+		0CF80C271B1CC0CB00C7CA35 /* InviteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C261B1CC0CB00C7CA35 /* InviteTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,7 @@
 		0CF80C211B1C9D0700C7CA35 /* InviteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteTableViewCell.h; sourceTree = "<group>"; };
 		0CF80C221B1C9D0700C7CA35 /* InviteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteTableViewCell.m; sourceTree = "<group>"; };
 		0CF80C241B1CBF1E00C7CA35 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
+		0CF80C261B1CC0CB00C7CA35 /* InviteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +262,7 @@
 				0CF80C211B1C9D0700C7CA35 /* InviteTableViewCell.h */,
 				0CF80C221B1C9D0700C7CA35 /* InviteTableViewCell.m */,
 				0CF80C1E1B1C808900C7CA35 /* FriendTableViewCell.h */,
+				0CF80C261B1CC0CB00C7CA35 /* InviteTableViewCell.xib */,
 				0CF80C1F1B1C808900C7CA35 /* FriendTableViewCell.m */,
 				0C5E58711B19F1EF00A87A3F /* FriendsListTableViewController.h */,
 				0C5E58721B19F1EF00A87A3F /* FriendsListTableViewController.m */,
@@ -467,6 +470,7 @@
 				0C5F148C1B10E8D3009946CA /* dislike-157252_640.png in Resources */,
 				0C5F14811B10C227009946CA /* Violet.png in Resources */,
 				0C5F147B1B10C227009946CA /* Brown.png in Resources */,
+				0CF80C271B1CC0CB00C7CA35 /* InviteTableViewCell.xib in Resources */,
 				0C5F14801B10C227009946CA /* Turquoise.png in Resources */,
 				0C5F149B1B10EA63009946CA /* Slide4.jpg in Resources */,
 				0C5F149A1B10EA63009946CA /* Slide3.jpg in Resources */,

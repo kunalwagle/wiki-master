@@ -303,41 +303,12 @@
                                     </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="invite" rowHeight="75" id="H28-mZ-Xdq" customClass="InviteTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="invite" rowHeight="75" id="H28-mZ-Xdq">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H28-mZ-Xdq" id="i8e-ja-aZM">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czO-XD-m01">
-                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="15"/>
-                                            <state key="normal" title="Invite your Friends" backgroundImage="rectangle-34969_64.png">
-                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="100" y="12" width="200" height="50"/>
-                                            </variation>
-                                            <connections>
-                                                <action selector="clicked:" destination="H28-mZ-Xdq" eventType="touchUpInside" id="oyK-tW-ReI"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
                                     <color key="backgroundColor" red="0.2470588235" green="0.43529411759999997" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="czO-XD-m01"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular-widthClass=compact">
-                                        <mask key="subviews">
-                                            <include reference="czO-XD-m01"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="inviteButton" destination="czO-XD-m01" id="YVP-bm-kly"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
