@@ -11,7 +11,7 @@
 @implementation ServerCommunication
 
 
--(void)addUser:(NSString*)userID {
++(void)addUser:(NSString*)userID {
     NSString *post = [NSString stringWithFormat:@"access_token=%@", userID];
     NSLog(post);
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
@@ -30,15 +30,15 @@
     }
 }
 
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
++(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"FAILED");
 }
 
--(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
++(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     
 }
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
++(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     NSString *output = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSLog([[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
     NSDictionary * dict =[NSDictionary dictionaryWithObject:output forKey:@"response"];

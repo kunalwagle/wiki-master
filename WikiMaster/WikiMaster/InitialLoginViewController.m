@@ -90,7 +90,6 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
         //  [self performSegueWithIdentifier:@"googleSignIn" sender:self];
         FBSDKProfile *profile = [FBSDKProfile currentProfile];
         NSString *userID = profile.userID;
-        ServerCommunication *comms = [[ServerCommunication alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(receivedNotification:)
                                                      name:@"Notification" object:nil];
@@ -107,7 +106,7 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
         [alert show];
         //   [comms initNetworkCommunication];
         //   NSString *message = @"ident:";
-        [comms addUser:userID];
+        [ServerCommunication addUser:userID];
     }
 }
 
@@ -133,7 +132,6 @@ error:	(NSError *)error {
                      if (!error) {
                          NSLog(@"fetched user:%@", profile);
                          //NSString *userID = @"akjsfnd";
-                         ServerCommunication *comms = [[ServerCommunication alloc] init];
                          [[NSNotificationCenter defaultCenter] addObserver:self
                                                                   selector:@selector(receivedNotification:)
                                                                       name:@"Notification" object:nil];
@@ -150,7 +148,7 @@ error:	(NSError *)error {
                          [alert show];
                          //   [comms initNetworkCommunication];
                          //   NSString *message = @"ident:";
-                         [comms addUser:[[FBSDKAccessToken currentAccessToken] tokenString]];
+                         [ServerCommunication addUser:[[FBSDKAccessToken currentAccessToken] tokenString]];
                      }
                  }];
             
