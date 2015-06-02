@@ -18,6 +18,7 @@
 //- (void)initNetworkCommunication;
 //- (void)sendMessage:(NSString*)message;
 
--(void)addUser:(NSString*)userID;
++(void)addUser:(NSString*)userID;
++(void)getUser:(NSString*)facebookID;
 
 @end

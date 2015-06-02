@@ -84,6 +84,8 @@
 		0CF80C461B1DBFB300C7CA35 /* Home Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C411B1DBFB300C7CA35 /* Home Filled-50@2x.png */; };
 		0CF80C471B1DBFB300C7CA35 /* Leaderboard Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C421B1DBFB300C7CA35 /* Leaderboard Filled-50@2x.png */; };
 		0CF80C481B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png */; };
+		0CF80C4B1B1DC90800C7CA35 /* ProfileStatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C4A1B1DC90800C7CA35 /* ProfileStatTableViewCell.m */; };
+		0CF80C4E1B1DC97F00C7CA35 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C4D1B1DC97F00C7CA35 /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +198,10 @@
 		0CF80C411B1DBFB300C7CA35 /* Home Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home Filled-50@2x.png"; sourceTree = "<group>"; };
 		0CF80C421B1DBFB300C7CA35 /* Leaderboard Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leaderboard Filled-50@2x.png"; sourceTree = "<group>"; };
 		0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings 3 Filled-50@2x.png"; sourceTree = "<group>"; };
+		0CF80C491B1DC90800C7CA35 /* ProfileStatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileStatTableViewCell.h; sourceTree = "<group>"; };
+		0CF80C4A1B1DC90800C7CA35 /* ProfileStatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileStatTableViewCell.m; sourceTree = "<group>"; };
+		0CF80C4C1B1DC97F00C7CA35 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		0CF80C4D1B1DC97F00C7CA35 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +285,10 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0CF80C491B1DC90800C7CA35 /* ProfileStatTableViewCell.h */,
+				0CF80C4A1B1DC90800C7CA35 /* ProfileStatTableViewCell.m */,
+				0CF80C4C1B1DC97F00C7CA35 /* ProfileViewController.h */,
+				0CF80C4D1B1DC97F00C7CA35 /* ProfileViewController.m */,
 				0CF80C3E1B1DBFB300C7CA35 /* icons */,
 				0CF80C211B1C9D0700C7CA35 /* InviteTableViewCell.h */,
 				0CF80C221B1C9D0700C7CA35 /* InviteTableViewCell.m */,
@@ -563,7 +573,9 @@
 				0CEF69421B1606F70009F137 /* Question.m in Sources */,
 				0CF80C231B1C9D0700C7CA35 /* InviteTableViewCell.m in Sources */,
 				0C5F144D1B0CDBF4009946CA /* FirstViewController.m in Sources */,
+				0CF80C4E1B1DC97F00C7CA35 /* ProfileViewController.m in Sources */,
 				0CEF69921B163A7E0009F137 /* FinalTotalsViewController.m in Sources */,
+				0CF80C4B1B1DC90800C7CA35 /* ProfileStatTableViewCell.m in Sources */,
 				0CF80C201B1C808900C7CA35 /* FriendTableViewCell.m in Sources */,
 				0C5F14471B0CDBF4009946CA /* main.m in Sources */,
 				0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */,

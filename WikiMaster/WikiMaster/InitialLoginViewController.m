@@ -90,7 +90,6 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
         //  [self performSegueWithIdentifier:@"googleSignIn" sender:self];
         FBSDKProfile *profile = [FBSDKProfile currentProfile];
         NSString *userID = profile.userID;
-        ServerCommunication *comms = [[ServerCommunication alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(receivedNotification:)
                                                      name:@"Notification" object:nil];
@@ -107,7 +106,7 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
         [alert show];
         //   [comms initNetworkCommunication];
         //   NSString *message = @"ident:";
-        [comms addUser:userID];
+        [ServerCommunication addUser:userID];
     }
 }
 
@@ -128,12 +127,11 @@ error:	(NSError *)error {
         if ([FBSDKAccessToken currentAccessToken]) {
             // User is logged in, do work such as go to next view controller.
             //  [self performSegueWithIdentifier:@"googleSignIn" sender:self];
-                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields":@"id"}]
                  startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id profile, NSError *error) {
                      if (!error) {
                          NSLog(@"fetched user:%@", profile);
                          //NSString *userID = @"akjsfnd";
-                         ServerCommunication *comms = [[ServerCommunication alloc] init];
                          [[NSNotificationCenter defaultCenter] addObserver:self
                                                                   selector:@selector(receivedNotification:)
                                                                       name:@"Notification" object:nil];
@@ -148,9 +146,11 @@ error:	(NSError *)error {
                          [loading startAnimating];
                          [loading setHidden:NO];
                          [alert show];
+                         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                         [defaults setObject:[profile  objectForKey:@"id"] forKey:@"userID"];
                          //   [comms initNetworkCommunication];
                          //   NSString *message = @"ident:";
-                         [comms addUser:[[FBSDKAccessToken currentAccessToken] tokenString]];
+                         [ServerCommunication addUser:[[FBSDKAccessToken currentAccessToken] tokenString]];
                      }
                  }];
             
@@ -213,7 +213,7 @@ error:	(NSError *)error {
 //        
 //
         NSString *userAuthentication = [GPPSignIn sharedInstance].userEmail;
-        ServerCommunication *comms = [[ServerCommunication alloc] init];
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(receivedNotification:)
                                                      name:@"Login" object:nil];
@@ -230,7 +230,7 @@ error:	(NSError *)error {
         [alert show];
        // [comms initNetworkCommunication];
        // NSString *message = @"ident:";
-        [comms addUser:userAuthentication];
+        [ServerCommunication addUser:userAuthentication];
     }
 }
 

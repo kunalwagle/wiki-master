@@ -11,7 +11,7 @@
 @implementation ServerCommunication
 
 
--(void)addUser:(NSString*)userID {
++(void)addUser:(NSString*)userID {
     NSString *post = [NSString stringWithFormat:@"access_token=%@", userID];
     NSLog(post);
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
@@ -30,20 +30,33 @@
     }
 }
 
--(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
++(void)getUser:(NSString*)userID {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://146.169.47.18:3000/api/users/id/%@", userID]]];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+}
+
++(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"FAILED");
 }
 
--(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
++(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
     
 }
 
--(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
++(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     NSString *output = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSLog([[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
     NSDictionary * dict =[NSDictionary dictionaryWithObject:output forKey:@"response"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification"
-                                                                    object:nil userInfo:dict];
+                                    object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
 }
 
 //NSInputStream *inputStream;

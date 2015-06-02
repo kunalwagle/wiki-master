@@ -11,6 +11,7 @@
 #import "FriendTableViewCell.h"
 #import "UtilityMethods.h"
 #import "InviteTableViewCell.h"
+#import "ProfileViewController.h"
 
 
 
@@ -255,6 +256,18 @@ NSMutableArray *images;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([indexPath section]==0) {
         [self performSegueWithIdentifier:@"showProfile" sender:self];
+    }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showProfile"]) {
+        ProfileViewController *vc = (ProfileViewController*)[segue destinationViewController];
+        vc.sender = @"friend";
+        int row = [[self.tableView indexPathForSelectedRow] row];
+        vc.image = [images objectAtIndex:row];
+        vc.userID = [[self.friends objectAtIndex:row] valueForKey:@"id"];
+        vc.userName = [[self.friends objectAtIndex:row] valueForKey:@"name"];
+        vc.hidesBottomBarWhenPushed = YES;
     }
 }
 
