@@ -23,9 +23,24 @@
     } else {
         //Call Facebook for Profile Picture
     }
-    [ServerCommunication getUser:@"ajkdsnfajkldn"];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNotification:)
+                                                 name:@"User" object:nil];
+    [ServerCommunication getUser:@"10204647525044281"];
     // Do any additional setup after loading the view.
 }
+
+- (void)receivedNotification:(NSNotification*) notification {
+    //name of the notification
+    NSString * name =notification.name;
+    
+    //notification userinfo
+    NSDictionary * info =notification.userInfo;
+    NSLog(@"Received Notification with name =%@",name);
+    NSLog(@"Information =%@",info);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

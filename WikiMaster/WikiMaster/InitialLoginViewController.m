@@ -211,7 +211,7 @@ error:	(NSError *)error {
 //        
 //
         NSString *userAuthentication = [GPPSignIn sharedInstance].userEmail;
-        ServerCommunication *comms = [[ServerCommunication alloc] init];
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(receivedNotification:)
                                                      name:@"Login" object:nil];
@@ -228,7 +228,7 @@ error:	(NSError *)error {
         [alert show];
        // [comms initNetworkCommunication];
        // NSString *message = @"ident:";
-        [comms addUser:userAuthentication];
+        [ServerCommunication addUser:userAuthentication];
     }
 }
 

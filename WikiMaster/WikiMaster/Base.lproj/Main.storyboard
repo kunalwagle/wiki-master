@@ -1659,10 +1659,6 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="bj1-DC-Jxx" id="8vx-cy-8bV"/>
-                                    <outlet property="delegate" destination="bj1-DC-Jxx" id="KyL-91-aX0"/>
-                                </connections>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="second" translatesAutoresizingMaskIntoConstraints="NO" id="nJe-1H-yIF">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>

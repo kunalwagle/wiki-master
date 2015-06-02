@@ -19,6 +19,6 @@
 //- (void)sendMessage:(NSString*)message;
 
 +(void)addUser:(NSString*)userID;
-+(NSDictionary*)getUser:(NSString*)facebookID;
++(void)getUser:(NSString*)facebookID;
 
 @end
