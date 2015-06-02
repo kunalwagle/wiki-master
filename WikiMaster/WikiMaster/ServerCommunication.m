@@ -54,8 +54,8 @@
     NSString *output = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
     NSLog([[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
     NSDictionary * dict =[NSDictionary dictionaryWithObject:output forKey:@"response"];
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"Notification"
-                                    //object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification"
+                                    object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
 }
 

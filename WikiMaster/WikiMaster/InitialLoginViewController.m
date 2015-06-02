@@ -127,7 +127,7 @@ error:	(NSError *)error {
         if ([FBSDKAccessToken currentAccessToken]) {
             // User is logged in, do work such as go to next view controller.
             //  [self performSegueWithIdentifier:@"googleSignIn" sender:self];
-                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{@"fields":@"id"}]
                  startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id profile, NSError *error) {
                      if (!error) {
                          NSLog(@"fetched user:%@", profile);
@@ -146,6 +146,8 @@ error:	(NSError *)error {
                          [loading startAnimating];
                          [loading setHidden:NO];
                          [alert show];
+                         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                         [defaults setObject:[profile  objectForKey:@"id"] forKey:@"userID"];
                          //   [comms initNetworkCommunication];
                          //   NSString *message = @"ident:";
                          [ServerCommunication addUser:[[FBSDKAccessToken currentAccessToken] tokenString]];

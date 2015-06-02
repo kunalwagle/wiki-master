@@ -10,6 +10,7 @@
 #import "UtilityMethods.h"
 #import "ServerCommunication.h"
 #import "ProfileStatTableViewCell.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @interface ProfileViewController ()
 
@@ -26,12 +27,37 @@ NSDictionary *gamePlay;
     if ([self.sender isEqualToString:@"friend"]) {
         self.profilePicture.image = self.image;
     } else {
-        //Call Facebook for Profile Picture
-    }
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                      initWithGraphPath:@"/me"
+                                      parameters:@{@"fields":@"picture, name,id"}
+                                      HTTPMethod:@"GET"];
+        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                              id result,
+                                              NSError *error) {
+            if (!error) {
+                NSDictionary *dict = result;
+                self.name.text = [dict objectForKey:@"name"];
+                self.userID = [dict objectForKey:@"id"];
+                //self.friends = [result objectForKey:@"data"];
+                //NSLog(result);
+                    NSDictionary *pictureData = [dict objectForKey:@"picture"];
+                    NSString *pictureURL = [NSString stringWithFormat:@"%@",[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
+                    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:pictureURL]];
+                    UIImage *img = [UIImage imageWithData:imageData];
+                self.profilePicture.image = img;
+                self.profilePicture.layer.cornerRadius = 50;
+                self.profilePicture.layer.masksToBounds = YES;
+                self.profilePicture.layer.shouldRasterize = YES;
+                self.profilePicture.layer.rasterizationScale = [UIScreen mainScreen].scale;
+
+            }
+        }];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [ServerCommunication getUser:[defaults valueForKey:@"userID"]];
+         }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedNotification:)
                                                  name:@"User" object:nil];
-    [ServerCommunication getUser:@"10204647525044281"];
     gamePlayKeys = @[@"score", @"gamesPlayed", @"wins", @"draws", @"losses", @"avgScore", @"totalQuestionsAnswered", @"totalQuestionsCorrect"];
     niceKeys = @[@"Score", @"Games Played", @"Games won", @"Games drawn", @"Games lost", @"Average Score", @"Questions Answered", @"Correct Answers"];
     // Do any additional setup after loading the view.
@@ -54,6 +80,10 @@ NSDictionary *gamePlay;
         NSLog(@"ERROR");
     }
     [self.tableView reloadData];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
