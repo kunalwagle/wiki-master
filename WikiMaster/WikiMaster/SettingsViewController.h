@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface SettingsViewController : UIViewController <FBSDKLoginButtonDelegate>
+@interface SettingsViewController : UIViewController <FBSDKLoginButtonDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UISlider *colourSlider;
 - (IBAction)stepper:(id)sender;
 - (IBAction)colourChange:(id)sender;

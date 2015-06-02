@@ -14,6 +14,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    UITapGestureRecognizer *tapped = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+    tapped.numberOfTapsRequired = 1;
+    tapped.delegate = self;
+    for (int i=1; i<=10; i++) {
+        UIImageView *image = (UIImageView*)[self.view viewWithTag:i];
+        [image setUserInteractionEnabled:YES];
+        [image addGestureRecognizer:tapped];
+    }
+}
+
+-(void)imageTapped:(UIGestureRecognizer*)gesture {
+    UIImageView *selectedImageView=(UIImageView*)[gesture view];
+    int tag = selectedImageView.tag;
+    self.colourSlider.value = tag-1;
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return YES;
+}
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {
