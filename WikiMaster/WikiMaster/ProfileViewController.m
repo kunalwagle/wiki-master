@@ -26,6 +26,12 @@ NSDictionary *gamePlay;
     [super viewDidLoad];
     if ([self.sender isEqualToString:@"friend"]) {
         self.profilePicture.image = self.image;
+        self.name.text = self.userName;
+        self.profilePicture.layer.cornerRadius = 50;
+        self.profilePicture.layer.masksToBounds = YES;
+        self.profilePicture.layer.shouldRasterize = YES;
+        self.profilePicture.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        [ServerCommunication getUser:self.userID];
     } else {
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:@"/me"
@@ -73,12 +79,21 @@ NSDictionary *gamePlay;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSString *temp = [info valueForKey:@"response"];
     id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    if ([object count]>0) {
     if ([[object objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
         NSDictionary *result = [object objectAtIndex:0];
         gamePlay = [result valueForKey:@"gameStats"];
     } else {
         NSLog(@"ERROR");
+    } } else {
+        NSLog(@"ERROR");
     }
+    [self.tableView reloadData];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.view.backgroundColor = [UtilityMethods getColour];
+    self.tableView.backgroundColor = [UtilityMethods getColour];
     [self.tableView reloadData];
 }
 
@@ -113,10 +128,7 @@ NSDictionary *gamePlay;
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    self.view.backgroundColor = [UtilityMethods getColour];
-    self.tableView.backgroundColor = [UtilityMethods getColour];
-}
+
 
 /*
 #pragma mark - Navigation

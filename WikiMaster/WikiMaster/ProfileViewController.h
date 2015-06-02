@@ -15,5 +15,6 @@
 @property UIImage *image;
 @property NSString *sender;
 @property NSString *userID;
+@property NSString *userName;
 
 @end
