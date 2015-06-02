@@ -9,10 +9,17 @@
 #import "SettingsViewController.h"
 #import "UtilityMethods.h"
 
+@interface SettingsViewController ()
+
+-(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer;
+
+@end
+
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
 }
 
@@ -23,6 +30,23 @@
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    for (int i=10; i<=100; i+=10) {
+        UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
+        UIImageView *imageView = (UIImageView*)[self.view viewWithTag:i];
+        [imageView setUserInteractionEnabled:YES];
+        [imageView addGestureRecognizer:singleTapGestureRecognizer];
+    }
+
+}
+
+-(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer{
+    NSLog(@"A tap happened");
+    int tag = tapGestureRecognizer.view.tag;
+    self.colourSlider.value = (tag/10)-1;
+    [self colourChange:self.colourSlider];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
