@@ -21,6 +21,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [self updateBackground];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

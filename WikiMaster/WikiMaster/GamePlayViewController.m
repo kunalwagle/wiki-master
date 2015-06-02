@@ -85,6 +85,11 @@ int timer;
     return  stringToTruncate;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+
 - (void)viewDidAppear:(BOOL)animated {
     [self performSelector:@selector(reduceTimer) withObject:nil afterDelay:1.0];
 }

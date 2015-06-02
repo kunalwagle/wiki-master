@@ -20,6 +20,11 @@
     // Do any additional setup after loading the view.
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+
 -(void)viewWillAppear:(BOOL)animated {
     if ((self.totalTime%60)<10) {
         self.time.text = [NSString stringWithFormat:@"%d:0%d", self.totalTime/60, self.totalTime%60];

@@ -102,6 +102,11 @@ NSMutableArray *questions;
     
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+
 -(void)initiateCountdown {
     if (countdown.hidden) {
         countdown.hidden = NO;
