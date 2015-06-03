@@ -44,6 +44,10 @@
 
 +(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"FAILED");
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:@"FAILED" forKey:@"response"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification"
+                                                        object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
 }
 
 +(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {

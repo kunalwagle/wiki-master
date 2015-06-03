@@ -121,7 +121,8 @@ loginButton:	(FBSDKLoginButton *)loginButton
 didCompleteWithResult:	(FBSDKLoginManagerLoginResult *)result
 error:	(NSError *)error {
     if (error) {
-        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unsuccessful" message:@"For some reason that didn't work. Sorry about that. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
     } else {
             //[self performSegueWithIdentifier:@"facebookSignIn" sender:self];
         if ([FBSDKAccessToken currentAccessToken]) {
@@ -171,9 +172,16 @@ error:	(NSError *)error {
     [alert dismissWithClickedButtonIndex:0 animated:YES];
     [loading stopAnimating];
     [loading setHidden:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"LoggedIn"];
-    [defaults synchronize];
+    if ([[info objectForKey:@"response"] isEqualToString:@"FAILED"]) {
+        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+        [login logOut];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unsuccessful" message:@"For some reason that didn't work. Sorry about that. Please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alert show];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"LoggedIn"];
+        [defaults synchronize];
+    }
 }
 
 //-(void)refreshInterfaceBasedOnSignIn {

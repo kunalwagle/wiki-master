@@ -24,6 +24,9 @@ NSDictionary *gamePlay;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.hidden = YES;
+    self.serverLabel.text = @"Connecting to server...";
+    self.serverLabel.hidden = NO;
     if ([self.sender isEqualToString:@"friend"]) {
         self.profilePicture.image = self.image;
         self.name.text = self.userName;
@@ -56,6 +59,9 @@ NSDictionary *gamePlay;
                 self.profilePicture.layer.shouldRasterize = YES;
                 self.profilePicture.layer.rasterizationScale = [UIScreen mainScreen].scale;
 
+            } else {
+                self.name.text = @"You";
+                self.profilePicture.hidden = YES;
             }
         }];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -78,22 +84,51 @@ NSDictionary *gamePlay;
     NSLog(@"Information =%@",info);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSString *temp = [info valueForKey:@"response"];
-    id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-    if ([object count]>0) {
-    if ([[object objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *result = [object objectAtIndex:0];
-        gamePlay = [result valueForKey:@"gameStats"];
+    if ([temp isEqualToString:@"FAILED"]) {
+        self.tableView.hidden = YES;
+        self.serverLabel.text = @"Could not connect to server. Sorry about that";
+        self.serverLabel.hidden = NO;
     } else {
-        NSLog(@"ERROR");
-    } } else {
-        NSLog(@"ERROR");
+        id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        if ([object count]>0) {
+            if ([[object objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *result = [object objectAtIndex:0];
+                gamePlay = [result valueForKey:@"gameStats"];
+                [self.tableView setHidden:NO];
+                [self.serverLabel setHidden:YES];
+                [self.serverLabel setText:@"Connecting to Server..."];
+            } else {
+                self.tableView.hidden = YES;
+                self.serverLabel.text = @"Could not connect to server. Sorry about that";
+                self.serverLabel.hidden = NO;
+            } } else {
+                self.tableView.hidden = YES;
+                self.serverLabel.text = @"Could not connect to server. Sorry about that";
+                self.serverLabel.hidden = NO;
+            }
+        [self.tableView reloadData];
     }
-    [self.tableView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     self.view.backgroundColor = [UtilityMethods getColour];
     self.tableView.backgroundColor = [UtilityMethods getColour];
+    
+    if ([self.serverLabel.text isEqualToString:@"Could not connect to server. Sorry about that"]) {
+        
+        self.tableView.hidden = YES;
+        self.serverLabel.text = @"Connecting to server...";
+        self.serverLabel.hidden = NO;
+        if ([self.sender isEqualToString:@"friend"]) {
+            [ServerCommunication getUser:self.userID];
+        } else {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [ServerCommunication getUser:[defaults valueForKey:@"userID"]];
+        }
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receivedNotification:)
+                                                     name:@"User" object:nil];
+    }
     [self.tableView reloadData];
 }
 

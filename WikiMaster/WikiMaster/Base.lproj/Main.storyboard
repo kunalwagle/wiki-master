@@ -1725,6 +1725,26 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We couldn't connect to the server. Sorry about that." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fft-U3-qPT">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="210" id="9rQ-pG-nZz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9rQ-pG-nZz"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="130" y="174" width="210" height="74"/>
+                                    <mask key="constraints">
+                                        <include reference="9rQ-pG-nZz"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.2470588235" green="0.43529411759999997" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -1740,22 +1760,31 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                             </constraint>
                             <constraint firstItem="snq-6s-SSy" firstAttribute="top" secondItem="nJe-1H-yIF" secondAttribute="bottom" constant="23" id="nsC-nI-7S4"/>
+                            <constraint firstAttribute="centerX" secondItem="fft-U3-qPT" secondAttribute="centerX" constant="-35" id="pBW-ri-LNs">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="GiH-6g-92c" firstAttribute="top" secondItem="fft-U3-qPT" secondAttribute="bottom" constant="556" id="uHl-6f-bdv">
+                                <variation key="heightClass=regular-widthClass=compact" constant="150"/>
+                            </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="snq-6s-SSy"/>
                                 <exclude reference="OuR-tj-mqj"/>
                                 <exclude reference="nJe-1H-yIF"/>
+                                <exclude reference="fft-U3-qPT"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="6SF-wy-cBA"/>
-                                <exclude reference="0Or-XG-P8F"/>
-                                <exclude reference="nsC-nI-7S4"/>
                                 <exclude reference="5S8-EC-kgt"/>
                                 <exclude reference="myJ-oO-PWe"/>
+                                <exclude reference="pBW-ri-LNs"/>
                                 <exclude reference="J3L-oV-aPc"/>
                                 <exclude reference="PwQ-og-63L"/>
                                 <exclude reference="aZh-f8-5lF"/>
+                                <exclude reference="0Or-XG-P8F"/>
+                                <exclude reference="nsC-nI-7S4"/>
+                                <exclude reference="6SF-wy-cBA"/>
+                                <exclude reference="uHl-6f-bdv"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1763,16 +1792,19 @@
                                 <include reference="snq-6s-SSy"/>
                                 <include reference="OuR-tj-mqj"/>
                                 <include reference="nJe-1H-yIF"/>
+                                <include reference="fft-U3-qPT"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="6SF-wy-cBA"/>
-                                <include reference="0Or-XG-P8F"/>
-                                <include reference="nsC-nI-7S4"/>
                                 <include reference="5S8-EC-kgt"/>
                                 <include reference="myJ-oO-PWe"/>
+                                <include reference="pBW-ri-LNs"/>
                                 <include reference="J3L-oV-aPc"/>
                                 <include reference="PwQ-og-63L"/>
                                 <include reference="aZh-f8-5lF"/>
+                                <include reference="0Or-XG-P8F"/>
+                                <include reference="nsC-nI-7S4"/>
+                                <include reference="6SF-wy-cBA"/>
+                                <include reference="uHl-6f-bdv"/>
                             </mask>
                         </variation>
                     </view>
@@ -1780,6 +1812,7 @@
                     <connections>
                         <outlet property="name" destination="snq-6s-SSy" id="GRP-9l-rDU"/>
                         <outlet property="profilePicture" destination="nJe-1H-yIF" id="PmF-oi-NyD"/>
+                        <outlet property="serverLabel" destination="fft-U3-qPT" id="B51-aD-p9j"/>
                         <outlet property="tableView" destination="OuR-tj-mqj" id="Rc7-vW-9Ff"/>
                     </connections>
                 </viewController>

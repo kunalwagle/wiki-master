@@ -16,5 +16,6 @@
 @property NSString *sender;
 @property NSString *userID;
 @property NSString *userName;
+@property (weak, nonatomic) IBOutlet UILabel *serverLabel;
 
 @end
