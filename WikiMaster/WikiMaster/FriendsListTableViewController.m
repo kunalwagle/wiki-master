@@ -26,9 +26,11 @@
 
 NSMutableArray *images;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.friends = [[NSMutableArray alloc] initWithObjects: nil];
+    self.loadedFriends = YES;
     images = [[NSMutableArray alloc] initWithObjects: nil];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/me/friends"
@@ -55,6 +57,10 @@ NSMutableArray *images;
             [self.friends addObject:dictionary];
         }
             [self.tableView reloadData];
+            self.loadedFriends = YES;
+        } else {
+            self.loadedFriends = NO;
+            [self.tableView reloadData];
         }
     }];
     UINib *nib = [UINib nibWithNibName:@"InviteTableViewCell" bundle:nil];
@@ -74,8 +80,13 @@ NSMutableArray *images;
 -(void)viewWillAppear:(BOOL)animated {
     self.tableView.backgroundColor = [UtilityMethods getColour];
     self.searchDisplayController.searchResultsTableView.backgroundColor = [UtilityMethods getColour];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    if (!self.loadedFriends) {
+        [self viewDidLoad];
+    }
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -180,10 +191,14 @@ NSMutableArray *images;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
+            if (self.loadedFriends) {
             if (tableView == self.tableView) {
                 return [self.friends count];
             } else {
                 return [self.searchFriends count];
+            }
+            } else {
+                return 1;
             }
         default:
             return 1;
@@ -202,6 +217,7 @@ NSMutableArray *images;
             if (cell == nil) {
                 cell = [[FriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friend"];
             }
+            if (self.loadedFriends) {
             if (tableView == self.tableView) {
                 cell.image.image = [images objectAtIndex:[indexPath row]];
                 cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
@@ -216,6 +232,11 @@ NSMutableArray *images;
             cell.image.layer.masksToBounds = YES;
             cell.image.layer.shouldRasterize = YES;
             cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
+            } else {
+                cell.name.text = @"Could not connect to Facebook";
+                cell.online.text = @"";
+                cell.image.image = [UIImage imageNamed:@"dislike-157252_640.png"];
+            }
             cell.backgroundColor = [UtilityMethods getColour];
             cell.contentView.backgroundColor = [UtilityMethods getColour];
             return cell;
