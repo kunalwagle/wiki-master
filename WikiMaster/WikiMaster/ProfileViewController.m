@@ -35,7 +35,7 @@ NSDictionary *gamePlay;
     } else {
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:@"/me"
-                                      parameters:@{@"fields":@"picture, name,id"}
+                                      parameters:@{@"fields":@"picture.type(large), name,id"}
                                       HTTPMethod:@"GET"];
         [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
                                               id result,

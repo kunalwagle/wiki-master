@@ -1208,8 +1208,7 @@
                                 <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="250" y="55" width="100" height="100"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="DnD-E9-eHp"/>
                                         <include reference="jmC-UI-45T"/>
@@ -1737,7 +1736,9 @@
                             <constraint firstItem="OuR-tj-mqj" firstAttribute="top" secondItem="snq-6s-SSy" secondAttribute="bottom" constant="8" id="J3L-oV-aPc"/>
                             <constraint firstAttribute="width" secondItem="OuR-tj-mqj" secondAttribute="width" id="PwQ-og-63L"/>
                             <constraint firstItem="OuR-tj-mqj" firstAttribute="leading" secondItem="boT-hV-LQp" secondAttribute="leadingMargin" constant="-16" id="aZh-f8-5lF"/>
-                            <constraint firstItem="nJe-1H-yIF" firstAttribute="top" secondItem="clC-Ts-jM4" secondAttribute="bottom" id="myJ-oO-PWe"/>
+                            <constraint firstItem="nJe-1H-yIF" firstAttribute="top" secondItem="clC-Ts-jM4" secondAttribute="bottom" id="myJ-oO-PWe">
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                            </constraint>
                             <constraint firstItem="snq-6s-SSy" firstAttribute="top" secondItem="nJe-1H-yIF" secondAttribute="bottom" constant="23" id="nsC-nI-7S4"/>
                         </constraints>
                         <variation key="default">

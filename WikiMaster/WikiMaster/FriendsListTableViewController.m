@@ -32,7 +32,7 @@ NSMutableArray *images;
     images = [[NSMutableArray alloc] initWithObjects: nil];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/me/friends"
-                                  parameters:@{@"fields":@"picture, name"}
+                                  parameters:@{@"fields":@"picture.type(large), name"}
                                   HTTPMethod:@"GET"];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
                                           id result,
