@@ -181,6 +181,7 @@ error:	(NSError *)error {
         [self dismissViewControllerAnimated:YES completion:nil];
         [defaults setObject:[NSNumber numberWithBool:YES] forKey:@"LoggedIn"];
         [defaults synchronize];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LoggedIn" object:nil userInfo:nil];
     }
 }
 

@@ -40,36 +40,24 @@
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="163" y="76" width="221" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Played" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyc-3o-ppb">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="163" y="105" width="50" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Won" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYz-YC-TyE">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="252" y="105" width="42" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lost" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpj-T6-ewI">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="357" y="105" width="27" height="20"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvo-SS-G6A">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -94,9 +82,6 @@
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="359" y="133" width="9" height="21"/>
-                                </variation>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="emZ-0E-nwS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -130,6 +115,10 @@
                                         <include reference="V3m-p2-y45"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="9pv-A4-QxB" id="fVe-wd-anb"/>
+                                    <outlet property="delegate" destination="9pv-A4-QxB" id="Ho9-tA-2fY"/>
+                                </connections>
                             </collectionView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="second" translatesAutoresizingMaskIntoConstraints="NO" id="6Rb-i3-VYe">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -188,27 +177,27 @@
                                 <exclude reference="6Rb-i3-VYe"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="MI4-n1-Nof"/>
-                                <exclude reference="frF-E7-1Mw"/>
+                                <exclude reference="BeS-6z-R6j"/>
+                                <exclude reference="dcm-n8-htT"/>
                                 <exclude reference="Az1-eY-03V"/>
                                 <exclude reference="IAa-h4-Hgf"/>
                                 <exclude reference="LlE-Hh-40H"/>
-                                <exclude reference="Fb5-nh-QZj"/>
-                                <exclude reference="RR5-5D-gX9"/>
-                                <exclude reference="urp-Yb-cFU"/>
-                                <exclude reference="2D2-9P-GGU"/>
-                                <exclude reference="8gK-Zo-KOa"/>
                                 <exclude reference="C5a-gU-j2V"/>
                                 <exclude reference="HjQ-WI-Cjf"/>
-                                <exclude reference="9Yl-po-ace"/>
-                                <exclude reference="Xqi-8o-bGW"/>
-                                <exclude reference="kqW-EK-n8O"/>
-                                <exclude reference="BeS-6z-R6j"/>
-                                <exclude reference="dcm-n8-htT"/>
+                                <exclude reference="2D2-9P-GGU"/>
+                                <exclude reference="8gK-Zo-KOa"/>
                                 <exclude reference="6yN-61-Txq"/>
                                 <exclude reference="EVa-ei-IQM"/>
                                 <exclude reference="81L-w6-LyF"/>
                                 <exclude reference="EQ4-N6-eeQ"/>
+                                <exclude reference="9Yl-po-ace"/>
+                                <exclude reference="Xqi-8o-bGW"/>
+                                <exclude reference="kqW-EK-n8O"/>
+                                <exclude reference="MI4-n1-Nof"/>
+                                <exclude reference="frF-E7-1Mw"/>
+                                <exclude reference="Fb5-nh-QZj"/>
+                                <exclude reference="RR5-5D-gX9"/>
+                                <exclude reference="urp-Yb-cFU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -224,26 +213,26 @@
                                 <include reference="6Rb-i3-VYe"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="MI4-n1-Nof"/>
-                                <include reference="frF-E7-1Mw"/>
-                                <include reference="IAa-h4-Hgf"/>
-                                <include reference="LlE-Hh-40H"/>
-                                <include reference="Fb5-nh-QZj"/>
-                                <include reference="RR5-5D-gX9"/>
-                                <include reference="urp-Yb-cFU"/>
-                                <include reference="2D2-9P-GGU"/>
-                                <include reference="8gK-Zo-KOa"/>
-                                <include reference="C5a-gU-j2V"/>
-                                <include reference="HjQ-WI-Cjf"/>
-                                <include reference="9Yl-po-ace"/>
-                                <include reference="Xqi-8o-bGW"/>
-                                <include reference="kqW-EK-n8O"/>
                                 <include reference="BeS-6z-R6j"/>
                                 <include reference="dcm-n8-htT"/>
+                                <include reference="IAa-h4-Hgf"/>
+                                <include reference="LlE-Hh-40H"/>
+                                <include reference="C5a-gU-j2V"/>
+                                <include reference="HjQ-WI-Cjf"/>
+                                <include reference="2D2-9P-GGU"/>
+                                <include reference="8gK-Zo-KOa"/>
                                 <include reference="6yN-61-Txq"/>
                                 <include reference="EVa-ei-IQM"/>
                                 <include reference="81L-w6-LyF"/>
                                 <include reference="EQ4-N6-eeQ"/>
+                                <include reference="9Yl-po-ace"/>
+                                <include reference="Xqi-8o-bGW"/>
+                                <include reference="kqW-EK-n8O"/>
+                                <include reference="MI4-n1-Nof"/>
+                                <include reference="frF-E7-1Mw"/>
+                                <include reference="Fb5-nh-QZj"/>
+                                <include reference="RR5-5D-gX9"/>
+                                <include reference="urp-Yb-cFU"/>
                             </mask>
                         </variation>
                     </view>
@@ -277,6 +266,12 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="collectionView" destination="emZ-0E-nwS" id="NlK-IA-SZN"/>
+                        <outlet property="image" destination="6Rb-i3-VYe" id="xh3-JB-fuk"/>
+                        <outlet property="lost" destination="sH7-RS-MVL" id="ZP1-yF-Lox"/>
+                        <outlet property="name" destination="4VO-EV-l88" id="H8x-T4-4vH"/>
+                        <outlet property="played" destination="Kvo-SS-G6A" id="sQW-e2-CHf"/>
+                        <outlet property="won" destination="0rY-h5-o3b" id="9eh-oO-k8k"/>
                         <segue destination="rNw-Ya-tGo" kind="show" id="hy8-Ev-I5D"/>
                     </connections>
                 </viewController>
@@ -1441,8 +1436,7 @@
                                         <exclude reference="v0H-hm-e2b"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="22" y="68" width="100" height="100"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Am5-Rs-zhI"/>
                                         <include reference="v0H-hm-e2b"/>
@@ -1454,9 +1448,6 @@
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="142" y="107" width="100" height="25"/>
-                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9L-cf-bqo">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1475,8 +1466,7 @@
                                         <exclude reference="aWB-Vb-c7s"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="56" y="204" width="100" height="50"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="6Jz-EK-gu8"/>
                                         <include reference="aWB-Vb-c7s"/>
@@ -1500,8 +1490,7 @@
                                         <exclude reference="NSa-jx-Txv"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="240" y="204" width="100" height="50"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="6zj-NX-yDp"/>
                                         <include reference="NSa-jx-Txv"/>
@@ -1521,8 +1510,7 @@
                                         <exclude reference="RU6-XU-RZc"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="269" width="400" height="1"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="RU6-XU-RZc"/>
                                     </mask>
@@ -1533,117 +1521,78 @@
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="284" width="400" height="24"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Played" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xz0-Kt-anD">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="37" y="342" width="47" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Won" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9op-wN-IeN">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="184" y="342" width="33" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lost" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKG-mt-nz6">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="325" y="342" width="29" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average Score" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfe-aO-eag">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="150" y="529" width="101" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lat-JO-YPS">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="40" y="529" width="42" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Correct" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ai-fj-Npy">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="295" y="529" width="89" height="21"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xje-g4-X5U">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="53" y="416" width="16" height="36"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2AP-ak-Ino">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="192" y="416" width="16" height="36"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2t4-yd-k3G">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="332" y="416" width="16" height="36"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxO-ux-Lp3">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="53" y="595" width="16" height="36"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aQ-oj-BwE">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="192" y="595" width="16" height="36"/>
-                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kud-Wr-WBV">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="26"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="332" y="595" width="16" height="36"/>
-                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.2470588235" green="0.43529411759999997" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2024,9 +1973,6 @@
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="140" y="153" width="121" height="24"/>
-                                </variation>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OuR-tj-mqj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -2130,9 +2076,6 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="185" width="400" height="566"/>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="bj1-DC-Jxx" id="F2E-Kx-Rn3"/>
                                     <outlet property="delegate" destination="bj1-DC-Jxx" id="nvh-Pg-ui1"/>
@@ -2154,8 +2097,7 @@
                                         <exclude reference="tQN-lA-yqD"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="150" y="30" width="100" height="100"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="2iL-nV-VVM"/>
                                         <include reference="tQN-lA-yqD"/>
@@ -2273,9 +2215,6 @@
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="23" y="28" width="152" height="24"/>
-                                </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" tag="10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Black.png" translatesAutoresizingMaskIntoConstraints="NO" id="QtY-d0-uDX">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -2291,8 +2230,7 @@
                                         <exclude reference="wrD-Is-Rfc"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="36" y="68" width="33" height="50"/>
+                                <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
                                         <include reference="Sd3-m8-jaE"/>
                                         <include reference="wrD-Is-Rfc"/>
@@ -2301,33 +2239,18 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="50" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide4.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="zET-el-JEO">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="167" y="68" width="33" height="50"/>
-                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="20" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hkt-Qm-fjI">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="69" y="68" width="33" height="50"/>
-                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="30" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="e63-ig-rOR">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="102" y="68" width="32" height="50"/>
-                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="40" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide3.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uRg-bZ-IMV">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="134" y="68" width="33" height="50"/>
-                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="60" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide5.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="hHS-RM-pL6">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="200" y="68" width="33" height="50"/>
-                                </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="seconds" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxQ-QV-4hR">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -2340,35 +2263,20 @@
                             </label>
                             <imageView userInteractionEnabled="NO" tag="70" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide6.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="tyV-hK-I1P">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="233" y="68" width="33" height="50"/>
-                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide9.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="cyq-M4-65m">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="331" y="68" width="33" height="50"/>
-                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="80" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide7.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="EX9-rb-Qzd">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="266" y="68" width="32" height="50"/>
-                                </variation>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="90" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Slide8.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Ydf-W7-TvA">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="298" y="68" width="33" height="50"/>
-                                </variation>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="7" minValue="0.0" maxValue="9" translatesAutoresizingMaskIntoConstraints="NO" id="SoU-jV-FNE">
                                 <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="34" y="129" width="332" height="31"/>
-                                </variation>
                                 <connections>
                                     <action selector="colourChange:" destination="1NV-6r-c94" eventType="valueChanged" id="WTf-7D-dFJ"/>
                                     <action selector="snapSlider:" destination="1NV-6r-c94" eventType="editingDidEndOnExit" id="nx3-HG-dui"/>
