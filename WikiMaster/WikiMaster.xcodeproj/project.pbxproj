@@ -62,6 +62,8 @@
 		0C5F14C21B120EDD009946CA /* GoogleOpenSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14C01B120EDD009946CA /* GoogleOpenSource.framework */; };
 		0C5F14C31B120EDD009946CA /* GooglePlus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C5F14C11B120EDD009946CA /* GooglePlus.framework */; };
 		0C5F14C51B120F00009946CA /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14C41B120F00009946CA /* GooglePlus.bundle */; };
+		0C6CF12A1B20837800FFCF4F /* Topics-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF1291B20837800FFCF4F /* Topics-50@2x.png */; };
+		0C6CF12D1B20867600FFCF4F /* CustomTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF12C1B20867600FFCF4F /* CustomTabBarControllerViewController.m */; };
 		0C878D991B17525200780F54 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C878D981B17525200780F54 /* exclamation.png */; };
 		0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9B1B18A2F700780F54 /* SettingsViewController.m */; };
 		0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9E1B18A45100780F54 /* UtilityMethods.m */; };
@@ -171,6 +173,9 @@
 		0C5F14C01B120EDD009946CA /* GoogleOpenSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleOpenSource.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GoogleOpenSource.framework"; sourceTree = "<group>"; };
 		0C5F14C11B120EDD009946CA /* GooglePlus.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlus.framework; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.framework"; sourceTree = "<group>"; };
 		0C5F14C41B120F00009946CA /* GooglePlus.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GooglePlus.bundle; path = "../../../../../../Downloads/google-plus-ios-sdk-1.7.1/GooglePlus.bundle"; sourceTree = "<group>"; };
+		0C6CF1291B20837800FFCF4F /* Topics-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Topics-50@2x.png"; sourceTree = "<group>"; };
+		0C6CF12B1B20867600FFCF4F /* CustomTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarControllerViewController.h; sourceTree = "<group>"; };
+		0C6CF12C1B20867600FFCF4F /* CustomTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarControllerViewController.m; sourceTree = "<group>"; };
 		0C878D981B17525200780F54 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
 		0C878D9A1B18A2F700780F54 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		0C878D9B1B18A2F700780F54 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -293,6 +298,9 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0C6CF12B1B20867600FFCF4F /* CustomTabBarControllerViewController.h */,
+				0C6CF12C1B20867600FFCF4F /* CustomTabBarControllerViewController.m */,
+				0C6CF1291B20837800FFCF4F /* Topics-50@2x.png */,
 				0CF80C561B2071ED00C7CA35 /* TopicViewCell.xib */,
 				0CF80C541B20675E00C7CA35 /* LeaderboardMeCell.xib */,
 				0CF80C4F1B2063D800C7CA35 /* whiteicons */,
@@ -529,6 +537,7 @@
 				0C5F149D1B10EA63009946CA /* Slide6.jpg in Resources */,
 				0C5F14981B10EA63009946CA /* Slide1.jpg in Resources */,
 				0C5F149E1B10EA63009946CA /* Slide7.jpg in Resources */,
+				0C6CF12A1B20837800FFCF4F /* Topics-50@2x.png in Resources */,
 				0C5F14781B10C226009946CA /* Black.png in Resources */,
 				0C5F14A01B10EA63009946CA /* Slide9.jpg in Resources */,
 				0C5F14851B10E088009946CA /* rectangle-34969_64.png in Resources */,
@@ -601,6 +610,7 @@
 				0CEF69921B163A7E0009F137 /* FinalTotalsViewController.m in Sources */,
 				0CF80C4B1B1DC90800C7CA35 /* ProfileStatTableViewCell.m in Sources */,
 				0CF80C201B1C808900C7CA35 /* FriendTableViewCell.m in Sources */,
+				0C6CF12D1B20867600FFCF4F /* CustomTabBarControllerViewController.m in Sources */,
 				0C5F14471B0CDBF4009946CA /* main.m in Sources */,
 				0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */,
 			);
