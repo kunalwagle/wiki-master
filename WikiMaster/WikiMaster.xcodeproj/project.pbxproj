@@ -86,6 +86,10 @@
 		0CF80C481B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png */; };
 		0CF80C4B1B1DC90800C7CA35 /* ProfileStatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C4A1B1DC90800C7CA35 /* ProfileStatTableViewCell.m */; };
 		0CF80C4E1B1DC97F00C7CA35 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C4D1B1DC97F00C7CA35 /* ProfileViewController.m */; };
+		0CF80C521B2063D800C7CA35 /* Profile-White.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C501B2063D800C7CA35 /* Profile-White.png */; };
+		0CF80C531B2063D800C7CA35 /* Settings-White.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C511B2063D800C7CA35 /* Settings-White.png */; };
+		0CF80C551B20675E00C7CA35 /* LeaderboardMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C541B20675E00C7CA35 /* LeaderboardMeCell.xib */; };
+		0CF80C571B2071ED00C7CA35 /* TopicViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C561B2071ED00C7CA35 /* TopicViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -202,6 +206,10 @@
 		0CF80C4A1B1DC90800C7CA35 /* ProfileStatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileStatTableViewCell.m; sourceTree = "<group>"; };
 		0CF80C4C1B1DC97F00C7CA35 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		0CF80C4D1B1DC97F00C7CA35 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		0CF80C501B2063D800C7CA35 /* Profile-White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile-White.png"; sourceTree = "<group>"; };
+		0CF80C511B2063D800C7CA35 /* Settings-White.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings-White.png"; sourceTree = "<group>"; };
+		0CF80C541B20675E00C7CA35 /* LeaderboardMeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeaderboardMeCell.xib; sourceTree = "<group>"; };
+		0CF80C561B2071ED00C7CA35 /* TopicViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +293,9 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0CF80C561B2071ED00C7CA35 /* TopicViewCell.xib */,
+				0CF80C541B20675E00C7CA35 /* LeaderboardMeCell.xib */,
+				0CF80C4F1B2063D800C7CA35 /* whiteicons */,
 				0CF80C491B1DC90800C7CA35 /* ProfileStatTableViewCell.h */,
 				0CF80C4A1B1DC90800C7CA35 /* ProfileStatTableViewCell.m */,
 				0CF80C4C1B1DC97F00C7CA35 /* ProfileViewController.h */,
@@ -419,6 +430,15 @@
 			path = icons;
 			sourceTree = "<group>";
 		};
+		0CF80C4F1B2063D800C7CA35 /* whiteicons */ = {
+			isa = PBXGroup;
+			children = (
+				0CF80C501B2063D800C7CA35 /* Profile-White.png */,
+				0CF80C511B2063D800C7CA35 /* Settings-White.png */,
+			);
+			path = whiteicons;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -520,11 +540,13 @@
 				0CF80C3A1B1DBE8400C7CA35 /* Guest Filled-32.png in Resources */,
 				0C5F14581B0CDBF4009946CA /* LaunchScreen.xib in Resources */,
 				0C878D991B17525200780F54 /* exclamation.png in Resources */,
+				0CF80C551B20675E00C7CA35 /* LeaderboardMeCell.xib in Resources */,
 				0C5F147A1B10C227009946CA /* Blue.png in Resources */,
 				0CF80C451B1DBFB300C7CA35 /* Guest Filled-50@2x.png in Resources */,
 				0C5F14881B10E850009946CA /* Cross.png in Resources */,
 				0C5F147D1B10C227009946CA /* Maroon.png in Resources */,
 				0CF80C461B1DBFB300C7CA35 /* Home Filled-50@2x.png in Resources */,
+				0CF80C521B2063D800C7CA35 /* Profile-White.png in Resources */,
 				0C5F147C1B10C227009946CA /* Dark Green.png in Resources */,
 				0C5F147F1B10C227009946CA /* Red.png in Resources */,
 				0C5F14831B10DEA6009946CA /* rectangle-34969_640.png in Resources */,
@@ -539,6 +561,8 @@
 				0C5F149B1B10EA63009946CA /* Slide4.jpg in Resources */,
 				0C5F149A1B10EA63009946CA /* Slide3.jpg in Resources */,
 				0C5F14551B0CDBF4009946CA /* Images.xcassets in Resources */,
+				0CF80C531B2063D800C7CA35 /* Settings-White.png in Resources */,
+				0CF80C571B2071ED00C7CA35 /* TopicViewCell.xib in Resources */,
 				0CF80C3D1B1DBE8400C7CA35 /* Settings 3 Filled-32.png in Resources */,
 				0C5F14791B10C227009946CA /* Blue-Grey.png in Resources */,
 				0CF80C471B1DBFB300C7CA35 /* Leaderboard Filled-50@2x.png in Resources */,
