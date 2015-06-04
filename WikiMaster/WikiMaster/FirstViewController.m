@@ -10,12 +10,15 @@
 #import "UtilityMethods.h"
 #import "ServerCommunication.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "TopicTableViewCell.h"
 
 @interface FirstViewController ()
 
 @end
 
 @implementation FirstViewController
+
+NSArray *testData;
 
 - (void)viewDidAppear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -98,6 +101,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.view.backgroundColor = [UtilityMethods getColour];
+    self.tableView.backgroundColor = [UtilityMethods getColour];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -106,12 +110,42 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    UINib *nib = [UINib nibWithNibName:@"TopicTableViewCell" bundle:nil];
+//    [[self tableView] registerNib:nib forCellReuseIdentifier:@"cell"];
+    testData = @[@"Barack Obama", @"David Cameron", @"Andrews", @"Kunals", @"Living People", @"Krish", @"Water", @"Food", @"Computer"];
+   // [self.tableView reloadData];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell==nil) {
+        cell = [[TopicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    cell.testData = testData;
+   // [cell setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 200)];
+    [cell updateCell];
+    cell.backgroundColor = [UtilityMethods getColour];
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 150;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

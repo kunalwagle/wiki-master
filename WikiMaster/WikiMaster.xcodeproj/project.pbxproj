@@ -64,6 +64,9 @@
 		0C5F14C51B120F00009946CA /* GooglePlus.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0C5F14C41B120F00009946CA /* GooglePlus.bundle */; };
 		0C6CF12A1B20837800FFCF4F /* Topics-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF1291B20837800FFCF4F /* Topics-50@2x.png */; };
 		0C6CF12D1B20867600FFCF4F /* CustomTabBarControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF12C1B20867600FFCF4F /* CustomTabBarControllerViewController.m */; };
+		0C6CF1301B208F4F00FFCF4F /* TopicViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF12F1B208F4F00FFCF4F /* TopicViewCell.m */; };
+		0C6CF1341B2093D800FFCF4F /* TopicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF1321B2093D800FFCF4F /* TopicTableViewCell.m */; };
+		0C6CF1371B209B3A00FFCF4F /* TopicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF1361B209B3A00FFCF4F /* TopicTableViewCell.xib */; };
 		0C878D991B17525200780F54 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C878D981B17525200780F54 /* exclamation.png */; };
 		0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9B1B18A2F700780F54 /* SettingsViewController.m */; };
 		0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9E1B18A45100780F54 /* UtilityMethods.m */; };
@@ -176,6 +179,11 @@
 		0C6CF1291B20837800FFCF4F /* Topics-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Topics-50@2x.png"; sourceTree = "<group>"; };
 		0C6CF12B1B20867600FFCF4F /* CustomTabBarControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBarControllerViewController.h; sourceTree = "<group>"; };
 		0C6CF12C1B20867600FFCF4F /* CustomTabBarControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBarControllerViewController.m; sourceTree = "<group>"; };
+		0C6CF12E1B208F4F00FFCF4F /* TopicViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicViewCell.h; sourceTree = "<group>"; };
+		0C6CF12F1B208F4F00FFCF4F /* TopicViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicViewCell.m; sourceTree = "<group>"; };
+		0C6CF1311B2093D800FFCF4F /* TopicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicTableViewCell.h; sourceTree = "<group>"; };
+		0C6CF1321B2093D800FFCF4F /* TopicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicTableViewCell.m; sourceTree = "<group>"; };
+		0C6CF1361B209B3A00FFCF4F /* TopicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopicTableViewCell.xib; sourceTree = "<group>"; };
 		0C878D981B17525200780F54 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
 		0C878D9A1B18A2F700780F54 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		0C878D9B1B18A2F700780F54 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -295,9 +303,14 @@
 				0C5F14491B0CDBF4009946CA /* AppDelegate.m */,
 				0C5F144B1B0CDBF4009946CA /* FirstViewController.h */,
 				0C5F144C1B0CDBF4009946CA /* FirstViewController.m */,
+				0C6CF12E1B208F4F00FFCF4F /* TopicViewCell.h */,
+				0C6CF12F1B208F4F00FFCF4F /* TopicViewCell.m */,
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0C6CF1311B2093D800FFCF4F /* TopicTableViewCell.h */,
+				0C6CF1321B2093D800FFCF4F /* TopicTableViewCell.m */,
+				0C6CF1361B209B3A00FFCF4F /* TopicTableViewCell.xib */,
 				0C6CF12B1B20867600FFCF4F /* CustomTabBarControllerViewController.h */,
 				0C6CF12C1B20867600FFCF4F /* CustomTabBarControllerViewController.m */,
 				0C6CF1291B20837800FFCF4F /* Topics-50@2x.png */,
@@ -569,6 +582,7 @@
 				0C5F14801B10C227009946CA /* Turquoise.png in Resources */,
 				0C5F149B1B10EA63009946CA /* Slide4.jpg in Resources */,
 				0C5F149A1B10EA63009946CA /* Slide3.jpg in Resources */,
+				0C6CF1371B209B3A00FFCF4F /* TopicTableViewCell.xib in Resources */,
 				0C5F14551B0CDBF4009946CA /* Images.xcassets in Resources */,
 				0CF80C531B2063D800C7CA35 /* Settings-White.png in Resources */,
 				0CF80C571B2071ED00C7CA35 /* TopicViewCell.xib in Resources */,
@@ -606,6 +620,8 @@
 				0CEF69421B1606F70009F137 /* Question.m in Sources */,
 				0CF80C231B1C9D0700C7CA35 /* InviteTableViewCell.m in Sources */,
 				0C5F144D1B0CDBF4009946CA /* FirstViewController.m in Sources */,
+				0C6CF1341B2093D800FFCF4F /* TopicTableViewCell.m in Sources */,
+				0C6CF1301B208F4F00FFCF4F /* TopicViewCell.m in Sources */,
 				0CF80C4E1B1DC97F00C7CA35 /* ProfileViewController.m in Sources */,
 				0CEF69921B163A7E0009F137 /* FinalTotalsViewController.m in Sources */,
 				0CF80C4B1B1DC90800C7CA35 /* ProfileStatTableViewCell.m in Sources */,
