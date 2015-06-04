@@ -17,6 +17,7 @@
 - (IBAction)snapSlider:(id)sender;
 @property (weak, nonatomic) IBOutlet UIStepper *stepper;
 @property (weak, nonatomic) IBOutlet UILabel *timeDisplay;
+@property BOOL timerMessageGiven;
 
 
 @end

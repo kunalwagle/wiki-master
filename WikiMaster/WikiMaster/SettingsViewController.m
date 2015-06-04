@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.timerMessageGiven = NO;
 
     // Do any additional setup after loading the view.
 }
@@ -40,6 +41,16 @@
         [imageView addGestureRecognizer:singleTapGestureRecognizer];
     }
 
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    if (!self.timerMessageGiven) {
+        if (self.stepper.value > 30) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Just to let you know" message:@"Your score can only be put on our leaderboards if it has a timer of thirty seconds or less" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alert show];
+            self.timerMessageGiven = YES;
+        }
+    }
 }
 
 -(void)handleSingleTapGesture:(UITapGestureRecognizer *)tapGestureRecognizer{
@@ -85,6 +96,7 @@
     self.timeDisplay.text = [NSString stringWithFormat:@"%d", timer];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSNumber numberWithInt:timer] forKey:@"timer"];
+    self.timerMessageGiven = NO;
 }
 
 - (IBAction)colourChange:(id)sender {
