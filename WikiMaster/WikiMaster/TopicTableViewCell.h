@@ -11,6 +11,8 @@
 @interface TopicTableViewCell : UITableViewCell<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property NSArray *testData;
+@property NSArray *data;
+@property NSArray *images;
 
 -(void)updateCell;
 

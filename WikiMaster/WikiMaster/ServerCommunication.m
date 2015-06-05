@@ -54,9 +54,14 @@
     }
 }
 
+
+
 +(void)getSubCategories:(NSString *)category {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://146.169.47.18:3000/api/wiki/categories/%@/subcategories", category]]];
+    category = [NSString stringWithFormat:@"http://146.169.47.18:3000/api/wiki/categories/%@/subcategories", category];
+    category = [category stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(category);
+    [request setURL:[NSURL URLWithString:category]];
     [request setHTTPMethod:@"GET"];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (conn) {

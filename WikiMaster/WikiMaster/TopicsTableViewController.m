@@ -7,12 +7,25 @@
 //
 
 #import "TopicsTableViewController.h"
+#import "ServerCommunication.h"
+#import "TopicTableViewCell.h"
+#import "UtilityMethods.h"
 
 @interface TopicsTableViewController ()
 
 @end
 
 @implementation TopicsTableViewController
+
+NSArray *categories;
+NSMutableArray *subCategories;
+NSArray *imageURLs;
+NSMutableArray *images;
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.tableView.backgroundColor = [UtilityMethods getColour];
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,7 +35,82 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    images = [[NSMutableArray alloc] initWithObjects: nil];
+    imageURLs = @[@"http://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Tom_chilton_spafrancorchamps2014.JPG/640px-Tom_chilton_spafrancorchamps2014.JPG", @"http://upload.wikimedia.org/wikipedia/commons/e/e1/BillClinger.jpg",
+                  @"http://upload.wikimedia.org/wikipedia/en/5/5d/The_Black_Hole_War_-_bookcover.jpg",
+                  @"http://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Burwood_Westfield.JPG/250px-Burwood_Westfield.JPG"];
+    for (NSString *link in imageURLs) {
+        NSURL *url = [NSURL URLWithString:link];
+        NSData *imageData = [NSData dataWithContentsOfURL:url];
+        [images addObject:[UIImage imageWithData:imageData]];
+    }
+    subCategories = [[NSMutableArray alloc] initWithObjects: nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedCategories:)
+                                                 name:@"Categories" object:nil];
     
+    [ServerCommunication getCategories];
+}
+
+- (void)receivedCategories:(NSNotification*)notification {
+    //[[NSNotificationCenter defaultCenter] removeObserver:@"Categories"];
+    NSString * name =notification.name;
+    //notification userinfo
+    NSDictionary * info =notification.userInfo;
+    NSLog(@"Received Notification with name =%@",name);
+    NSLog(@"Information =%@",info);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSString *temp = [info valueForKey:@"response"];
+    if ([temp isEqualToString:@"FAILED"]) {
+
+    } else {
+        id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        if ([object count]>0) {
+            categories = object;
+            [self receivedSubCategories:NULL];
+        } else {
+
+        }
+    }
+
+}
+
+- (void)receivedSubCategories:(NSNotification*)notification {
+    if (notification) {
+        NSString * name =notification.name;
+        //notification userinfo
+        NSDictionary * info =notification.userInfo;
+        NSLog(@"Received Notification with name =%@",name);
+        NSLog(@"Information =%@",info);
+        NSString *temp = [info valueForKey:@"response"];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        if ([temp isEqualToString:@"FAILED"]) {
+            [subCategories addObject:[[NSMutableArray alloc] initWithObjects:@"Nonsense", nil]];
+        } else {
+            id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+            if ([object count]>0) {
+                [subCategories addObject:object];
+            } else {
+                NSDictionary *dict = [[NSMutableDictionary alloc] init];
+                [dict setValue:[categories objectAtIndex:[subCategories count]] forKey:@"name"];
+                NSArray *arr = @[dict];
+                [subCategories addObject:arr];
+            }
+        }
+    }
+    if ([subCategories count]<[categories count]) {
+        if ([subCategories count]==1 && [[subCategories objectAtIndex:0] isEqualToArray:categories]) {
+            [subCategories removeObjectAtIndex:0];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedSubCategories:) name:@"Subcategories" object:nil];
+        } else {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedSubCategories:) name:@"Subcategories" object:nil];
+            [ServerCommunication getSubCategories:[categories objectAtIndex:[subCategories count]]];
+        }
+    } else {
+        [self.tableView reloadData];
+    }
+    
+    //If array count is equal to number of categories, remove observer and don't call again.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,26 +121,39 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return [categories count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 1;
 }
 
-/*
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:[UIColor whiteColor]];
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:@"AvenirNext-DemiBold" size:19.0]];
+    return [categories objectAtIndex:section];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 110;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    TopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell==nil) {
+        cell = [[TopicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    cell.data = [subCategories objectAtIndex:[indexPath section]];
+    cell.images = images;
+    // [cell setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 200)];
+    [cell updateCell];
+    cell.backgroundColor = [UtilityMethods getColour];
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

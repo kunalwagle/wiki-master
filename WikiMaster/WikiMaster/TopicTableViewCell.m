@@ -47,6 +47,9 @@
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (self.data) {
+        return [self.data count];
+    }
     return [self.testData count];
 }
 
@@ -58,7 +61,14 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TopicViewCell *cell = (TopicViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-    cell.name.text = [self.testData objectAtIndex:[indexPath row]];
+    if (self.data) {
+        NSDictionary *dict = [self.data objectAtIndex:[indexPath row]];
+        NSString *title = [dict objectForKey:@"name"];
+        cell.name.text = title;
+        cell.image.image = [self.images objectAtIndex:[indexPath row]%4];
+    } else {
+        cell.name.text = [self.testData objectAtIndex:[indexPath row]];
+    }
     cell.backgroundColor = [UtilityMethods getColour];
     cell.name.textColor = [UIColor whiteColor];
     return cell;

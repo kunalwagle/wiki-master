@@ -19,19 +19,18 @@
 
 @property NSMutableArray *friends;
 @property NSArray *searchFriends;
+@property NSMutableArray *images;
 
 @end
 
 @implementation FriendsListTableViewController
-
-NSMutableArray *images;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.friends = [[NSMutableArray alloc] initWithObjects: nil];
     self.loadedFriends = YES;
-    images = [[NSMutableArray alloc] initWithObjects: nil];
+    self.images = [[NSMutableArray alloc] initWithObjects: nil];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/me/friends"
                                   parameters:@{@"fields":@"picture.type(large), name"}
@@ -52,8 +51,8 @@ NSMutableArray *images;
             NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:pictureURL]];
             UIImage *image = [UIImage imageWithData:imageData];
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:dict];
-            [dictionary setValue:[NSNumber numberWithInt:[images count]] forKey:@"imageNumber"];
-            [images addObject:image];
+            [dictionary setValue:[NSNumber numberWithInt:[self.images count]] forKey:@"imageNumber"];
+            [self.images addObject:image];
             [self.friends addObject:dictionary];
         }
             [self.tableView reloadData];
@@ -80,7 +79,7 @@ NSMutableArray *images;
 -(void)viewWillAppear:(BOOL)animated {
     self.tableView.backgroundColor = [UtilityMethods getColour];
     self.searchDisplayController.searchResultsTableView.backgroundColor = [UtilityMethods getColour];
-    //[self.tableView reloadData];
+    [self.tableView reloadData];
     if (!self.loadedFriends) {
         [self viewDidLoad];
     }
@@ -219,12 +218,12 @@ NSMutableArray *images;
             }
             if (self.loadedFriends) {
             if (tableView == self.tableView) {
-                cell.image.image = [images objectAtIndex:[indexPath row]];
+                cell.image.image = [self.images objectAtIndex:[indexPath row]];
                 cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
                 cell.online.text = @"Offline";
             } else {
                 cell.name.text = [[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"name"];
-                cell.image.image = [images objectAtIndex:[[[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"imageNumber"] intValue]];
+                cell.image.image = [self.images objectAtIndex:[[[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"imageNumber"] intValue]];
                 cell.online.text = @"Offline";
             }
             
@@ -285,7 +284,7 @@ NSMutableArray *images;
         ProfileViewController *vc = (ProfileViewController*)[segue destinationViewController];
         vc.sender = @"friend";
         int row = [[self.tableView indexPathForSelectedRow] row];
-        vc.image = [images objectAtIndex:row];
+        vc.image = [self.images objectAtIndex:row];
         vc.userID = [[self.friends objectAtIndex:row] valueForKey:@"id"];
         vc.userName = [[self.friends objectAtIndex:row] valueForKey:@"name"];
         vc.hidesBottomBarWhenPushed = YES;
