@@ -42,12 +42,38 @@
     }
 }
 
++(void)getCategories {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://146.169.47.18:3000/api/wiki/categories"]];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+}
+
++(void)getSubCategories:(NSString *)category {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://146.169.47.18:3000/api/wiki/categories/%@/subcategories", category]]];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+}
+
 +(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"FAILED");
     NSDictionary *dict = [NSDictionary dictionaryWithObject:@"FAILED" forKey:@"response"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification"
                                                         object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Categories" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Subcategories" object:nil userInfo:dict];
 }
 
 +(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -61,6 +87,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification"
                                     object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Categories" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Subcategories" object:nil userInfo:dict];
 }
 
 //NSInputStream *inputStream;

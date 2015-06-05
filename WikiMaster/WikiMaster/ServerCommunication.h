@@ -20,5 +20,7 @@
 
 +(void)addUser:(NSString*)userID;
 +(void)getUser:(NSString*)facebookID;
++(void)getCategories;
++(void)getSubCategories:(NSString*)category;
 
 @end
