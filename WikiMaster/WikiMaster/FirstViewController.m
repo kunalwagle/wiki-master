@@ -21,6 +21,7 @@
 NSArray *testData;
 
 - (void)viewDidAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedNotification:)
                                                  name:@"LoggedIn" object:nil];
@@ -34,6 +35,14 @@ NSArray *testData;
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"LoggedIn" object:nil userInfo:nil];
     }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)clickedTopic:(NSNotification*)notification {
+    [self performSegueWithIdentifier:@"showTopic" sender:self];
 }
 
 -(void)receivedNotification:(NSNotification*)notification {
@@ -114,6 +123,7 @@ NSArray *testData;
 //    UINib *nib = [UINib nibWithNibName:@"TopicTableViewCell" bundle:nil];
 //    [[self tableView] registerNib:nib forCellReuseIdentifier:@"cell"];
     testData = @[@"Barack Obama", @"David Cameron", @"Andrews", @"Kunals", @"Living People", @"Krish", @"Water", @"Food", @"Computer"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
    // [self.tableView reloadData];
     // Do any additional setup after loading the view, typically from a nib.
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

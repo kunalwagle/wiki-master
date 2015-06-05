@@ -79,6 +79,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Categories" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Subcategories" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedTopic" object:nil userInfo:dict];
 }
 
 +(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -94,6 +95,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Categories" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Subcategories" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedTopic" object:nil userInfo:dict];
 }
 
 //NSInputStream *inputStream;

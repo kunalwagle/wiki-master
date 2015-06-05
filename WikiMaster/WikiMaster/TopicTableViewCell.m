@@ -32,8 +32,8 @@
 -(void)setUpCollectionView {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    [flowLayout setMinimumInteritemSpacing:0.0f];
-    [flowLayout setMinimumLineSpacing:0.0f];
+    [flowLayout setMinimumInteritemSpacing:-10.0f];
+    [flowLayout setMinimumLineSpacing:-10.0f];
     [flowLayout setItemSize:CGSizeMake(115, 90)];
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:flowLayout];
     [self.collectionView.collectionViewLayout invalidateLayout];
@@ -66,12 +66,27 @@
         NSString *title = [dict objectForKey:@"name"];
         cell.name.text = title;
         cell.image.image = [self.images objectAtIndex:[indexPath row]%4];
+        cell.image.layer.cornerRadius = 10;
+        cell.image.layer.masksToBounds = YES;
+        cell.image.layer.shouldRasterize = YES;
+        cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        
     } else {
         cell.name.text = [self.testData objectAtIndex:[indexPath row]];
     }
     cell.backgroundColor = [UtilityMethods getColour];
     cell.name.textColor = [UIColor whiteColor];
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Look we pressed something at index path: %d", [indexPath row]);
+    TopicViewCell *cell = (TopicViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:cell.name.text forKey:@"name"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Home" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Topics" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"SubTopics" object:nil userInfo:dict];
 }
 
 @end

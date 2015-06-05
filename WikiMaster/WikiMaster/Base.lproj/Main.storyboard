@@ -248,7 +248,7 @@
                         <outlet property="played" destination="Kvo-SS-G6A" id="sQW-e2-CHf"/>
                         <outlet property="tableView" destination="37d-jc-Vro" id="JNA-O9-vCr"/>
                         <outlet property="won" destination="0rY-h5-o3b" id="9eh-oO-k8k"/>
-                        <segue destination="rNw-Ya-tGo" kind="show" id="hy8-Ev-I5D"/>
+                        <segue destination="rNw-Ya-tGo" kind="show" identifier="showTopic" id="hy8-Ev-I5D"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -1787,8 +1787,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose a Topic" id="nJq-X2-tku"/>
                     <connections>
-                        <segue destination="iqB-K7-by7" kind="show" id="Z7P-Km-Nkz"/>
-                        <segue destination="rNw-Ya-tGo" kind="show" id="IG8-fP-CdB"/>
+                        <segue destination="iqB-K7-by7" kind="show" identifier="showTopics" id="Z7P-Km-Nkz"/>
+                        <segue destination="rNw-Ya-tGo" kind="show" identifier="showTopic" id="IG8-fP-CdB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gds-5w-nok" userLabel="First Responder" sceneMemberID="firstResponder"/>

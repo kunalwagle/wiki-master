@@ -24,12 +24,13 @@ NSMutableArray *images;
 
 -(void)viewWillAppear:(BOOL)animated {
     self.tableView.backgroundColor = [UtilityMethods getColour];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Topics" object:nil];
     [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Topics" object:nil];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -73,6 +74,32 @@ NSMutableArray *images;
         }
     }
 
+}
+
+-(void)clickedTopic:(NSNotification*)notification {
+    NSDictionary *dict = notification.userInfo;
+    NSString *topicName = [dict objectForKey:@"name"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedTopics:) name:@"clickedTopic" object:nil];
+    [ServerCommunication getSubCategories:topicName];
+}
+
+-(void)returnedTopics:(NSNotification*)notification {
+    NSDictionary *info = notification.userInfo;
+    NSString *temp = [info valueForKey:@"response"];
+    if ([temp isEqualToString:@"FAILED"]) {
+
+    } else {
+        id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        if ([object count]>0) {
+            [self performSegueWithIdentifier:@"showTopics" sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"showTopic" sender:self];
+        }
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)receivedSubCategories:(NSNotification*)notification {
