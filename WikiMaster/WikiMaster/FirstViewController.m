@@ -102,6 +102,7 @@ NSArray *testData;
 - (void)viewWillAppear:(BOOL)animated {
     self.view.backgroundColor = [UtilityMethods getColour];
     self.tableView.backgroundColor = [UtilityMethods getColour];
+    [self.tableView reloadData];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -115,6 +116,7 @@ NSArray *testData;
     testData = @[@"Barack Obama", @"David Cameron", @"Andrews", @"Kunals", @"Living People", @"Krish", @"Water", @"Food", @"Computer"];
    // [self.tableView reloadData];
     // Do any additional setup after loading the view, typically from a nib.
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -137,8 +139,27 @@ NSArray *testData;
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+
+- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setTextColor:[UIColor whiteColor]];
+    [[UILabel appearanceWhenContainedIn:[UITableViewHeaderFooterView class], nil] setFont:[UIFont fontWithName:@"AvenirNext-DemiBold" size:19.0]];
+    switch (section) {
+        case 0:
+            return @"Your favourites";
+            
+        case 1:
+            return @"Your recent topics";
+        
+        default:
+            return @"Trending right now";
+    }
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150;
+    return 110;
 }
 
 - (void)didReceiveMemoryWarning {

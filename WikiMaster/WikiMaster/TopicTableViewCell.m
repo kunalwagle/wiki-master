@@ -32,12 +32,12 @@
 -(void)setUpCollectionView {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    [flowLayout setMinimumInteritemSpacing:10.0f];
+    [flowLayout setMinimumInteritemSpacing:0.0f];
     [flowLayout setMinimumLineSpacing:0.0f];
-    [flowLayout setItemSize:CGSizeMake(130, 110)];
+    [flowLayout setItemSize:CGSizeMake(115, 90)];
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:flowLayout];
     [self.collectionView.collectionViewLayout invalidateLayout];
-    [self.collectionView setFrame:CGRectMake(0, 0, 400, 150)];
+    [self.collectionView setFrame:CGRectMake(0, 0, 400, 110)];
     [self addSubview:self.collectionView];
     [self.collectionView setPagingEnabled:NO];
     [self.collectionView registerClass:[TopicViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
@@ -53,6 +53,8 @@
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
+
+
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     TopicViewCell *cell = (TopicViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];

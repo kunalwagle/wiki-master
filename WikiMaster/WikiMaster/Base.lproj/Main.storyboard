@@ -102,7 +102,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="37d-jc-Vro">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="37d-jc-Vro">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -125,7 +125,9 @@
                             <constraint firstItem="rpj-T6-ewI" firstAttribute="top" secondItem="4VO-EV-l88" secondAttribute="bottom" constant="8" id="EVa-ei-IQM"/>
                             <constraint firstItem="Kvo-SS-G6A" firstAttribute="centerX" secondItem="lyc-3o-ppb" secondAttribute="centerX" constant="-4" id="HjQ-WI-Cjf"/>
                             <constraint firstItem="4VO-EV-l88" firstAttribute="leading" secondItem="6Rb-i3-VYe" secondAttribute="trailing" constant="20" id="IAa-h4-Hgf"/>
-                            <constraint firstItem="37d-jc-Vro" firstAttribute="top" secondItem="6Rb-i3-VYe" secondAttribute="bottom" id="Lf0-Wt-r4E"/>
+                            <constraint firstItem="37d-jc-Vro" firstAttribute="top" secondItem="6Rb-i3-VYe" secondAttribute="bottom" id="Lf0-Wt-r4E">
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                            </constraint>
                             <constraint firstItem="4VO-EV-l88" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" constant="12" id="LlE-Hh-40H"/>
                             <constraint firstItem="6Rb-i3-VYe" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" constant="27" id="MI4-n1-Nof"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="37d-jc-Vro" secondAttribute="bottom" constant="-9" id="Tid-e3-SRM"/>
