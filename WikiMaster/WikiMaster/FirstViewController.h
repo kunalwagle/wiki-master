@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *won;
 @property (weak, nonatomic) IBOutlet UILabel *lost;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property BOOL loadedUser;
 
 
 

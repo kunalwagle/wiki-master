@@ -1743,6 +1743,7 @@
                             </mask>
                         </variation>
                     </view>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Npf-9m-Nc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1823,6 +1824,7 @@
                             <outlet property="delegate" destination="iqB-K7-by7" id="ajc-bP-3Di"/>
                         </connections>
                     </collectionView>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="rNw-Ya-tGo" kind="show" id="dYh-MF-4rg"/>
                     </connections>
@@ -2062,6 +2064,7 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="Guest Filled-50.png" id="IiC-Po-dds"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="name" destination="snq-6s-SSy" id="GRP-9l-rDU"/>
                         <outlet property="profilePicture" destination="nJe-1H-yIF" id="PmF-oi-NyD"/>
@@ -2413,6 +2416,7 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings 3 Filled-50.png" id="dQd-Ri-FZj"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="colourSlider" destination="SoU-jV-FNE" id="tih-Fl-rQg"/>
                         <outlet property="stepper" destination="4u2-Qt-G0n" id="gt0-TX-Htl"/>
@@ -2972,6 +2976,6 @@
         <segue reference="69J-SK-jFE"/>
         <segue reference="Ii8-7I-TKT"/>
         <segue reference="HUy-J9-Cu7"/>
-        <segue reference="IG8-fP-CdB"/>
+        <segue reference="dYh-MF-4rg"/>
     </inferredMetricsTieBreakers>
 </document>

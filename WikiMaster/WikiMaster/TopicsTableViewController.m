@@ -134,6 +134,7 @@ NSMutableArray *images;
             [ServerCommunication getSubCategories:[categories objectAtIndex:[subCategories count]]];
         }
     } else {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Topics" object:nil];
         [self.tableView reloadData];
     }
     

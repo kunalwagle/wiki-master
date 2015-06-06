@@ -21,7 +21,6 @@
 NSArray *testData;
 
 - (void)viewDidAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedNotification:)
                                                  name:@"LoggedIn" object:nil];
@@ -37,7 +36,7 @@ NSArray *testData;
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -46,6 +45,10 @@ NSArray *testData;
 }
 
 -(void)receivedNotification:(NSNotification*)notification {
+    if (self.loadedUser) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
+    } else {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *facebookID = [defaults valueForKey:@"userID"];
     [ServerCommunication getUser:facebookID];
@@ -79,6 +82,7 @@ NSArray *testData;
             self.image.hidden = YES;
         }
     }];
+    }
 }
 
 -(void)receivedUser:(NSNotification*)notification {
@@ -88,9 +92,10 @@ NSArray *testData;
     NSLog(@"Received Notification with name =%@",name);
     NSLog(@"Information =%@",info);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
     NSString *temp = [info valueForKey:@"response"];
     if ([temp isEqualToString:@"FAILED"]) {
-        
+        self.loadedUser = NO;
     } else {
         id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         if ([object count]>0) {
@@ -100,6 +105,7 @@ NSArray *testData;
                 self.played.text = [NSString stringWithFormat:@"%@", [gamePlay valueForKey:@"gamesPlayed"]];
                 self.won.text = [NSString stringWithFormat:@"%@", [gamePlay valueForKey:@"wins"]];
                 self.lost.text = [NSString stringWithFormat:@"%@", [gamePlay valueForKey:@"losses"]];
+                self.loadedUser = YES;
             } else {
                 //ERROR HANDLING
             } } else {
@@ -112,6 +118,7 @@ NSArray *testData;
     self.view.backgroundColor = [UtilityMethods getColour];
     self.tableView.backgroundColor = [UtilityMethods getColour];
     [self.tableView reloadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -166,6 +173,11 @@ NSArray *testData;
         default:
             return @"Trending right now";
     }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    UIViewController *vc = [segue destinationViewController];
+    vc.hidesBottomBarWhenPushed = YES;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
