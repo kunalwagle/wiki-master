@@ -69,6 +69,8 @@
 		0C6CF1371B209B3A00FFCF4F /* TopicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF1361B209B3A00FFCF4F /* TopicTableViewCell.xib */; };
 		0C6CF13A1B21D56200FFCF4F /* TopicsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF1391B21D56200FFCF4F /* TopicsTableViewController.m */; };
 		0C6CF13D1B23431400FFCF4F /* LeaderboardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF13C1B23431400FFCF4F /* LeaderboardTableViewCell.m */; };
+		0C6CF1401B2460CA00FFCF4F /* SubTopicsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF13F1B2460CA00FFCF4F /* SubTopicsCollectionViewController.m */; };
+		0C6CF1431B246D6F00FFCF4F /* InfoboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF1421B246D6F00FFCF4F /* InfoboxViewController.m */; };
 		0C878D991B17525200780F54 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C878D981B17525200780F54 /* exclamation.png */; };
 		0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9B1B18A2F700780F54 /* SettingsViewController.m */; };
 		0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9E1B18A45100780F54 /* UtilityMethods.m */; };
@@ -190,6 +192,10 @@
 		0C6CF1391B21D56200FFCF4F /* TopicsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicsTableViewController.m; sourceTree = "<group>"; };
 		0C6CF13B1B23431400FFCF4F /* LeaderboardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderboardTableViewCell.h; sourceTree = "<group>"; };
 		0C6CF13C1B23431400FFCF4F /* LeaderboardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaderboardTableViewCell.m; sourceTree = "<group>"; };
+		0C6CF13E1B2460CA00FFCF4F /* SubTopicsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubTopicsCollectionViewController.h; sourceTree = "<group>"; };
+		0C6CF13F1B2460CA00FFCF4F /* SubTopicsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubTopicsCollectionViewController.m; sourceTree = "<group>"; };
+		0C6CF1411B246D6F00FFCF4F /* InfoboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoboxViewController.h; sourceTree = "<group>"; };
+		0C6CF1421B246D6F00FFCF4F /* InfoboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoboxViewController.m; sourceTree = "<group>"; };
 		0C878D981B17525200780F54 /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
 		0C878D9A1B18A2F700780F54 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		0C878D9B1B18A2F700780F54 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -314,6 +320,10 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0C6CF1411B246D6F00FFCF4F /* InfoboxViewController.h */,
+				0C6CF1421B246D6F00FFCF4F /* InfoboxViewController.m */,
+				0C6CF13E1B2460CA00FFCF4F /* SubTopicsCollectionViewController.h */,
+				0C6CF13F1B2460CA00FFCF4F /* SubTopicsCollectionViewController.m */,
 				0C6CF1381B21D56200FFCF4F /* TopicsTableViewController.h */,
 				0C6CF1391B21D56200FFCF4F /* TopicsTableViewController.m */,
 				0C6CF1311B2093D800FFCF4F /* TopicTableViewCell.h */,
@@ -621,7 +631,9 @@
 				0C5E58731B19F1EF00A87A3F /* FriendsListTableViewController.m in Sources */,
 				0C6CF13D1B23431400FFCF4F /* LeaderboardTableViewCell.m in Sources */,
 				0C5F14AB1B120D48009946CA /* InitialLoginViewController.m in Sources */,
+				0C6CF1401B2460CA00FFCF4F /* SubTopicsCollectionViewController.m in Sources */,
 				0CEF69071B14DE9B0009F137 /* QuizLoadingViewController.m in Sources */,
+				0C6CF1431B246D6F00FFCF4F /* InfoboxViewController.m in Sources */,
 				0CEF698F1B1634A80009F137 /* AnswerDebriefViewController.m in Sources */,
 				0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */,
 				0C6CF13A1B21D56200FFCF4F /* TopicsTableViewController.m in Sources */,

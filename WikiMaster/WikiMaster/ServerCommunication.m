@@ -71,6 +71,21 @@
     }
 }
 
++(void)getInfoboxes:(NSString *)category {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    category = [NSString stringWithFormat:@"http://146.169.47.18:3000/api/wiki/categories/%@/infoboxes", category];
+    category = [category stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(category);
+    [request setURL:[NSURL URLWithString:category]];
+    [request setHTTPMethod:@"GET"];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+}
+
 +(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"FAILED");
     NSDictionary *dict = [NSDictionary dictionaryWithObject:@"FAILED" forKey:@"response"];
@@ -79,7 +94,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Categories" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Subcategories" object:nil userInfo:dict];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedTopic" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"getTopic" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"categoryInfoboxes" object:nil userInfo:dict];
 }
 
 +(void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -95,7 +111,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"User" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Categories" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Subcategories" object:nil userInfo:dict];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedTopic" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"getTopic" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"categoryInfoboxes" object:nil userInfo:dict];
     @try {
         id object = [NSJSONSerialization JSONObjectWithData:[[dict objectForKey:@"response"] dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         if ([object count]>0) {

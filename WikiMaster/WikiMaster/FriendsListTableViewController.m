@@ -30,6 +30,7 @@
     [super viewDidLoad];
     if (!self.friendsScreen) {
         self.counter = 0;
+        self.navigationItem.title = @"Leaderboard";
     }
     self.friends = [[NSMutableArray alloc] initWithObjects: nil];
     self.loadedFriends = YES;

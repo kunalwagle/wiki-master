@@ -22,5 +22,6 @@
 +(void)getUser:(NSString*)facebookID;
 +(void)getCategories;
 +(void)getSubCategories:(NSString*)category;
++(void)getInfoboxes:(NSString*)category;
 
 @end

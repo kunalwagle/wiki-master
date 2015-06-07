@@ -10,6 +10,8 @@
 #import "ServerCommunication.h"
 #import "TopicTableViewCell.h"
 #import "UtilityMethods.h"
+#import "SubTopicsCollectionViewController.h"
+#import "InfoboxViewController.h"
 
 @interface TopicsTableViewController ()
 
@@ -21,6 +23,8 @@ NSArray *categories;
 NSMutableArray *subCategories;
 NSArray *imageURLs;
 NSMutableArray *images;
+NSString *topicChosen;
+NSArray *subtopics;
 
 -(void)viewWillAppear:(BOOL)animated {
     self.tableView.backgroundColor = [UtilityMethods getColour];
@@ -78,22 +82,45 @@ NSMutableArray *images;
 
 -(void)clickedTopic:(NSNotification*)notification {
     NSDictionary *dict = notification.userInfo;
-    NSString *topicName = [dict objectForKey:@"name"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedTopics:) name:@"clickedTopic" object:nil];
-    [ServerCommunication getSubCategories:topicName];
+    topicChosen = [dict objectForKey:@"name"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedTopics:) name:@"getTopic" object:nil];
+    [ServerCommunication getSubCategories:topicChosen];
 }
 
 -(void)returnedTopics:(NSNotification*)notification {
     NSDictionary *info = notification.userInfo;
     NSString *temp = [info valueForKey:@"response"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getTopic" object:nil];
     if ([temp isEqualToString:@"FAILED"]) {
 
     } else {
         id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         if ([object count]>0) {
+            subtopics = object;
             [self performSegueWithIdentifier:@"showTopics" sender:self];
         } else {
-            [self performSegueWithIdentifier:@"showTopic" sender:self];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedInfoboxes:) name:@"categoryInfoboxes" object:nil];
+            [ServerCommunication getInfoboxes:topicChosen];
+        }
+    }
+}
+
+-(void)returnedInfoboxes:(NSNotification*)notification {
+    NSDictionary *info = notification.userInfo;
+    NSString *temp = [info valueForKey:@"response"];
+    NSLog(@"Received Notification with name =%@",notification.name);
+    NSLog(@"Information =%@",info);
+    if ([temp isEqualToString:@"FAILED"]) {
+        
+    } else {
+        id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        if ([object count]>0) {
+            subtopics = object;
+            [self performSegueWithIdentifier:@"showInfoboxes" sender:self];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"categoryInfoboxes" object:nil];
+        } else {
+            
+            //[self performSegueWithIdentifier:@"showTopic" sender:self];
         }
     }
 }
@@ -217,14 +244,25 @@ NSMutableArray *images;
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"showTopics"]) {
+        SubTopicsCollectionViewController *vc = (SubTopicsCollectionViewController*)[segue destinationViewController];
+        vc.parentTopic = topicChosen;
+        vc.topics = subtopics;
+        vc.images = images;
+    } else if ([[segue identifier] isEqualToString:@"showInfoboxes"]) {
+        InfoboxViewController *vc = (InfoboxViewController*)[segue destinationViewController];
+        vc.parentTopic = topicChosen;
+        vc.infoboxes = subtopics;
+        vc.images = images;
+    }
 }
-*/
+
 
 @end
