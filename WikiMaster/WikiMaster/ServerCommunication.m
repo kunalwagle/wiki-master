@@ -96,6 +96,26 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Categories" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Subcategories" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedTopic" object:nil userInfo:dict];
+    @try {
+        id object = [NSJSONSerialization JSONObjectWithData:[[dict objectForKey:@"response"] dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        if ([object count]>0) {
+            if ([[object objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *result = [object objectAtIndex:0];
+                NSDictionary *facebook = [result objectForKey:@"facebook"];
+                NSString *userid = [facebook objectForKey:@"id"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:userid object:nil userInfo:dict];
+            } else {
+                //ERROR HANDLING
+            } } else {
+                //ERROR HANDLING
+            }
+    }
+    @catch (NSException *exception) {
+        
+    }
+    @finally {
+        
+    }
 }
 
 //NSInputStream *inputStream;

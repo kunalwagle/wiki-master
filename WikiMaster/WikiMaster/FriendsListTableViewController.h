@@ -11,5 +11,9 @@
 @interface FriendsListTableViewController : UITableViewController <UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property BOOL loadedFriends;
+@property BOOL friendsScreen;
+@property int counter;
+@property int target;
+@property NSMutableDictionary *me;
 
 @end
