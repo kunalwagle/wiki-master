@@ -7,6 +7,8 @@
 //
 
 #import "TopicHomeViewController.h"
+#import "FriendsListTableViewController.h"
+#import "UtilityMethods.h"
 
 @interface TopicHomeViewController ()
 
@@ -16,7 +18,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.image.image = self.topicImage;
+    self.name.text = self.topicName;
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.view.backgroundColor = [UtilityMethods getColour];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +32,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"challenge"]) {
+        FriendsListTableViewController *vc = (FriendsListTableViewController*)[segue destinationViewController];
+        vc.friendsScreen = YES;
+    }
 }
-*/
+
+
 
 @end

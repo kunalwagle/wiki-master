@@ -41,6 +41,7 @@ NSMutableArray *questions;
 
 - (void)viewWillAppear:(BOOL)animated {
     self.view.backgroundColor = [UtilityMethods getColour];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 -(void)createQuestions {

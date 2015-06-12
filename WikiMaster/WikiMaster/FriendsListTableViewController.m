@@ -74,6 +74,7 @@
             [self.tableView reloadData];
         }
     }];
+    if  (!self.friendsScreen) {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *facebookID = [defaults valueForKey:@"userID"];
     [ServerCommunication getUser:facebookID];
@@ -104,7 +105,7 @@
         } else {
 
         }
-    }];
+    }]; }
     UINib *nib = [UINib nibWithNibName:@"InviteTableViewCell" bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"invite"];
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"invite"];
@@ -423,10 +424,10 @@
                     cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
                     cell.backgroundColor = [UIColor whiteColor];
                     cell.contentView.backgroundColor = [UIColor whiteColor];
-                    cell.name.textColor = [UIColor blackColor];
-                    cell.score.textColor = [UIColor blackColor];
-                    cell.scoreLabel.textColor = [UIColor blackColor];
-                    cell.position.textColor = [UIColor blackColor];
+                    cell.name.textColor = [UtilityMethods getColour];
+                    cell.score.textColor = [UtilityMethods getColour];
+                    cell.scoreLabel.textColor = [UtilityMethods getColour];
+                    cell.position.textColor = [UtilityMethods getColour];
                     [cell.line setHidden:YES];
 
                 }
@@ -487,10 +488,10 @@
                 if ([ID isEqualToString:facebookID]) {
                     cell.backgroundColor = [UIColor whiteColor];
                     cell.contentView.backgroundColor = [UIColor whiteColor];
-                    cell.name.textColor = [UIColor blackColor];
-                    cell.score.textColor = [UIColor blackColor];
-                    cell.scoreLabel.textColor = [UIColor blackColor];
-                    cell.position.textColor = [UIColor blackColor];
+                    cell.name.textColor = [UtilityMethods getColour];
+                    cell.score.textColor = [UtilityMethods getColour];
+                    cell.scoreLabel.textColor = [UtilityMethods getColour];
+                    cell.position.textColor = [UtilityMethods getColour];
                     [cell.line setHidden:YES];
                 } else {
                     cell.backgroundColor = [UtilityMethods getColour];
@@ -538,8 +539,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([indexPath section]==0 || ([indexPath section]==1 && !self.friendsScreen)) {
+    if ([indexPath section]!=2 && !self.friendsScreen) {
         [self performSegueWithIdentifier:@"showProfile" sender:self];
+    } else if ([indexPath section]==0 && self.friendsScreen){
+        [self performSegueWithIdentifier:@"gamePlay" sender:self];
     }
 }
 

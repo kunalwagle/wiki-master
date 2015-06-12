@@ -21,7 +21,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dR3-7g-2OW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345" y="-511.5"/>
+            <point key="canvasLocation" x="-801" y="-732"/>
         </scene>
         <!--Play WikiMaster!-->
         <scene sceneID="hNz-n2-bh7">
@@ -214,29 +214,16 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="Home Filled-50.png" id="acW-dT-cKf"/>
                     <navigationItem key="navigationItem" title="Play WikiMaster!" id="Bgk-HX-gVc">
-                        <barButtonItem key="leftBarButtonItem" width="32" style="plain" id="gCT-9A-dTK">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="61o-UV-0n1">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="Settings-White.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1NV-6r-c94" kind="show" id="tlv-dn-RGU"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" image="Guest Filled-50.png" id="3qw-br-Esk">
+                            <connections>
+                                <segue destination="bj1-DC-Jxx" kind="show" id="H6X-RR-iz0"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="7Lx-E1-6sM">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JDj-x9-Uwm">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="Profile-White.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="bj1-DC-Jxx" kind="show" id="HUy-J9-Cu7"/>
-                                </connections>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" image="Settings 3 Filled-50.png" id="vgt-sK-XAn">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="1NV-6r-c94" kind="show" id="CXb-U9-2xx"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -246,6 +233,8 @@
                         <outlet property="lost" destination="sH7-RS-MVL" id="ZP1-yF-Lox"/>
                         <outlet property="name" destination="4VO-EV-l88" id="H8x-T4-4vH"/>
                         <outlet property="played" destination="Kvo-SS-G6A" id="sQW-e2-CHf"/>
+                        <outlet property="profile" destination="3qw-br-Esk" id="9Ak-g2-e6s"/>
+                        <outlet property="settings" destination="vgt-sK-XAn" id="ggN-z8-n6m"/>
                         <outlet property="tableView" destination="37d-jc-Vro" id="JNA-O9-vCr"/>
                         <outlet property="won" destination="0rY-h5-o3b" id="9eh-oO-k8k"/>
                         <segue destination="rNw-Ya-tGo" kind="show" identifier="showTopic" id="hy8-Ev-I5D"/>
@@ -253,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1192.5" y="-195.75"/>
+            <point key="canvasLocation" x="-51" y="-1410.75"/>
         </scene>
         <!--Challenge your friends-->
         <scene sceneID="sfX-Zy-Tfw">
@@ -298,6 +287,7 @@
                         <outlet property="searchBar" destination="1MM-YP-fEu" id="R93-yc-w1j"/>
                         <outlet property="searchDisplayController" destination="hAJ-q3-rlg" id="SVo-zq-yCz"/>
                         <segue destination="bj1-DC-Jxx" kind="show" identifier="showProfile" id="86l-km-LFu"/>
+                        <segue destination="foi-nl-192" kind="show" identifier="gamePlay" id="sth-ls-B7C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WTV-Gl-wFV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -311,7 +301,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1029" y="-840"/>
+            <point key="canvasLocation" x="-33" y="-727.5"/>
         </scene>
         <!--Quiz Loading View Controller-->
         <scene sceneID="Bg3-Cj-hhs">
@@ -436,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="npl-de-dgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1774.5" y="-978"/>
+            <point key="canvasLocation" x="2134.5" y="-717"/>
         </scene>
         <!--Game Play View Controller-->
         <scene sceneID="vbf-RM-Vpd">
@@ -819,7 +809,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m2K-gk-0q1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2464.5" y="-929.25"/>
+            <point key="canvasLocation" x="3052.5" y="-708"/>
         </scene>
         <!--Answer Debrief View Controller-->
         <scene sceneID="boi-IW-JD5">
@@ -1065,7 +1055,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXh-4U-g1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3237" y="-978"/>
+            <point key="canvasLocation" x="4149" y="-708"/>
         </scene>
         <!--Final Totals View Controller-->
         <scene sceneID="NSO-Nv-p2N">
@@ -1306,7 +1296,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="POb-Ee-Tz1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3897" y="-978"/>
+            <point key="canvasLocation" x="5115" y="-708"/>
         </scene>
         <!--Home-->
         <scene sceneID="2xL-SE-zRN">
@@ -1323,7 +1313,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20E-Jg-Y3O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="475.5" y="-309.75"/>
+            <point key="canvasLocation" x="-801" y="-1410.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Zxa-XT-Aeq">
@@ -1372,7 +1362,6 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="mae-lb-Blq" id="iAq-Gw-Xm6"/>
-                        <segue destination="foi-nl-192" kind="show" id="bFL-Qh-WIz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0FW-mP-IXk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1386,12 +1375,12 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1775" y="-296"/>
+            <point key="canvasLocation" x="-5095.5" y="-74.25"/>
         </scene>
-        <!--View Controller-->
+        <!--Topic Home View Controller-->
         <scene sceneID="FBl-qY-HME">
             <objects>
-                <viewController id="rNw-Ya-tGo" sceneMemberID="viewController">
+                <viewController id="rNw-Ya-tGo" customClass="TopicHomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WGF-IC-aa2"/>
                         <viewControllerLayoutGuide type="bottom" id="A3W-co-wFd"/>
@@ -1400,7 +1389,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.png" translatesAutoresizingMaskIntoConstraints="NO" id="SJA-3m-VWt">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.png" translatesAutoresizingMaskIntoConstraints="NO" id="SJA-3m-VWt">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Am5-Rs-zhI"/>
@@ -1419,7 +1408,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMo-Na-aNv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMo-Na-aNv">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1448,6 +1437,9 @@
                                         <include reference="aWB-Vb-c7s"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <segue destination="foi-nl-192" kind="show" id="qbF-ZX-qzd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JzY-kQ-95G">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -1472,6 +1464,9 @@
                                         <include reference="NSa-jx-Txv"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <segue destination="iAW-tb-ac8" kind="show" identifier="challenge" id="4cY-Fl-5sx"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3yO-31-O6Z">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -1605,6 +1600,12 @@
                             <constraint firstItem="2t4-yd-k3G" firstAttribute="top" secondItem="SKG-mt-nz6" secondAttribute="bottom" constant="53" id="WEp-Ij-MR8"/>
                             <constraint firstItem="4aQ-oj-BwE" firstAttribute="centerX" secondItem="yfe-aO-eag" secondAttribute="centerX" constant="-0.5" id="WIe-8t-qgj"/>
                             <constraint firstItem="c8r-Q8-FIm" firstAttribute="width" secondItem="7fl-uQ-ekq" secondAttribute="width" id="YdV-2N-goP"/>
+                            <constraint firstItem="SJA-3m-VWt" firstAttribute="centerY" secondItem="rMo-Na-aNv" secondAttribute="centerY" constant="-1.5" id="cXf-1a-m4h">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="rMo-Na-aNv" secondAttribute="trailing" constant="142" id="dNY-Df-Tqf">
+                                <variation key="heightClass=regular-widthClass=compact" constant="15"/>
+                            </constraint>
                             <constraint firstItem="SKG-mt-nz6" firstAttribute="top" secondItem="c8r-Q8-FIm" secondAttribute="bottom" constant="34" id="eBk-uw-FEy"/>
                             <constraint firstItem="h9L-cf-bqo" firstAttribute="top" secondItem="SJA-3m-VWt" secondAttribute="bottom" constant="36" id="hB3-wz-pcJ"/>
                             <constraint firstItem="Kud-Wr-WBV" firstAttribute="top" secondItem="1ai-fj-Npy" secondAttribute="bottom" constant="45" id="kX3-ys-GNU"/>
@@ -1666,6 +1667,7 @@
                                 <exclude reference="YdV-2N-goP"/>
                                 <exclude reference="lwY-6U-2Z9"/>
                                 <exclude reference="HC8-6w-lrk"/>
+                                <exclude reference="dNY-Df-Tqf"/>
                                 <exclude reference="saU-Ys-e2E"/>
                                 <exclude reference="Vks-n0-kFg"/>
                                 <exclude reference="Ohx-Sn-vCd"/>
@@ -1674,6 +1676,7 @@
                                 <exclude reference="4lL-LB-zVN"/>
                                 <exclude reference="hB3-wz-pcJ"/>
                                 <exclude reference="UkG-f7-4fg"/>
+                                <exclude reference="cXf-1a-m4h"/>
                                 <exclude reference="pCL-5f-ksi"/>
                                 <exclude reference="HT1-9b-IiN"/>
                                 <exclude reference="Ug5-yo-mip"/>
@@ -1728,6 +1731,7 @@
                                 <include reference="YdV-2N-goP"/>
                                 <include reference="lwY-6U-2Z9"/>
                                 <include reference="HC8-6w-lrk"/>
+                                <include reference="dNY-Df-Tqf"/>
                                 <include reference="saU-Ys-e2E"/>
                                 <include reference="Vks-n0-kFg"/>
                                 <include reference="Ohx-Sn-vCd"/>
@@ -1736,6 +1740,7 @@
                                 <include reference="4lL-LB-zVN"/>
                                 <include reference="hB3-wz-pcJ"/>
                                 <include reference="UkG-f7-4fg"/>
+                                <include reference="cXf-1a-m4h"/>
                                 <include reference="pCL-5f-ksi"/>
                                 <include reference="HT1-9b-IiN"/>
                                 <include reference="Ug5-yo-mip"/>
@@ -1744,10 +1749,20 @@
                         </variation>
                     </view>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="averageScore" destination="4aQ-oj-BwE" id="lDQ-bi-oZY"/>
+                        <outlet property="image" destination="SJA-3m-VWt" id="9rB-fz-NZ6"/>
+                        <outlet property="lost" destination="2t4-yd-k3G" id="bih-Fn-w9c"/>
+                        <outlet property="name" destination="rMo-Na-aNv" id="SUq-EW-uwb"/>
+                        <outlet property="played" destination="Xje-g4-X5U" id="y7I-n9-OoC"/>
+                        <outlet property="points" destination="wxO-ux-Lp3" id="RN6-08-FlB"/>
+                        <outlet property="totalCorrect" destination="Kud-Wr-WBV" id="4WJ-7F-Bbg"/>
+                        <outlet property="win" destination="2AP-ak-Ino" id="Xz7-8a-bA0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Npf-9m-Nc9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3205.5" y="-324.75"/>
+            <point key="canvasLocation" x="1195.5" y="-732"/>
         </scene>
         <!--Topics-->
         <scene sceneID="gNR-TG-LI3">
@@ -1764,7 +1779,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nLN-bZ-Ugu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2556" y="975.75"/>
+            <point key="canvasLocation" x="-825" y="-32.25"/>
         </scene>
         <!--Choose a Topic-->
         <scene sceneID="naG-6b-rqY">
@@ -1796,7 +1811,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gds-5w-nok" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3375" y="963.75"/>
+            <point key="canvasLocation" x="-51" y="-32.25"/>
         </scene>
         <!--Sub Topics Collection View Controller-->
         <scene sceneID="xIq-6P-KTq">
@@ -1835,7 +1850,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nm5-YR-KV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4344" y="939.75"/>
+            <point key="canvasLocation" x="738" y="-32.25"/>
         </scene>
         <!--Infobox View Controller-->
         <scene sceneID="4lA-fW-fcl">
@@ -1846,9 +1861,10 @@
                         <viewControllerLayoutGuide type="bottom" id="FU5-Dx-HN3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="fLw-Jx-dB9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ibc-8h-jap">
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ibc-8h-jap">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="400" id="cBb-xP-iy4"/>
@@ -1863,10 +1879,12 @@
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="cBb-xP-iy4"/>
                                         <include reference="cEn-Af-sjn"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="g2y-ft-buV" id="MUg-xy-gTB"/>
+                                </connections>
                             </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0eh-Va-hmd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -1897,12 +1915,6 @@
                                         <exclude reference="bQ4-Eh-EJN"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="Uap-4D-cQ4"/>
-                                        <include reference="bQ4-Eh-EJN"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="g2y-ft-buV" id="1tp-84-1Cp"/>
                                     <outlet property="delegate" destination="g2y-ft-buV" id="7yU-eD-OYl"/>
@@ -1911,10 +1923,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0eh-Va-hmd" firstAttribute="top" secondItem="7tF-Lk-WX8" secondAttribute="bottom" constant="44" id="5Xb-yR-IY1"/>
+                            <constraint firstItem="ibc-8h-jap" firstAttribute="centerX" secondItem="0eh-Va-hmd" secondAttribute="centerX" id="9Sx-A7-wvk"/>
+                            <constraint firstItem="0eh-Va-hmd" firstAttribute="width" secondItem="fLw-Jx-dB9" secondAttribute="width" id="J3g-86-j18"/>
                             <constraint firstItem="ibc-8h-jap" firstAttribute="top" secondItem="7tF-Lk-WX8" secondAttribute="bottom" id="LOK-cn-4Kl"/>
+                            <constraint firstAttribute="width" secondItem="ibc-8h-jap" secondAttribute="width" id="daE-TC-9Np"/>
                             <constraint firstItem="0eh-Va-hmd" firstAttribute="top" secondItem="ibc-8h-jap" secondAttribute="bottom" id="fvW-k7-7wH"/>
-                            <constraint firstAttribute="centerX" secondItem="0eh-Va-hmd" secondAttribute="centerX" id="usI-e2-W62"/>
+                            <constraint firstItem="FU5-Dx-HN3" firstAttribute="top" secondItem="0eh-Va-hmd" secondAttribute="bottom" constant="93" id="iA5-aN-JM5">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstAttribute="centerX" secondItem="ibc-8h-jap" secondAttribute="centerX" id="vJB-Ch-VdT"/>
+                            <constraint firstItem="0eh-Va-hmd" firstAttribute="leading" secondItem="fLw-Jx-dB9" secondAttribute="leadingMargin" constant="-16" id="z9L-dR-06h">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -1922,10 +1943,15 @@
                                 <exclude reference="0eh-Va-hmd"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="iA5-aN-JM5"/>
+                                <exclude reference="9Sx-A7-wvk"/>
                                 <exclude reference="LOK-cn-4Kl"/>
+                                <exclude reference="daE-TC-9Np"/>
                                 <exclude reference="vJB-Ch-VdT"/>
+                                <exclude reference="5Xb-yR-IY1"/>
+                                <exclude reference="J3g-86-j18"/>
                                 <exclude reference="fvW-k7-7wH"/>
-                                <exclude reference="usI-e2-W62"/>
+                                <exclude reference="z9L-dR-06h"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -1934,21 +1960,25 @@
                                 <include reference="0eh-Va-hmd"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="iA5-aN-JM5"/>
+                                <include reference="9Sx-A7-wvk"/>
                                 <include reference="LOK-cn-4Kl"/>
+                                <include reference="daE-TC-9Np"/>
                                 <include reference="vJB-Ch-VdT"/>
-                                <include reference="fvW-k7-7wH"/>
-                                <include reference="usI-e2-W62"/>
+                                <include reference="5Xb-yR-IY1"/>
+                                <include reference="J3g-86-j18"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="0eh-Va-hmd" id="hg5-IX-psm"/>
                         <outlet property="searchBar" destination="ibc-8h-jap" id="OEJ-WM-6aG"/>
+                        <segue destination="rNw-Ya-tGo" kind="show" identifier="toTopic" id="pMa-g6-5it"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6u5-kM-oLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5086.5" y="939.75"/>
+            <point key="canvasLocation" x="1552.5" y="-26.25"/>
         </scene>
         <!--Profile-->
         <scene sceneID="A9M-HQ-Gqa">
@@ -2191,7 +2221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceK-5r-Ew9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029" y="1112.25"/>
+            <point key="canvasLocation" x="1552.5" y="-1410.75"/>
         </scene>
         <!--Settings-->
         <scene sceneID="qng-dm-XdO">
@@ -2543,7 +2573,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Qh-ks-L9z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1029" y="1800.75"/>
+            <point key="canvasLocation" x="717" y="-1410.75"/>
         </scene>
         <!--Initial Login View Controller-->
         <scene sceneID="rwZ-QW-p7W">
@@ -2678,7 +2708,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tC5-ds-Rac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1543.5" y="77.25"/>
+            <point key="canvasLocation" x="-4771.5" y="-255.75"/>
         </scene>
         <!--Manual Sign In View Controller-->
         <scene sceneID="H1l-CD-Qkk">
@@ -2879,7 +2909,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ByS-yS-HIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-715.5" y="81"/>
+            <point key="canvasLocation" x="-4945.5" y="84"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="6lI-KZ-3pq">
@@ -3041,7 +3071,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="358-br-91O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1662" y="949.5"/>
+            <point key="canvasLocation" x="-5070" y="430.5"/>
         </scene>
         <!--Custom Tab Bar Controller View Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -3066,12 +3096,10 @@
     </scenes>
     <resources>
         <image name="Black.png" width="340" height="120"/>
-        <image name="Guest Filled-50.png" width="25" height="25"/>
+        <image name="Guest Filled-50.png" width="50" height="50"/>
         <image name="Home Filled-50.png" width="25" height="25"/>
         <image name="Leaderboard Filled-50.png" width="25" height="25"/>
-        <image name="Profile-White.png" width="32" height="32"/>
-        <image name="Settings 3 Filled-50.png" width="25" height="25"/>
-        <image name="Settings-White.png" width="32" height="32"/>
+        <image name="Settings 3 Filled-50.png" width="50" height="50"/>
         <image name="Slide1.jpg" width="720" height="540"/>
         <image name="Slide2.jpg" width="720" height="540"/>
         <image name="Slide3.jpg" width="720" height="540"/>
@@ -3089,11 +3117,13 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="H6X-RR-iz0"/>
         <segue reference="Ii8-7I-TKT"/>
-        <segue reference="HUy-J9-Cu7"/>
-        <segue reference="dYh-MF-4rg"/>
         <segue reference="JqM-6j-KV2"/>
+        <segue reference="hy8-Ev-I5D"/>
+        <segue reference="4cY-Fl-5sx"/>
+        <segue reference="qbF-ZX-qzd"/>
+        <segue reference="Iwa-fn-DVI"/>
         <segue reference="MCF-Z3-6f0"/>
-        <segue reference="69J-SK-jFE"/>
     </inferredMetricsTieBreakers>
 </document>

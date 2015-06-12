@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InfoboxViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface InfoboxViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property NSArray *infoboxes;
 @property NSString *parentTopic;
 @property NSMutableArray *images;
+@property NSArray *searchInfoboxes;
+@property BOOL isSearching;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 

@@ -45,9 +45,9 @@ NSString *topicChosen;
 -(void)setUpCollectionView {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [flowLayout setMinimumInteritemSpacing:-10.0f];
+    [flowLayout setMinimumInteritemSpacing:20.0f];
     [flowLayout setMinimumLineSpacing:-10.0f];
-    [flowLayout setItemSize:CGSizeMake(115, 90)];
+    [flowLayout setItemSize:CGSizeMake(115, 110)];
     [self.collectionView.collectionViewLayout invalidateLayout];
     [self.collectionView setFrame:CGRectMake(0, 0, 400, self.view.frame.size.height)];
     [self.collectionView setPagingEnabled:NO];
@@ -133,6 +133,7 @@ NSString *topicChosen;
     vc.parentTopic = topicChosen;
     vc.infoboxes = subtopics;
     vc.images = self.images;
+    vc.hidesBottomBarWhenPushed = YES;
 }
 
 /*

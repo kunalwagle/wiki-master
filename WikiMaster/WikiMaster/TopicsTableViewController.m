@@ -256,11 +256,13 @@ NSArray *subtopics;
         vc.parentTopic = topicChosen;
         vc.topics = subtopics;
         vc.images = images;
+        vc.hidesBottomBarWhenPushed = YES;
     } else if ([[segue identifier] isEqualToString:@"showInfoboxes"]) {
         InfoboxViewController *vc = (InfoboxViewController*)[segue destinationViewController];
         vc.parentTopic = topicChosen;
         vc.infoboxes = subtopics;
         vc.images = images;
+        vc.hidesBottomBarWhenPushed = YES;
     }
 }
 

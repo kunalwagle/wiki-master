@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C0BEB7F1B2877C800F8DEE1 /* default_topic.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB7E1B2877C800F8DEE1 /* default_topic.png */; };
+		0C0BEB881B287AE600F8DEE1 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB811B287AE600F8DEE1 /* 1.jpg */; };
+		0C0BEB891B287AE600F8DEE1 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB821B287AE600F8DEE1 /* 2.jpg */; };
+		0C0BEB8A1B287AE600F8DEE1 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB831B287AE600F8DEE1 /* 3.jpg */; };
+		0C0BEB8B1B287AE600F8DEE1 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB841B287AE600F8DEE1 /* 4.jpg */; };
+		0C0BEB8C1B287AE600F8DEE1 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB851B287AE600F8DEE1 /* 5.jpg */; };
+		0C0BEB8D1B287AE600F8DEE1 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB861B287AE600F8DEE1 /* 6.jpg */; };
+		0C0BEB8E1B287AE600F8DEE1 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB871B287AE600F8DEE1 /* 7.jpg */; };
+		0C0BEB901B287BF900F8DEE1 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB8F1B287BF900F8DEE1 /* 8.jpg */; };
+		0C0BEB931B2B12CA00F8DEE1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BEB921B2B12CA00F8DEE1 /* User.m */; };
 		0C26DB4A1B14951400902409 /* ServerCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C26DB491B14951400902409 /* ServerCommunication.m */; };
 		0C3AAAC61B1257580058D233 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */; };
 		0C3AAAC91B12580B0058D233 /* ManualSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */; };
@@ -74,6 +84,7 @@
 		0C878D991B17525200780F54 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C878D981B17525200780F54 /* exclamation.png */; };
 		0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9B1B18A2F700780F54 /* SettingsViewController.m */; };
 		0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9E1B18A45100780F54 /* UtilityMethods.m */; };
+		0CDA77EF1B2491AC00131B1E /* TopicHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDA77EE1B2491AC00131B1E /* TopicHomeViewController.m */; };
 		0CEF69071B14DE9B0009F137 /* QuizLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF69061B14DE9B0009F137 /* QuizLoadingViewController.m */; };
 		0CEF69421B1606F70009F137 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF69411B1606F70009F137 /* Question.m */; };
 		0CEF698C1B162E370009F137 /* GamePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF698B1B162E370009F137 /* GamePlayViewController.m */; };
@@ -89,10 +100,10 @@
 		0CF80C3C1B1DBE8400C7CA35 /* Leaderboard Filled-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C371B1DBE8400C7CA35 /* Leaderboard Filled-32.png */; };
 		0CF80C3D1B1DBE8400C7CA35 /* Settings 3 Filled-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C381B1DBE8400C7CA35 /* Settings 3 Filled-32.png */; };
 		0CF80C441B1DBFB300C7CA35 /* Groups Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C3F1B1DBFB300C7CA35 /* Groups Filled-50@2x.png */; };
-		0CF80C451B1DBFB300C7CA35 /* Guest Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C401B1DBFB300C7CA35 /* Guest Filled-50@2x.png */; };
+		0CF80C451B1DBFB300C7CA35 /* Guest Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C401B1DBFB300C7CA35 /* Guest Filled-50.png */; };
 		0CF80C461B1DBFB300C7CA35 /* Home Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C411B1DBFB300C7CA35 /* Home Filled-50@2x.png */; };
 		0CF80C471B1DBFB300C7CA35 /* Leaderboard Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C421B1DBFB300C7CA35 /* Leaderboard Filled-50@2x.png */; };
-		0CF80C481B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png */; };
+		0CF80C481B1DBFB300C7CA35 /* Settings 3 Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50.png */; };
 		0CF80C4B1B1DC90800C7CA35 /* ProfileStatTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C4A1B1DC90800C7CA35 /* ProfileStatTableViewCell.m */; };
 		0CF80C4E1B1DC97F00C7CA35 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CF80C4D1B1DC97F00C7CA35 /* ProfileViewController.m */; };
 		0CF80C521B2063D800C7CA35 /* Profile-White.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CF80C501B2063D800C7CA35 /* Profile-White.png */; };
@@ -112,6 +123,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C0BEB7E1B2877C800F8DEE1 /* default_topic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_topic.png; sourceTree = "<group>"; };
+		0C0BEB811B287AE600F8DEE1 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		0C0BEB821B287AE600F8DEE1 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		0C0BEB831B287AE600F8DEE1 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		0C0BEB841B287AE600F8DEE1 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		0C0BEB851B287AE600F8DEE1 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		0C0BEB861B287AE600F8DEE1 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		0C0BEB871B287AE600F8DEE1 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		0C0BEB8F1B287BF900F8DEE1 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		0C0BEB911B2B12CA00F8DEE1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		0C0BEB921B2B12CA00F8DEE1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		0C26DB481B14951400902409 /* ServerCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunication.h; sourceTree = "<group>"; };
 		0C26DB491B14951400902409 /* ServerCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunication.m; sourceTree = "<group>"; };
 		0C3AAAC41B1257580058D233 /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
@@ -201,6 +223,8 @@
 		0C878D9B1B18A2F700780F54 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		0C878D9D1B18A45100780F54 /* UtilityMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityMethods.h; sourceTree = "<group>"; };
 		0C878D9E1B18A45100780F54 /* UtilityMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilityMethods.m; sourceTree = "<group>"; };
+		0CDA77ED1B2491AC00131B1E /* TopicHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicHomeViewController.h; sourceTree = "<group>"; };
+		0CDA77EE1B2491AC00131B1E /* TopicHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicHomeViewController.m; sourceTree = "<group>"; };
 		0CEF69051B14DE9B0009F137 /* QuizLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizLoadingViewController.h; sourceTree = "<group>"; };
 		0CEF69061B14DE9B0009F137 /* QuizLoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizLoadingViewController.m; sourceTree = "<group>"; };
 		0CEF69401B1606F70009F137 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
@@ -223,10 +247,10 @@
 		0CF80C371B1DBE8400C7CA35 /* Leaderboard Filled-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leaderboard Filled-32.png"; sourceTree = "<group>"; };
 		0CF80C381B1DBE8400C7CA35 /* Settings 3 Filled-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings 3 Filled-32.png"; sourceTree = "<group>"; };
 		0CF80C3F1B1DBFB300C7CA35 /* Groups Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Groups Filled-50@2x.png"; sourceTree = "<group>"; };
-		0CF80C401B1DBFB300C7CA35 /* Guest Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Guest Filled-50@2x.png"; sourceTree = "<group>"; };
+		0CF80C401B1DBFB300C7CA35 /* Guest Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Guest Filled-50.png"; sourceTree = "<group>"; };
 		0CF80C411B1DBFB300C7CA35 /* Home Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Home Filled-50@2x.png"; sourceTree = "<group>"; };
 		0CF80C421B1DBFB300C7CA35 /* Leaderboard Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Leaderboard Filled-50@2x.png"; sourceTree = "<group>"; };
-		0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings 3 Filled-50@2x.png"; sourceTree = "<group>"; };
+		0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings 3 Filled-50.png"; sourceTree = "<group>"; };
 		0CF80C491B1DC90800C7CA35 /* ProfileStatTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileStatTableViewCell.h; sourceTree = "<group>"; };
 		0CF80C4A1B1DC90800C7CA35 /* ProfileStatTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileStatTableViewCell.m; sourceTree = "<group>"; };
 		0CF80C4C1B1DC97F00C7CA35 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -271,6 +295,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0BEB801B287AE600F8DEE1 /* Stock Images */ = {
+			isa = PBXGroup;
+			children = (
+				0C0BEB811B287AE600F8DEE1 /* 1.jpg */,
+				0C0BEB821B287AE600F8DEE1 /* 2.jpg */,
+				0C0BEB831B287AE600F8DEE1 /* 3.jpg */,
+				0C0BEB841B287AE600F8DEE1 /* 4.jpg */,
+				0C0BEB851B287AE600F8DEE1 /* 5.jpg */,
+				0C0BEB861B287AE600F8DEE1 /* 6.jpg */,
+				0C0BEB871B287AE600F8DEE1 /* 7.jpg */,
+			);
+			path = "Stock Images";
+			sourceTree = "<group>";
+		};
 		0C5F14381B0CDBF4009946CA = {
 			isa = PBXGroup;
 			children = (
@@ -315,17 +353,22 @@
 				0C5F14491B0CDBF4009946CA /* AppDelegate.m */,
 				0C5F144B1B0CDBF4009946CA /* FirstViewController.h */,
 				0C5F144C1B0CDBF4009946CA /* FirstViewController.m */,
+				0C0BEB8F1B287BF900F8DEE1 /* 8.jpg */,
 				0C6CF12E1B208F4F00FFCF4F /* TopicViewCell.h */,
 				0C6CF12F1B208F4F00FFCF4F /* TopicViewCell.m */,
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0CDA77ED1B2491AC00131B1E /* TopicHomeViewController.h */,
+				0CDA77EE1B2491AC00131B1E /* TopicHomeViewController.m */,
+				0C0BEB801B287AE600F8DEE1 /* Stock Images */,
 				0C6CF1411B246D6F00FFCF4F /* InfoboxViewController.h */,
 				0C6CF1421B246D6F00FFCF4F /* InfoboxViewController.m */,
 				0C6CF13E1B2460CA00FFCF4F /* SubTopicsCollectionViewController.h */,
 				0C6CF13F1B2460CA00FFCF4F /* SubTopicsCollectionViewController.m */,
 				0C6CF1381B21D56200FFCF4F /* TopicsTableViewController.h */,
 				0C6CF1391B21D56200FFCF4F /* TopicsTableViewController.m */,
+				0C0BEB7E1B2877C800F8DEE1 /* default_topic.png */,
 				0C6CF1311B2093D800FFCF4F /* TopicTableViewCell.h */,
 				0C6CF1321B2093D800FFCF4F /* TopicTableViewCell.m */,
 				0C6CF1361B209B3A00FFCF4F /* TopicTableViewCell.xib */,
@@ -365,6 +408,8 @@
 				0CEF698A1B162E370009F137 /* GamePlayViewController.h */,
 				0CEF698B1B162E370009F137 /* GamePlayViewController.m */,
 				0C878D981B17525200780F54 /* exclamation.png */,
+				0C0BEB911B2B12CA00F8DEE1 /* User.h */,
+				0C0BEB921B2B12CA00F8DEE1 /* User.m */,
 				0C3AAAC71B12580B0058D233 /* ManualSignInViewController.h */,
 				0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */,
 				0C3AAAC41B1257580058D233 /* CreateAccountViewController.h */,
@@ -463,10 +508,10 @@
 			isa = PBXGroup;
 			children = (
 				0CF80C3F1B1DBFB300C7CA35 /* Groups Filled-50@2x.png */,
-				0CF80C401B1DBFB300C7CA35 /* Guest Filled-50@2x.png */,
+				0CF80C401B1DBFB300C7CA35 /* Guest Filled-50.png */,
 				0CF80C411B1DBFB300C7CA35 /* Home Filled-50@2x.png */,
 				0CF80C421B1DBFB300C7CA35 /* Leaderboard Filled-50@2x.png */,
-				0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png */,
+				0CF80C431B1DBFB300C7CA35 /* Settings 3 Filled-50.png */,
 			);
 			path = icons;
 			sourceTree = "<group>";
@@ -561,9 +606,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C0BEB901B287BF900F8DEE1 /* 8.jpg in Resources */,
 				0C5F14891B10E850009946CA /* Tick.png in Resources */,
 				0CF80C251B1CBF1E00C7CA35 /* FriendTableViewCell.xib in Resources */,
 				0CF80C391B1DBE8400C7CA35 /* Groups Filled-32.png in Resources */,
+				0C0BEB8E1B287AE600F8DEE1 /* 7.jpg in Resources */,
+				0C0BEB8C1B287AE600F8DEE1 /* 5.jpg in Resources */,
 				0C5F148D1B10E8D3009946CA /* hand-157251_640.png in Resources */,
 				0C5F14531B0CDBF4009946CA /* Main.storyboard in Resources */,
 				0CF80C441B1DBFB300C7CA35 /* Groups Filled-50@2x.png in Resources */,
@@ -571,6 +619,7 @@
 				0C5F14981B10EA63009946CA /* Slide1.jpg in Resources */,
 				0C5F149E1B10EA63009946CA /* Slide7.jpg in Resources */,
 				0C6CF12A1B20837800FFCF4F /* Topics-50@2x.png in Resources */,
+				0C0BEB7F1B2877C800F8DEE1 /* default_topic.png in Resources */,
 				0C5F14781B10C226009946CA /* Black.png in Resources */,
 				0C5F14A01B10EA63009946CA /* Slide9.jpg in Resources */,
 				0C5F14851B10E088009946CA /* rectangle-34969_64.png in Resources */,
@@ -584,7 +633,7 @@
 				0C878D991B17525200780F54 /* exclamation.png in Resources */,
 				0CF80C551B20675E00C7CA35 /* LeaderboardMeCell.xib in Resources */,
 				0C5F147A1B10C227009946CA /* Blue.png in Resources */,
-				0CF80C451B1DBFB300C7CA35 /* Guest Filled-50@2x.png in Resources */,
+				0CF80C451B1DBFB300C7CA35 /* Guest Filled-50.png in Resources */,
 				0C5F14881B10E850009946CA /* Cross.png in Resources */,
 				0C5F147D1B10C227009946CA /* Maroon.png in Resources */,
 				0CF80C461B1DBFB300C7CA35 /* Home Filled-50@2x.png in Resources */,
@@ -593,18 +642,23 @@
 				0C5F147F1B10C227009946CA /* Red.png in Resources */,
 				0C5F14831B10DEA6009946CA /* rectangle-34969_640.png in Resources */,
 				0C5F148C1B10E8D3009946CA /* dislike-157252_640.png in Resources */,
-				0CF80C481B1DBFB300C7CA35 /* Settings 3 Filled-50@2x.png in Resources */,
+				0CF80C481B1DBFB300C7CA35 /* Settings 3 Filled-50.png in Resources */,
 				0C5F14811B10C227009946CA /* Violet.png in Resources */,
 				0CF80C3C1B1DBE8400C7CA35 /* Leaderboard Filled-32.png in Resources */,
 				0C5F147B1B10C227009946CA /* Brown.png in Resources */,
 				0CF80C271B1CC0CB00C7CA35 /* InviteTableViewCell.xib in Resources */,
 				0CF80C3B1B1DBE8400C7CA35 /* Home Filled-32.png in Resources */,
+				0C0BEB891B287AE600F8DEE1 /* 2.jpg in Resources */,
+				0C0BEB881B287AE600F8DEE1 /* 1.jpg in Resources */,
 				0C5F14801B10C227009946CA /* Turquoise.png in Resources */,
 				0C5F149B1B10EA63009946CA /* Slide4.jpg in Resources */,
+				0C0BEB8D1B287AE600F8DEE1 /* 6.jpg in Resources */,
+				0C0BEB8A1B287AE600F8DEE1 /* 3.jpg in Resources */,
 				0C5F149A1B10EA63009946CA /* Slide3.jpg in Resources */,
 				0C6CF1371B209B3A00FFCF4F /* TopicTableViewCell.xib in Resources */,
 				0C5F14551B0CDBF4009946CA /* Images.xcassets in Resources */,
 				0CF80C531B2063D800C7CA35 /* Settings-White.png in Resources */,
+				0C0BEB8B1B287AE600F8DEE1 /* 4.jpg in Resources */,
 				0CF80C571B2071ED00C7CA35 /* TopicViewCell.xib in Resources */,
 				0CF80C3D1B1DBE8400C7CA35 /* Settings 3 Filled-32.png in Resources */,
 				0C5F14791B10C227009946CA /* Blue-Grey.png in Resources */,
@@ -645,10 +699,12 @@
 				0CF80C231B1C9D0700C7CA35 /* InviteTableViewCell.m in Sources */,
 				0C5F144D1B0CDBF4009946CA /* FirstViewController.m in Sources */,
 				0C6CF1341B2093D800FFCF4F /* TopicTableViewCell.m in Sources */,
+				0CDA77EF1B2491AC00131B1E /* TopicHomeViewController.m in Sources */,
 				0C6CF1301B208F4F00FFCF4F /* TopicViewCell.m in Sources */,
 				0CF80C4E1B1DC97F00C7CA35 /* ProfileViewController.m in Sources */,
 				0CEF69921B163A7E0009F137 /* FinalTotalsViewController.m in Sources */,
 				0CF80C4B1B1DC90800C7CA35 /* ProfileStatTableViewCell.m in Sources */,
+				0C0BEB931B2B12CA00F8DEE1 /* User.m in Sources */,
 				0CF80C201B1C808900C7CA35 /* FriendTableViewCell.m in Sources */,
 				0C6CF12D1B20867600FFCF4F /* CustomTabBarControllerViewController.m in Sources */,
 				0C5F14471B0CDBF4009946CA /* main.m in Sources */,

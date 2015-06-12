@@ -11,6 +11,7 @@
 #import "ServerCommunication.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "TopicTableViewCell.h"
+#import "TopicHomeViewController.h"
 
 @interface FirstViewController ()
 
@@ -18,7 +19,14 @@
 
 @implementation FirstViewController
 
-NSArray *testData;
+NSArray *favourites;
+NSArray *recent;
+NSArray *trending;
+NSString *topicSelected;
+NSArray *fimages;
+NSArray *rimages;
+NSArray *timages;
+
 
 - (void)viewDidAppear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -41,6 +49,8 @@ NSArray *testData;
 }
 
 - (void)clickedTopic:(NSNotification*)notification {
+    NSDictionary *dict = notification.userInfo;
+    topicSelected = [dict objectForKey:@"name"];
     [self performSegueWithIdentifier:@"showTopic" sender:self];
 }
 
@@ -117,8 +127,12 @@ NSArray *testData;
 - (void)viewWillAppear:(BOOL)animated {
     self.view.backgroundColor = [UtilityMethods getColour];
     self.tableView.backgroundColor = [UtilityMethods getColour];
+    [self.settings setTintColor:[UtilityMethods getColour]];
+    [self.profile setTintColor:[UtilityMethods getColour]];
+    [self.tabBarController.tabBar setTintColor:[UtilityMethods getColour]];
     [self.tableView reloadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -129,7 +143,13 @@ NSArray *testData;
     [super viewDidLoad];
 //    UINib *nib = [UINib nibWithNibName:@"TopicTableViewCell" bundle:nil];
 //    [[self tableView] registerNib:nib forCellReuseIdentifier:@"cell"];
-    testData = @[@"Barack Obama", @"David Cameron", @"Andrews", @"Kunals", @"Living People", @"Krish", @"Water", @"Food", @"Computer"];
+    
+    favourites = @[@"Cricketer", @"UK Place", @"Football Clubs"];
+    trending = @[@"Starcraft Character", @"Avatar: The Last Airbender Character", @"Royalty", @"Military Conflict"];
+    recent = @[@"Artist", @"Music Genre"];
+    fimages = @[[UIImage imageNamed:@"5.jpg"],[UIImage imageNamed:@"7.jpg"],[UIImage imageNamed:@"8.jpg"]];
+    timages = @[[UIImage imageNamed:@"4.jpg"],[UIImage imageNamed:@"6.jpg"],[UIImage imageNamed:@"1.jpg"], [UIImage imageNamed:@"2.jpg"]];
+    rimages = @[[UIImage imageNamed:@"3.jpg"]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
    // [self.tableView reloadData];
     // Do any additional setup after loading the view, typically from a nib.
@@ -149,7 +169,22 @@ NSArray *testData;
     if (cell==nil) {
         cell = [[TopicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.testData = testData;
+    switch (indexPath.section) {
+        case 0:
+            cell.testData = favourites;
+            cell.images = fimages;
+            break;
+            
+        case 1:
+            cell.testData = recent;
+            cell.images = rimages;
+            break;
+            
+        default:
+            cell.testData = trending;
+            cell.images = timages;
+            break;
+    }
    // [cell setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 200)];
     [cell updateCell];
     cell.backgroundColor = [UtilityMethods getColour];
@@ -176,8 +211,15 @@ NSArray *testData;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showTopic"]) {
+        TopicHomeViewController *vc = [segue destinationViewController];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.topicName = topicSelected;
+        vc.topicImage = [UIImage imageNamed:@"hand-157251_640.png"];
+    }
     UIViewController *vc = [segue destinationViewController];
     vc.hidesBottomBarWhenPushed = YES;
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

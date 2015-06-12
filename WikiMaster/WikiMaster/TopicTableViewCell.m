@@ -34,10 +34,10 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     [flowLayout setMinimumInteritemSpacing:-10.0f];
     [flowLayout setMinimumLineSpacing:-10.0f];
-    [flowLayout setItemSize:CGSizeMake(115, 90)];
+    [flowLayout setItemSize:CGSizeMake(115, 110)];
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:flowLayout];
     [self.collectionView.collectionViewLayout invalidateLayout];
-    [self.collectionView setFrame:CGRectMake(0, 0, 400, 110)];
+    [self.collectionView setFrame:CGRectMake(0, 0, 400, 120)];
     [self addSubview:self.collectionView];
     [self.collectionView setPagingEnabled:NO];
     [self.collectionView registerClass:[TopicViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
@@ -64,8 +64,27 @@
     if (self.data) {
         NSDictionary *dict = [self.data objectAtIndex:[indexPath row]];
         NSString *title = [dict objectForKey:@"name"];
+        NSDictionary *img = [dict objectForKey:@"image"];
+        NSString *aurl = [img objectForKey:@"url"];
         cell.name.text = title;
-        cell.image.image = [self.images objectAtIndex:[indexPath row]%4];
+        cell.image.image = [UIImage imageNamed:@"default_topic.png"];
+        dispatch_queue_t articleImageQueue = dispatch_queue_create("Article Image Queue",NULL);
+        if (aurl && ![aurl isEqualToString:@""]) {
+            NSURL *url = [NSURL URLWithString:aurl];
+            dispatch_async(articleImageQueue, ^{
+                NSData *imageData = [NSData dataWithContentsOfURL:url];
+                UIImage *image = [UIImage imageWithData:imageData];
+                NSLog(@"Finished Article Image Download");
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI
+                    [cell.image setImage:image];
+                    NSLog(@"Set the image");
+                    
+                });
+                
+            });
+        }
         cell.image.layer.cornerRadius = 10;
         cell.image.layer.masksToBounds = YES;
         cell.image.layer.shouldRasterize = YES;
@@ -73,6 +92,11 @@
         
     } else {
         cell.name.text = [self.testData objectAtIndex:[indexPath row]];
+        if  ([self.images count]==[indexPath row]) {
+            [cell.image setImage:[UIImage imageNamed:@"default_topic.png"]];
+        } else {
+            [cell.image setImage:[self.images objectAtIndex:[indexPath row]]];
+        }
     }
     cell.backgroundColor = [UtilityMethods getColour];
     cell.name.textColor = [UIColor whiteColor];
