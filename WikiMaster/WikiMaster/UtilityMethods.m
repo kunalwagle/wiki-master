@@ -42,4 +42,29 @@ static NSMutableArray *colours;
     return [[defaults objectForKey:@"timer"] intValue];
 }
 
++(void)setFriends:(NSMutableArray*)friends {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Friends"];
+    NSString *loc = [dataPath stringByAppendingPathComponent:@"friends"];
+    if(![[NSFileManager defaultManager] fileExistsAtPath:dataPath]){
+        [[NSFileManager defaultManager] createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    BOOL success = [NSKeyedArchiver archiveRootObject:friends toFile:loc];
+    if (success) {
+        NSLog(@"Successfully stored friends");
+    } else {
+        NSLog(@"Couldn't store friends");
+    }
+}
+
++(NSMutableArray*)getFriends {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents folder
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"/Friends/"];
+    dataPath = [dataPath stringByAppendingPathComponent:@"friends"];
+    NSMutableArray *friends = [NSKeyedUnarchiver unarchiveObjectWithFile:dataPath];
+    return friends;
+}
+
 @end

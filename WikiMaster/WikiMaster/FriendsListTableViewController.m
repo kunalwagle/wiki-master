@@ -18,8 +18,10 @@
 @interface FriendsListTableViewController ()
 
 @property NSMutableArray *friends;
+@property NSMutableArray *tempFriends;
 @property NSArray *searchFriends;
 @property NSMutableArray *images;
+@property BOOL search;
 
 @end
 
@@ -32,9 +34,16 @@
         self.counter = 0;
         self.navigationItem.title = @"Leaderboard";
     }
-    self.friends = [[NSMutableArray alloc] initWithObjects: nil];
+    if (![UtilityMethods getFriends] || self.reloading) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        User *u = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
+    self.friends = [[NSMutableArray alloc] initWithObjects: u, nil];
+        self.me = u;
+        NSData *imageData = [NSData dataWithContentsOfURL:[u imageURL]];
+        self.images = [[NSMutableArray alloc] initWithObjects: nil];
+        [self.images addObject:[UIImage imageWithData:imageData]];
+        self.tempFriends = [[NSMutableArray alloc] initWithObjects: nil];
     self.loadedFriends = YES;
-    self.images = [[NSMutableArray alloc] initWithObjects: nil];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"/me/friends"
                                   parameters:@{@"fields":@"picture.type(large), name"}
@@ -57,55 +66,82 @@
             UIImage *image = [UIImage imageWithData:imageData];
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:dict];
             [dictionary setValue:[NSNumber numberWithInt:[self.images count]] forKey:@"imageNumber"];
-            if (!self.friendsScreen) {
+            //if (!self.friendsScreen) {
                 [ServerCommunication getUser:[dictionary objectForKey:@"id"]];
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedUser:) name:[dictionary objectForKey:@"id"] object:nil];
-            }
+            //}
             [self.images addObject:image];
-            [self.friends addObject:dictionary];
+            [self.tempFriends addObject:dictionary];
         }
-            if (self.friendsScreen) {
-                [self.tableView reloadData];
-            }
+//            if (self.friendsScreen) {
+//                [self.tableView reloadData];
+//            }
             
             self.loadedFriends = YES;
+            
         } else {
             self.loadedFriends = NO;
             [self.tableView reloadData];
         }
-    }];
-    if  (!self.friendsScreen) {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *facebookID = [defaults valueForKey:@"userID"];
-    [ServerCommunication getUser:facebookID];
-    FBSDKGraphRequest *requestMe = [[FBSDKGraphRequest alloc]
-                                  initWithGraphPath:@"/me"
-                                  parameters:@{@"fields":@"picture.type(large), name,id"}
-                                  HTTPMethod:@"GET"];
-    [requestMe startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
-                                          id result,
-                                          NSError *error) {
-        if (!error) {
-            NSDictionary *dict = result;
-            //self.friends = [result objectForKey:@"data"];
-            //NSLog(result);
-            NSDictionary *pictureData = [dict objectForKey:@"picture"];
-            NSString *pictureURL = [NSString stringWithFormat:@"%@",[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
-            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:pictureURL]];
-            UIImage *img = [UIImage imageWithData:imageData];
-            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:dict];
-            [dictionary setValue:[NSNumber numberWithInt:[self.images count]] forKey:@"imageNumber"];
-            if (!self.friendsScreen) {
-                [ServerCommunication getUser:[dictionary objectForKey:@"id"]];
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedUser:) name:[dictionary objectForKey:@"id"] object:nil];
-            }
-            [self.images addObject:img];
-            [self.friends addObject:dictionary];
-
-        } else {
-
+    }]; } else {
+        for (int i=0; i<[self.friends count]; i++) {
+            User *user = [self.friends objectAtIndex:i];
+            dispatch_queue_t imagesQueue = dispatch_queue_create("Images Queue",NULL);
+                NSURL *url = [user imageURL];
+                dispatch_async(imagesQueue, ^{
+                    NSData *imageData = [NSData dataWithContentsOfURL:url];
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    NSLog(@"Finished %d Image Download", i);
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // Update the UI
+                        [self.images addObject:image];
+                        User *usr = [self.friends objectAtIndex:i];
+                        usr.imageKey = i;
+                        if ([self.images count]==[self.friends count]) {
+                            [self.tableView reloadData];
+                        }
+                        NSLog(@"Set the image");
+                        
+                    });
+                    
+                });
         }
-    }]; }
+
+    }
+    
+//    if  (!self.friendsScreen) {
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString *facebookID = [defaults valueForKey:@"userID"];
+//    [ServerCommunication getUser:facebookID];
+//    FBSDKGraphRequest *requestMe = [[FBSDKGraphRequest alloc]
+//                                  initWithGraphPath:@"/me"
+//                                  parameters:@{@"fields":@"picture.type(large), name,id"}
+//                                  HTTPMethod:@"GET"];
+//    [requestMe startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+//                                          id result,
+//                                          NSError *error) {
+//        if (!error) {
+//            NSDictionary *dict = result;
+//            //self.friends = [result objectForKey:@"data"];
+//            //NSLog(result);
+//            NSDictionary *pictureData = [dict objectForKey:@"picture"];
+//            NSString *pictureURL = [NSString stringWithFormat:@"%@",[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
+//            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:pictureURL]];
+//            UIImage *img = [UIImage imageWithData:imageData];
+//            NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:dict];
+//            [dictionary setValue:[NSNumber numberWithInt:[self.images count]] forKey:@"imageNumber"];
+//            if (!self.friendsScreen) {
+//                [ServerCommunication getUser:[dictionary objectForKey:@"id"]];
+//                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedUser:) name:[dictionary objectForKey:@"id"] object:nil];
+//            }
+//            [self.images addObject:img];
+//            [self.friends addObject:dictionary];
+//
+//        } else {
+//
+//        }
+//    }]; }
     UINib *nib = [UINib nibWithNibName:@"InviteTableViewCell" bundle:nil];
     [[self tableView] registerNib:nib forCellReuseIdentifier:@"invite"];
     [self.searchDisplayController.searchResultsTableView registerNib:nib forCellReuseIdentifier:@"invite"];
@@ -121,15 +157,125 @@
     self.searchDisplayController.searchResultsTableView.backgroundColor = [UtilityMethods getColour];
     self.searchDisplayController.searchResultsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.searchDisplayController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    if (!self.reloading) {
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        self.refreshControl.backgroundColor = [UtilityMethods getColour];
+        self.refreshControl.tintColor = [UIColor whiteColor];
+        [self.refreshControl addTarget:self
+                                action:@selector(refreshAll)
+                      forControlEvents:UIControlEventValueChanged];
+    }
+
+    self.reloading = NO;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     self.tableView.backgroundColor = [UtilityMethods getColour];
     self.searchDisplayController.searchResultsTableView.backgroundColor = [UtilityMethods getColour];
+    if ([UtilityMethods getFriends]) {
+        self.friends = [UtilityMethods getFriends];
+        if (!self.friendsScreen) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            self.me = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
+            [self.friends addObject:self.me];
+            self.images = [[NSMutableArray alloc] initWithObjects: nil];
+            dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
+            dispatch_async(imagesQueue, ^{
+                for (int i=0; i<[self.friends count]; i++) {
+                    User *user = [self.friends objectAtIndex:i];
+                    NSURL *url = [user imageURL];
+                    NSData *imageData = [NSData dataWithContentsOfURL:url];
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // Update the UI
+                        [self.images addObject:image];
+                        User *usr = [self.friends objectAtIndex:i];
+                        usr.imageKey = [self.images count]-1;
+                        if ([self.images count]==[self.friends count]) {
+                            [self.tableView reloadData];
+                        }
+                        NSLog(@"Set the image %d", [self.images count]);
+                        
+                    });
+                }
+            });
+        }
+        self.loadedFriends = YES;
+    }
+
     [self.tableView reloadData];
     if (!self.loadedFriends) {
         [self viewDidLoad];
+    } else {
+        [self sort];
     }
+}
+
+- (void)refreshAll {
+    //    LoadingViewController *loadingViewController = [[self storyboard] instantiateViewControllerWithIdentifier:@"loadingPage"];
+    //    loadingViewController.loaded = YES;
+    //    loadingViewController.vc = self;
+    //    //[self addChildViewController:loadingViewController];
+    //    [self presentViewController:loadingViewController animated:YES completion:nil];
+    if (self.refreshControl) {
+        NSString *title = @"Refreshing";
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor blackColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }
+    self.reloading = YES;
+    [self viewDidLoad];
+    self.images = [[NSMutableArray alloc] initWithObjects: nil];
+    dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
+    dispatch_async(imagesQueue, ^{
+        for (int i=0; i<[self.friends count]; i++) {
+            User *user = [self.friends objectAtIndex:i];
+            NSURL *url = [user imageURL];
+            NSData *imageData = [NSData dataWithContentsOfURL:url];
+            UIImage *image = [UIImage imageWithData:imageData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                [self.images addObject:image];
+                User *usr = [self.friends objectAtIndex:i];
+                usr.imageKey = [self.images count]-1;
+                if ([self.images count]==[self.friends count]) {
+                    [self.tableView reloadData];
+                }
+                NSLog(@"Set the image %d", [self.images count]);
+                
+            });
+        }
+    });
+    if (self.refreshControl) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, h:mm a"];
+        NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }
+   // if ([UtilityMethods testInternetConnection]) {
+//        FLXAppDelegate *appDel = (FLXAppDelegate*)[[UIApplication sharedApplication] delegate];
+//        NSString *section = [appDel section];
+//        dispatch_queue_t imageQueue = dispatch_queue_create("Image Queue",NULL);
+//        dispatch_async(imageQueue, ^{
+//            [UtilityMethods loadArticles:section];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                // Update the UI
+//                [self performSelectorOnMainThread:@selector(reload) withObject:nil waitUntilDone:YES];
+//            });
+//            
+//        });
+    
+  //  } //else {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection" message:@"You don't seem to be connected to the internet. Please connect to the internet and try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alert setTag:100];
+//        [alert show];
+//    }
 }
 
 -(void)receivedUser:(NSNotification*)notification {
@@ -148,20 +294,25 @@
                 NSDictionary *result = [object objectAtIndex:0];
                 NSDictionary *gamePlay = [result valueForKey:@"gameStats"];
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", notification.name];
-                NSArray *filteredArray = [self.friends filteredArrayUsingPredicate:predicate];
+                NSArray *filteredArray = [self.tempFriends filteredArrayUsingPredicate:predicate];
+                User *user = [[User alloc] initWithDictionary:gamePlay];
                 NSMutableDictionary *firstFoundObject = nil;
                 firstFoundObject =  filteredArray.count > 0 ? filteredArray.firstObject : nil;
-                int score = [[gamePlay objectForKey:@"score"] intValue];
-                [firstFoundObject setObject:[gamePlay objectForKey:@"score"] forKey:@"score"];
+                user.name = [firstFoundObject objectForKey:@"name"];
+                user.userID = [firstFoundObject objectForKey:@"id"];
+                NSDictionary *pictureData = [firstFoundObject objectForKey:@"picture"];
+                user.imageURL = [NSURL URLWithString:[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
+                user.imageKey = [[firstFoundObject objectForKey:@"imageNumber"] intValue];
+                [self.friends addObject:user];
+                //int score = [[gamePlay objectForKey:@"score"] intValue];
+                //[firstFoundObject setObject:[gamePlay objectForKey:@"score"] forKey:@"score"];
                 [[NSNotificationCenter defaultCenter] removeObserver:self name:notification.name object:nil];
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                if ([notification.name isEqualToString:[defaults objectForKey:@"userID"]]) {
-                    self.me = firstFoundObject;
-                }
                 self.counter++;
-                if ((self.counter == self.target+1) && self.target!=0) {
+                if ((self.counter == self.target) && self.target!=0) {
                     [self sort];
-                    
+                    if ([self.refreshControl isRefreshing]) {
+                        [self.refreshControl endRefreshing];
+                    }
                     //[self.tableView reloadData];
                 }
             } else {
@@ -177,9 +328,9 @@
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"score"
                                                  ascending:NO];
     NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSMutableArray *sortedArray;
+    NSArray *sortedArray;
     sortedArray = [self.friends sortedArrayUsingDescriptors:sortDescriptors];
-    self.friends = sortedArray;
+    self.friends = [sortedArray mutableCopy];
     [self positionify];
 }
 
@@ -187,19 +338,28 @@
     int position = 1;
     int jump = 1;
     for (int i=0; i<[self.friends count]; i++) {
-        NSMutableDictionary *friend = [self.friends objectAtIndex:i];
-        [friend setObject:[NSNumber numberWithInt:position] forKey:@"position"];
+        User *friend = [self.friends objectAtIndex:i];
+        friend.position = position;
         if ([self.friends count]==i+1) {
             break;
         }
-        NSMutableDictionary *nextFriend = [self.friends objectAtIndex:i+1];
-        if ([[nextFriend objectForKey:@"score"] intValue]==[[friend objectForKey:@"score"] intValue]) {
+        User *nextFriend = [self.friends objectAtIndex:i+1];
+        if ([nextFriend score]==[friend score]) {
             jump++;
         } else {
             position += jump;
             jump = 1;
         }
     }
+    NSMutableArray *finalFriends = [self.friends mutableCopy];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", user.userID];
+    NSArray *filteredArray = [self.friends filteredArrayUsingPredicate:predicate];
+    user = [filteredArray objectAtIndex:0];
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
+    [finalFriends removeObject:[filteredArray objectAtIndex:0]];
+    [UtilityMethods setFriends:finalFriends];
     [self.tableView reloadData];
 }
 
@@ -382,14 +542,14 @@
                 if (cell == nil) {
                     cell = [[FriendTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"friend"];
                 }
-                if (self.loadedFriends) {
+                if ([self.friends objectAtIndex:[indexPath row]]) {
                     if (tableView == self.tableView) {
-                        cell.image.image = [self.images objectAtIndex:[indexPath row]];
-                        cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
+                        cell.image.image = [self.images objectAtIndex:[[self.friends objectAtIndex:[indexPath row]] imageKey]];
+                        cell.name.text = [[self.friends objectAtIndex:[indexPath row]] name];
                         cell.online.text = @"Offline";
                     } else {
-                        cell.name.text = [[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"name"];
-                        cell.image.image = [self.images objectAtIndex:[[[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"imageNumber"] intValue]];
+                        cell.name.text = [[self.searchFriends objectAtIndex:[indexPath row]] name];
+                        cell.image.image = [self.images objectAtIndex:[[self.searchFriends objectAtIndex:[indexPath row]] imageKey]];
                         cell.online.text = @"Offline";
                     }
                     
@@ -414,10 +574,10 @@
                     if (self.me) {
                         NSLog(@"HELLO");
                     }
-                    cell.image.image = [self.images objectAtIndex:[[self.me valueForKey:@"imageNumber"] intValue]];
-                    cell.name.text = [self.me objectForKey:@"name"];
-                    cell.score.text = [NSString stringWithFormat:@"%@", [self.me valueForKey:@"score"]];
-                    cell.position.text = [NSString stringWithFormat:@"%@", [self.me valueForKey:@"position"]];
+                    cell.image.image = [self.images objectAtIndex:[self.me imageKey]];
+                    cell.name.text = [self.me name];
+                    cell.score.text = [NSString stringWithFormat:@"%d", [self.me score]];
+                    cell.position.text = [NSString stringWithFormat:@"%d", [self.me position]];
                     cell.image.layer.cornerRadius = 30;
                     cell.image.layer.masksToBounds = YES;
                     cell.image.layer.shouldRasterize = YES;
@@ -460,30 +620,40 @@
                     cell = [[LeaderboardTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"leaderboard"];
                 }
                 if (tableView == self.tableView) {
-                    cell.image.image = [self.images objectAtIndex:[[[self.friends objectAtIndex:[indexPath row]] valueForKey:@"imageNumber"] intValue]];
-                    cell.name.text = [[self.friends objectAtIndex:[indexPath row]] valueForKey:@"name"];
-                    cell.score.text = [NSString stringWithFormat:@"%@", [[self.friends objectAtIndex:[indexPath row]] objectForKey:@"score"]];
+                    User *user = [self.friends objectAtIndex:[indexPath row]];
+                    if ([self.images count]>[user imageKey]) {
+                        cell.image.image = [self.images objectAtIndex:[user imageKey]];
+                    }
+                    
+                    cell.name.text = [user name];
+                    cell.score.text = [NSString stringWithFormat:@"%d", [user score]];
                     if ([cell.score.text isEqualToString:@"(null)"]) {
                         cell.score.text = @"Loading";
                     }
-                    cell.position.text = [NSString stringWithFormat:@"%@", [[self.friends objectAtIndex:[indexPath row]] objectForKey:@"position"]];
+                    cell.position.text = [NSString stringWithFormat:@"%d", [user position]];
                 } else {
-                    cell.name.text = [[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"name"];
-                    cell.image.image = [self.images objectAtIndex:[[[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"imageNumber"] intValue]];
-                    cell.score.text = [NSString stringWithFormat:@"%@", [[self.searchFriends objectAtIndex:[indexPath row]] valueForKey:@"score"]];
-                    cell.position.text = [NSString stringWithFormat:@"%@", [[self.searchFriends objectAtIndex:[indexPath row]] objectForKey:@"position"]];
+                    User *user = [self.searchFriends objectAtIndex:[indexPath row]];
+                    if ([self.images count]>[user imageKey]) {
+                        cell.image.image = [self.images objectAtIndex:[user imageKey]];
+                    }
+                    cell.name.text = [user name];
+                    cell.score.text = [NSString stringWithFormat:@"%d", [user score]];
+                    if ([cell.score.text isEqualToString:@"(null)"]) {
+                        cell.score.text = @"Loading";
+                    }
+                    cell.position.text = [NSString stringWithFormat:@"%d", [user position]];
                 }
                 cell.image.layer.cornerRadius = 30;
                 cell.image.layer.masksToBounds = YES;
                 cell.image.layer.shouldRasterize = YES;
                 cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                NSString *facebookID = [defaults valueForKey:@"userID"];
+                NSString *facebookID = [self.me userID];
                 NSString *ID;
                 if (tableView == self.tableView) {
-                    ID = [[self.friends objectAtIndex:[indexPath row]] objectForKey:@"id"];
+                    ID = [[self.friends objectAtIndex:[indexPath row]] userID];
                 } else {
-                    ID = [[self.searchFriends objectAtIndex:[indexPath row]] objectForKey:@"id"];
+                    ID = [[self.searchFriends objectAtIndex:[indexPath row]] userID];
                 }
                 if ([ID isEqualToString:facebookID]) {
                     cell.backgroundColor = [UIColor whiteColor];
@@ -540,6 +710,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([indexPath section]!=2 && !self.friendsScreen) {
+        if (tableView == self.tableView) {
+            self.search = NO;
+        } else {
+            self.search = YES;
+        }
         [self performSegueWithIdentifier:@"showProfile" sender:self];
     } else if ([indexPath section]==0 && self.friendsScreen){
         [self performSegueWithIdentifier:@"gamePlay" sender:self];
@@ -549,16 +724,31 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showProfile"]) {
         ProfileViewController *vc = (ProfileViewController*)[segue destinationViewController];
-        if (self.friendsScreen || [[self.tableView indexPathForSelectedRow] section]==1) {
+        if (!self.friendsScreen || [[self.tableView indexPathForSelectedRow] section]==1) {
             vc.sender = @"friend";
         } else {
             vc.sender = NULL;
         }
-
         int row = [[self.tableView indexPathForSelectedRow] row];
-        vc.image = [self.images objectAtIndex:[[[self.friends objectAtIndex:row] valueForKey:@"imageNumber"] intValue]];
-        vc.userID = [[self.friends objectAtIndex:row] valueForKey:@"id"];
-        vc.userName = [[self.friends objectAtIndex:row] valueForKey:@"name"];
+        vc.image = [self.images objectAtIndex:[[self.friends objectAtIndex:row] imageKey]];
+        vc.userID = [[self.friends objectAtIndex:row] userID];
+        vc.userName = [[self.friends objectAtIndex:row] name];
+        vc.user = [self.friends objectAtIndex:row];
+        if ([[self.tableView indexPathForSelectedRow] section]==0) {
+            vc.user = self.me;
+        }
+        if (self.search) {
+            row = [[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow] row];
+            vc.image = [self.images objectAtIndex:[[self.searchFriends objectAtIndex:row] imageKey]];
+            vc.userID = [[self.searchFriends objectAtIndex:row] userID];
+            vc.userName = [[self.searchFriends objectAtIndex:row] name];
+            vc.user = [self.searchFriends objectAtIndex:row];
+            if ([[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow] section]==0) {
+                vc.user = self.me;
+            }
+            self.search = NO;
+        }
+
         vc.hidesBottomBarWhenPushed = YES;
     }
 }

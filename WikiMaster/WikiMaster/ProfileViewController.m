@@ -24,17 +24,21 @@ NSDictionary *gamePlay;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.hidden = YES;
-    self.serverLabel.text = @"Connecting to server...";
-    self.serverLabel.hidden = NO;
+  //  self.tableView.hidden = YES;
+   // self.serverLabel.text = @"Connecting to server...";
+  //  self.serverLabel.hidden = NO;
     if ([self.sender isEqualToString:@"friend"]) {
+        //self.profilePicture.image = self.image;
+        //self.name.text = self.userName;
+        NSData *imageData = [NSData dataWithContentsOfURL:self.user.imageURL];
+        self.image = [UIImage imageWithData:imageData];
         self.profilePicture.image = self.image;
-        self.name.text = self.userName;
+        self.name.text = [self.user name];
         self.profilePicture.layer.cornerRadius = 50;
         self.profilePicture.layer.masksToBounds = YES;
         self.profilePicture.layer.shouldRasterize = YES;
         self.profilePicture.layer.rasterizationScale = [UIScreen mainScreen].scale;
-        [ServerCommunication getUser:self.userID];
+        //[ServerCommunication getUser:self.userID];
     } else {
         FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                       initWithGraphPath:@"/me"
@@ -65,13 +69,15 @@ NSDictionary *gamePlay;
             }
         }];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [ServerCommunication getUser:[defaults valueForKey:@"userID"]];
+        self.user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
+        //[ServerCommunication getUser:[defaults valueForKey:@"userID"]];
          }
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedNotification:)
                                                  name:@"User" object:nil];
     gamePlayKeys = @[@"score", @"gamesPlayed", @"wins", @"draws", @"losses", @"avgScore", @"totalQuestionsAnswered", @"totalQuestionsCorrect"];
     niceKeys = @[@"Score", @"Games Played", @"Games won", @"Games drawn", @"Games lost", @"Average Score", @"Questions Answered", @"Correct Answers"];
+    [self.tableView reloadData];
     // Do any additional setup after loading the view.
 }
 
@@ -141,7 +147,7 @@ NSDictionary *gamePlay;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [gamePlay count];
+    return 8;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -153,7 +159,35 @@ NSDictionary *gamePlay;
     cell.contentView.backgroundColor = [UtilityMethods getColour];
     cell.keyLabel.text = [niceKeys objectAtIndex:[indexPath row]];
     NSString *label = [gamePlayKeys objectAtIndex:[indexPath row]];
-    int stat = [[gamePlay objectForKey:label] intValue];
+    int stat;
+    switch ([indexPath row]) {
+        case 0:
+            stat = [self.user score];
+            break;
+        case 1:
+            stat = [self.user gamesPlayed];
+            break;
+        case 2:
+            stat = [self.user wins];
+            break;
+        case 3:
+            stat = [self.user draws];
+            break;
+        case 4:
+            stat = [self.user losses];
+            break;
+        case 5:
+            stat = [self.user avgScore];
+            break;
+        case 6:
+            stat = [self.user totalQuestionsAnswered];
+            break;
+        case 7:
+            stat = [self.user totalQuestionsCorrect];
+            break;
+        default:
+            break;
+    }
     cell.statLabel.text = [NSString stringWithFormat:@"%d", stat];
     return cell;
 }

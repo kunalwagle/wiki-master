@@ -14,5 +14,7 @@
 +(UIColor*)getColour;
 +(void)initColours;
 +(int)getTimer;
++(NSMutableArray*)getFriends;
++(void)setFriends:(NSMutableArray*)friends;
 
 @end

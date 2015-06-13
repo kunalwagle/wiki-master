@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface FriendsListTableViewController : UITableViewController <UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -14,6 +15,8 @@
 @property BOOL friendsScreen;
 @property int counter;
 @property int target;
-@property NSMutableDictionary *me;
+@property User *me;
+@property UIRefreshControl *refreshControl;
+@property BOOL reloading;
 
 @end

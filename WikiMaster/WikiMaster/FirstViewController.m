@@ -11,6 +11,7 @@
 #import "ServerCommunication.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import "TopicTableViewCell.h"
+#import "User.h"
 #import "TopicHomeViewController.h"
 
 @interface FirstViewController ()
@@ -26,6 +27,9 @@ NSString *topicSelected;
 NSArray *fimages;
 NSArray *rimages;
 NSArray *timages;
+NSString *name;
+NSString *pictureURL;
+NSString *userID;
 
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -55,9 +59,18 @@ NSArray *timages;
 }
 
 -(void)receivedNotification:(NSNotification*)notification {
-    if (self.loadedUser) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"user"]) {
         [[NSNotificationCenter defaultCenter] removeObserver:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
+        User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
+        NSData *imageData = [NSData dataWithContentsOfURL:[user imageURL]];
+        UIImage *img = [UIImage imageWithData:imageData];
+        self.image.image = img;
+        self.image.layer.cornerRadius = 50;
+        self.image.layer.masksToBounds = YES;
+        self.image.layer.shouldRasterize = YES;
+        self.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
     } else {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *facebookID = [defaults valueForKey:@"userID"];
@@ -74,11 +87,20 @@ NSArray *timages;
                                           NSError *error) {
         if (!error) {
             NSDictionary *dict = result;
+            name = [dict objectForKey:@"name"];
+            userID = [dict objectForKey:@"id"];
             self.name.text = [dict objectForKey:@"name"];
             //self.friends = [result objectForKey:@"data"];
             //NSLog(result);
             NSDictionary *pictureData = [dict objectForKey:@"picture"];
-            NSString *pictureURL = [NSString stringWithFormat:@"%@",[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
+            pictureURL = [NSString stringWithFormat:@"%@",[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
+            if ([defaults objectForKey:@"user"]) {
+                User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
+                user.name = name;
+                user.imageURL = [NSURL URLWithString:pictureURL];
+                user.userID = [dict objectForKey:@"id"];
+                [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
+            }
             NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:pictureURL]];
             UIImage *img = [UIImage imageWithData:imageData];
             self.image.image = img;
@@ -110,8 +132,16 @@ NSArray *timages;
         id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         if ([object count]>0) {
             if ([[object objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
                 NSDictionary *result = [object objectAtIndex:0];
                 NSDictionary *gamePlay = [result valueForKey:@"gameStats"];
+                User *user = [[User alloc] initWithDictionary:gamePlay];
+                user.name = name;
+                user.userID = userID;
+                if (pictureURL) {
+                    user.imageURL = [NSURL URLWithString:pictureURL];
+                }
+                [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
                 self.played.text = [NSString stringWithFormat:@"%@", [gamePlay valueForKey:@"gamesPlayed"]];
                 self.won.text = [NSString stringWithFormat:@"%@", [gamePlay valueForKey:@"wins"]];
                 self.lost.text = [NSString stringWithFormat:@"%@", [gamePlay valueForKey:@"losses"]];
@@ -131,6 +161,15 @@ NSArray *timages;
     [self.profile setTintColor:[UtilityMethods getColour]];
     [self.tabBarController.tabBar setTintColor:[UtilityMethods getColour]];
     [self.tableView reloadData];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
+    if (user) {
+        self.played.text = [NSString stringWithFormat:@"%d", [user gamesPlayed]];
+        self.won.text = [NSString stringWithFormat:@"%d", [user wins]];
+        self.lost.text = [NSString stringWithFormat:@"%d", [user losses]];
+        self.name.text = [user name];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
     
 }

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface User : NSObject
+@interface User : NSObject<NSCoding>
 
 @property NSString *userID;
 @property NSString *name;
@@ -21,7 +21,11 @@
 @property int totalQuestionsAnswered;
 @property int totalQuestionsCorrect;
 @property NSURL *imageURL;
+@property int imageKey;
+@property int position;
 
 -(User*)initWithDictionary:(NSDictionary*)dict;
+-(id)initWithCoder:(NSCoder *)aDecoder;
+-(void)encodeWithCoder:(NSCoder *)aCoder;
 
 @end

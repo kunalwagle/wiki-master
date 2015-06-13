@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface ProfileViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
@@ -16,6 +17,7 @@
 @property NSString *sender;
 @property NSString *userID;
 @property NSString *userName;
+@property User *user;
 @property (weak, nonatomic) IBOutlet UILabel *serverLabel;
 
 @end
