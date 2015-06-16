@@ -25,10 +25,12 @@
 @synthesize loading;
 
 UIAlertView *alert;
+ServerCommunication *comms;
 
 static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dmu4h.apps.googleusercontent.com";
 
 - (void)viewDidLoad {
+    comms = [[ServerCommunication alloc] initWithData];
     [super viewDidLoad];
     FBSDKProfile *profile = [FBSDKProfile currentProfile];
 //    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
@@ -107,7 +109,7 @@ static NSString * const kClientId = @"976248599268-4u6e0njbk439n9epjv6a5jrrnn6dm
         [alert show];
         //   [comms initNetworkCommunication];
         //   NSString *message = @"ident:";
-        [ServerCommunication addUser:userID];
+        [comms addUser:userID];
     }
 }
 
@@ -152,7 +154,7 @@ error:	(NSError *)error {
                          [defaults setObject:[profile  objectForKey:@"id"] forKey:@"userID"];
                          //   [comms initNetworkCommunication];
                          //   NSString *message = @"ident:";
-                         [ServerCommunication addUser:[[FBSDKAccessToken currentAccessToken] tokenString]];
+                         [comms addUser:[[FBSDKAccessToken currentAccessToken] tokenString]];
                      }
                  }];
             
@@ -240,7 +242,7 @@ error:	(NSError *)error {
         [alert show];
        // [comms initNetworkCommunication];
        // NSString *message = @"ident:";
-        [ServerCommunication addUser:userAuthentication];
+        [comms addUser:userAuthentication];
     }
 }
 

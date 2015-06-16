@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SubTopicsCollectionViewController : UICollectionViewController
+@interface SubTopicsCollectionViewController : UICollectionViewController<UIAlertViewDelegate>
 
 @property NSArray *topics;
 @property NSMutableArray *images;

@@ -27,7 +27,7 @@
         case 0:
             return @"Match the image with the correct caption";
         case 1:
-            return @"What is this?";
+            return @"";
         case 2:
             return @"What article is this from?";
         default:

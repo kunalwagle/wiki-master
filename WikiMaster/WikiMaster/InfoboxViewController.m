@@ -115,7 +115,8 @@ UIImage *img;
     } else {
         topicName = [[self.infoboxes objectAtIndex:[indexPath row]] objectForKey:@"name"];
     }
-    img = [self.images objectAtIndex:[indexPath row]%4];
+    TopicViewCell *cell = (TopicViewCell*)[self.collectionView  cellForItemAtIndexPath:indexPath];
+    img = cell.image.image;
     [self performSegueWithIdentifier:@"toTopic" sender:self];
 }
 
@@ -133,8 +134,35 @@ UIImage *img;
         dict = [self.searchInfoboxes objectAtIndex:[indexPath row]];
     }
     NSString *title = [dict objectForKey:@"name"];
+    BOOL articleCount = [[dict objectForKey:@"canPlay"] boolValue];
+    if (articleCount) {
+        cell.alpha = 0.5;
+        cell.userInteractionEnabled = NO;
+    } else {
+        cell.alpha = 1;
+        cell.userInteractionEnabled = YES;
+    }
+    NSDictionary *img = [dict objectForKey:@"image"];
+    NSString *aurl = [img objectForKey:@"url"];
+    cell.image.image = [UIImage imageNamed:@"default_topic.png"];
+    dispatch_queue_t articleImageQueue = dispatch_queue_create("Article Image Queue",NULL);
+    if (aurl && ![aurl isEqualToString:@""]) {
+        NSURL *url = [NSURL URLWithString:aurl];
+        dispatch_async(articleImageQueue, ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:url];
+            UIImage *image = [UIImage imageWithData:imageData];
+            NSLog(@"Finished Article Image Download");
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                [cell.image setImage:image];
+                NSLog(@"Set the image");
+                
+            });
+            
+        });
+    }
     cell.name.text = title;
-    cell.image.image = [self.images objectAtIndex:[indexPath row]%4];
     cell.image.layer.cornerRadius = 10;
     cell.image.layer.masksToBounds = YES;
     cell.image.layer.shouldRasterize = YES;

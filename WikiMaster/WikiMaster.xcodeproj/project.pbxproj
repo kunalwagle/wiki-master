@@ -17,6 +17,10 @@
 		0C0BEB8E1B287AE600F8DEE1 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB871B287AE600F8DEE1 /* 7.jpg */; };
 		0C0BEB901B287BF900F8DEE1 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB8F1B287BF900F8DEE1 /* 8.jpg */; };
 		0C0BEB931B2B12CA00F8DEE1 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BEB921B2B12CA00F8DEE1 /* User.m */; };
+		0C0BEB9B1B2DAFBE00F8DEE1 /* Christmas Star-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB991B2DAFBE00F8DEE1 /* Christmas Star-50@2x.png */; };
+		0C0BEB9C1B2DAFBE00F8DEE1 /* Christmas Star Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEB9A1B2DAFBE00F8DEE1 /* Christmas Star Filled-50@2x.png */; };
+		0C0BEBA21B2EE31200F8DEE1 /* GameHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BEBA11B2EE31200F8DEE1 /* GameHistoryTableViewController.m */; };
+		0C0BEBA41B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEBA31B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png */; };
 		0C26DB4A1B14951400902409 /* ServerCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C26DB491B14951400902409 /* ServerCommunication.m */; };
 		0C3AAAC61B1257580058D233 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */; };
 		0C3AAAC91B12580B0058D233 /* ManualSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */; };
@@ -134,6 +138,11 @@
 		0C0BEB8F1B287BF900F8DEE1 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
 		0C0BEB911B2B12CA00F8DEE1 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		0C0BEB921B2B12CA00F8DEE1 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		0C0BEB991B2DAFBE00F8DEE1 /* Christmas Star-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Christmas Star-50@2x.png"; sourceTree = "<group>"; };
+		0C0BEB9A1B2DAFBE00F8DEE1 /* Christmas Star Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Christmas Star Filled-50@2x.png"; sourceTree = "<group>"; };
+		0C0BEBA01B2EE31200F8DEE1 /* GameHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameHistoryTableViewController.h; sourceTree = "<group>"; };
+		0C0BEBA11B2EE31200F8DEE1 /* GameHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameHistoryTableViewController.m; sourceTree = "<group>"; };
+		0C0BEBA31B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Trophy Filled-50@2x.png"; sourceTree = "<group>"; };
 		0C26DB481B14951400902409 /* ServerCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunication.h; sourceTree = "<group>"; };
 		0C26DB491B14951400902409 /* ServerCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunication.m; sourceTree = "<group>"; };
 		0C3AAAC41B1257580058D233 /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
@@ -359,6 +368,11 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0C0BEBA31B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png */,
+				0C0BEBA01B2EE31200F8DEE1 /* GameHistoryTableViewController.h */,
+				0C0BEBA11B2EE31200F8DEE1 /* GameHistoryTableViewController.m */,
+				0C0BEB991B2DAFBE00F8DEE1 /* Christmas Star-50@2x.png */,
+				0C0BEB9A1B2DAFBE00F8DEE1 /* Christmas Star Filled-50@2x.png */,
 				0CDA77ED1B2491AC00131B1E /* TopicHomeViewController.h */,
 				0CDA77EE1B2491AC00131B1E /* TopicHomeViewController.m */,
 				0C0BEB801B287AE600F8DEE1 /* Stock Images */,
@@ -610,6 +624,7 @@
 				0C5F14891B10E850009946CA /* Tick.png in Resources */,
 				0CF80C251B1CBF1E00C7CA35 /* FriendTableViewCell.xib in Resources */,
 				0CF80C391B1DBE8400C7CA35 /* Groups Filled-32.png in Resources */,
+				0C0BEB9C1B2DAFBE00F8DEE1 /* Christmas Star Filled-50@2x.png in Resources */,
 				0C0BEB8E1B287AE600F8DEE1 /* 7.jpg in Resources */,
 				0C0BEB8C1B287AE600F8DEE1 /* 5.jpg in Resources */,
 				0C5F148D1B10E8D3009946CA /* hand-157251_640.png in Resources */,
@@ -634,7 +649,9 @@
 				0CF80C551B20675E00C7CA35 /* LeaderboardMeCell.xib in Resources */,
 				0C5F147A1B10C227009946CA /* Blue.png in Resources */,
 				0CF80C451B1DBFB300C7CA35 /* Guest Filled-50.png in Resources */,
+				0C0BEB9B1B2DAFBE00F8DEE1 /* Christmas Star-50@2x.png in Resources */,
 				0C5F14881B10E850009946CA /* Cross.png in Resources */,
+				0C0BEBA41B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png in Resources */,
 				0C5F147D1B10C227009946CA /* Maroon.png in Resources */,
 				0CF80C461B1DBFB300C7CA35 /* Home Filled-50@2x.png in Resources */,
 				0CF80C521B2063D800C7CA35 /* Profile-White.png in Resources */,
@@ -686,6 +703,7 @@
 				0C6CF13D1B23431400FFCF4F /* LeaderboardTableViewCell.m in Sources */,
 				0C5F14AB1B120D48009946CA /* InitialLoginViewController.m in Sources */,
 				0C6CF1401B2460CA00FFCF4F /* SubTopicsCollectionViewController.m in Sources */,
+				0C0BEBA21B2EE31200F8DEE1 /* GameHistoryTableViewController.m in Sources */,
 				0CEF69071B14DE9B0009F137 /* QuizLoadingViewController.m in Sources */,
 				0C6CF1431B246D6F00FFCF4F /* InfoboxViewController.m in Sources */,
 				0CEF698F1B1634A80009F137 /* AnswerDebriefViewController.m in Sources */,

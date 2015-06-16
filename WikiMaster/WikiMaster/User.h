@@ -23,6 +23,8 @@
 @property NSURL *imageURL;
 @property int imageKey;
 @property int position;
+@property NSArray *recents;
+@property NSArray *favourites;
 
 -(User*)initWithDictionary:(NSDictionary*)dict;
 -(id)initWithCoder:(NSCoder *)aDecoder;

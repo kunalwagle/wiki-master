@@ -91,12 +91,38 @@
         cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
         
     } else {
-        cell.name.text = [self.testData objectAtIndex:[indexPath row]];
-        if  ([self.images count]==[indexPath row]) {
-            [cell.image setImage:[UIImage imageNamed:@"default_topic.png"]];
-        } else {
-            [cell.image setImage:[self.images objectAtIndex:[indexPath row]]];
+        NSDictionary *item = [self.testData objectAtIndex:[indexPath row]];
+        cell.name.text = [item objectForKey:@"name"];
+        cell.image.image = [UIImage imageNamed:@"default_topic.png"];
+        NSDictionary *image = [item objectForKey:@"image"];
+        NSString *aurl = [image objectForKey:@"url"];
+        dispatch_queue_t articleImageQueue = dispatch_queue_create("Article Image Queue",NULL);
+        if (aurl && ![aurl isEqualToString:@""]) {
+            NSURL *url = [NSURL URLWithString:aurl];
+            dispatch_async(articleImageQueue, ^{
+                NSData *imageData = [NSData dataWithContentsOfURL:url];
+                UIImage *image = [UIImage imageWithData:imageData];
+                NSLog(@"Finished Article Image Download");
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI
+                    [cell.image setImage:image];
+                    NSLog(@"Set the image");
+                    
+                });
+                
+            });
         }
+        cell.image.layer.cornerRadius = 10;
+        cell.image.layer.masksToBounds = YES;
+        cell.image.layer.shouldRasterize = YES;
+        cell.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
+
+//        if  ([self.images count]==[indexPath row]) {
+//            [cell.image setImage:[UIImage imageNamed:@"default_topic.png"]];
+//        } else {
+//            [cell.image setImage:[self.images objectAtIndex:[indexPath row]]];
+//        }
     }
     cell.backgroundColor = [UtilityMethods getColour];
     cell.name.textColor = [UIColor whiteColor];
@@ -108,6 +134,7 @@
     TopicViewCell *cell = (TopicViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setObject:cell.name.text forKey:@"name"];
+    [dict setObject:cell.image.image forKey:@"image"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Home" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Topics" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"SubTopics" object:nil userInfo:dict];

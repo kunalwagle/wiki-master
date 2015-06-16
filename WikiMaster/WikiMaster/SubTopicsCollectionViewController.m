@@ -21,9 +21,14 @@
 static NSString * const reuseIdentifier = @"Cell";
 NSArray *subtopics;
 NSString *topicChosen;
+ServerCommunication *comms;
+
+UIAlertView *alert;
+UIAlertView *errorAlert;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    comms = [[ServerCommunication alloc] initWithData];
     self.navigationItem.title = self.parentTopic;
     [self updateCell];
     // Uncomment the following line to preserve selection between presentations
@@ -88,8 +93,27 @@ NSString *topicChosen;
     TopicViewCell *cell = (TopicViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     NSDictionary *dict = [self.topics objectAtIndex:[indexPath row]];
     NSString *title = [dict objectForKey:@"name"];
+    NSDictionary *img = [dict objectForKey:@"image"];
+    NSString *aurl = [img objectForKey:@"url"];
+    cell.image.image = [UIImage imageNamed:@"default_topic.png"];
+    dispatch_queue_t articleImageQueue = dispatch_queue_create("Article Image Queue",NULL);
+    if (aurl && ![aurl isEqualToString:@""]) {
+        NSURL *url = [NSURL URLWithString:aurl];
+        dispatch_async(articleImageQueue, ^{
+            NSData *imageData = [NSData dataWithContentsOfURL:url];
+            UIImage *image = [UIImage imageWithData:imageData];
+            NSLog(@"Finished Article Image Download");
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Update the UI
+                [cell.image setImage:image];
+                NSLog(@"Set the image");
+                
+            });
+            
+        });
+    }
     cell.name.text = title;
-    cell.image.image = [self.images objectAtIndex:[indexPath row]%4];
     cell.image.layer.cornerRadius = 10;
     cell.image.layer.masksToBounds = YES;
     cell.image.layer.shouldRasterize = YES;
@@ -105,7 +129,13 @@ NSString *topicChosen;
     TopicViewCell *cell = (TopicViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
     topicChosen = cell.name.text;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedInfoboxes:) name:@"categoryInfoboxes" object:nil];
-    [ServerCommunication getInfoboxes:topicChosen];
+    alert = [[UIAlertView alloc] initWithTitle:@"Connecting to server..." message:@"This may take a moment."
+                                      delegate:self
+                             cancelButtonTitle:nil
+                             otherButtonTitles:nil];
+    [alert show];
+    comms = [[ServerCommunication alloc] initWithData];
+    [comms getInfoboxes:topicChosen];
 }
 
 -(void)returnedInfoboxes:(NSNotification*)notification {
@@ -113,17 +143,38 @@ NSString *topicChosen;
     NSString *temp = [info valueForKey:@"response"];
     NSLog(@"Received Notification with name =%@",notification.name);
     NSLog(@"Information =%@",info);
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"categoryInfoboxes" object:nil];
     if ([temp isEqualToString:@"FAILED"]) {
         
+        errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+        [errorAlert show];
+
     } else {
         id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         if ([object count]>0) {
             subtopics = object;
             [self performSegueWithIdentifier:@"subtopicsInfoboxes" sender:self];
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:@"categoryInfoboxes" object:nil];
         } else {
-            
+            errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+            [errorAlert show];
+
             //[self performSegueWithIdentifier:@"showTopic" sender:self];
+        }
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == errorAlert) {
+        if (buttonIndex == 1) {
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedInfoboxes:) name:@"categoryInfoboxes" object:nil];
+            alert = [[UIAlertView alloc] initWithTitle:@"Connecting to server..." message:@"This may take a moment."
+                                              delegate:self
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:nil];
+            [alert show];
+            comms = [[ServerCommunication alloc] initWithData];
+            [comms getInfoboxes:topicChosen];
         }
     }
 }

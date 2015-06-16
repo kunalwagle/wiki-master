@@ -37,6 +37,8 @@
     [coder encodeInt:self.totalQuestionsCorrect forKey:@"totalQuestionsCorrect"];
     [coder encodeInt:self.position forKey:@"position"];
     [coder encodeInt:self.imageKey forKey:@"imageKey"];
+    [coder encodeObject:self.favourites forKey:@"favourites"];
+    [coder encodeObject:self.recents forKey:@"recents"];
 }
 
 -(id)initWithCoder:(NSCoder *)coder {
@@ -54,6 +56,8 @@
     self.totalQuestionsCorrect = [coder decodeIntForKey:@"totalQuestionsCorrect"];
     self.imageKey = [coder decodeIntForKey:@"imageKey"];
     self.position = [coder decodeIntForKey:@"position"];
+    self.favourites = [coder decodeObjectForKey:@"favourites"];
+    self.recents = [coder decodeObjectForKey:@"recents"];
     return self;
 }
 

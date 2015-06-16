@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
-@interface FriendsListTableViewController : UITableViewController <UISearchDisplayDelegate>
+@interface FriendsListTableViewController : UITableViewController <UISearchDisplayDelegate,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property BOOL loadedFriends;
 @property BOOL friendsScreen;

@@ -16,5 +16,6 @@
 +(int)getTimer;
 +(NSMutableArray*)getFriends;
 +(void)setFriends:(NSMutableArray*)friends;
++(NSString*)getAccessTokenString;
 
 @end

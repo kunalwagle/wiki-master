@@ -27,6 +27,8 @@
 
 @implementation FriendsListTableViewController
 
+UIAlertView *alert;
+UIAlertView *errorAlert;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +37,11 @@
         self.navigationItem.title = @"Leaderboard";
     }
     if (![UtilityMethods getFriends] || self.reloading) {
+        alert = [[UIAlertView alloc] initWithTitle:@"Connecting to server..." message:@"This may take a moment."
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:nil];
+        [alert show];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         User *u = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
     self.friends = [[NSMutableArray alloc] initWithObjects: u, nil];
@@ -67,8 +74,12 @@
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:dict];
             [dictionary setValue:[NSNumber numberWithInt:[self.images count]] forKey:@"imageNumber"];
             //if (!self.friendsScreen) {
-                [ServerCommunication getUser:[dictionary objectForKey:@"id"]];
-                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedUser:) name:[dictionary objectForKey:@"id"] object:nil];
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedUser:) name:[dictionary objectForKey:@"id"] object:nil];
+            NSLog(@"Set up Notification");
+                ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
+                [comms getUser:[dictionary objectForKey:@"id"]];
+            [self performSelector:@selector(serverFailed) withObject:nil afterDelay:10.0];
+            
             //}
             [self.images addObject:image];
             [self.tempFriends addObject:dictionary];
@@ -79,34 +90,38 @@
             
             self.loadedFriends = YES;
             
+            
         } else {
             self.loadedFriends = NO;
             [self.tableView reloadData];
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+            errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+            [errorAlert show];
         }
     }]; } else {
-        for (int i=0; i<[self.friends count]; i++) {
-            User *user = [self.friends objectAtIndex:i];
-            dispatch_queue_t imagesQueue = dispatch_queue_create("Images Queue",NULL);
-                NSURL *url = [user imageURL];
-                dispatch_async(imagesQueue, ^{
-                    NSData *imageData = [NSData dataWithContentsOfURL:url];
-                    UIImage *image = [UIImage imageWithData:imageData];
-                    NSLog(@"Finished %d Image Download", i);
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        // Update the UI
-                        [self.images addObject:image];
-                        User *usr = [self.friends objectAtIndex:i];
-                        usr.imageKey = i;
-                        if ([self.images count]==[self.friends count]) {
-                            [self.tableView reloadData];
-                        }
-                        NSLog(@"Set the image");
-                        
-                    });
-                    
-                });
-        }
+//        for (int i=0; i<[self.friends count]; i++) {
+//            User *user = [self.friends objectAtIndex:i];
+//            dispatch_queue_t imagesQueue = dispatch_queue_create("Images Queue",NULL);
+//                NSURL *url = [user imageURL];
+//                dispatch_async(imagesQueue, ^{
+//                    NSData *imageData = [NSData dataWithContentsOfURL:url];
+//                    UIImage *image = [UIImage imageWithData:imageData];
+//                    NSLog(@"Finished %d Image Download", i);
+//                    
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        // Update the UI
+//                        [self.images addObject:image];
+//                        User *usr = [self.friends objectAtIndex:i];
+//                        usr.imageKey = i;
+//                        if ([self.images count]==[self.friends count]) {
+//                            [self.tableView reloadData];
+//                        }
+//                        NSLog(@"Set the image");
+//                        
+//                    });
+//                    
+//                });
+//        }
 
     }
     
@@ -179,26 +194,26 @@
             self.me = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
             [self.friends addObject:self.me];
             self.images = [[NSMutableArray alloc] initWithObjects: nil];
-            dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
-            dispatch_async(imagesQueue, ^{
-                for (int i=0; i<[self.friends count]; i++) {
-                    User *user = [self.friends objectAtIndex:i];
-                    NSURL *url = [user imageURL];
-                    NSData *imageData = [NSData dataWithContentsOfURL:url];
-                    UIImage *image = [UIImage imageWithData:imageData];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        // Update the UI
-                        [self.images addObject:image];
-                        User *usr = [self.friends objectAtIndex:i];
-                        usr.imageKey = [self.images count]-1;
-                        if ([self.images count]==[self.friends count]) {
-                            [self.tableView reloadData];
-                        }
-                        NSLog(@"Set the image %d", [self.images count]);
-                        
-                    });
-                }
-            });
+//            dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
+//            dispatch_async(imagesQueue, ^{
+//                for (int i=0; i<[self.friends count]; i++) {
+//                    User *user = [self.friends objectAtIndex:i];
+//                    NSURL *url = [user imageURL];
+//                    NSData *imageData = [NSData dataWithContentsOfURL:url];
+//                    UIImage *image = [UIImage imageWithData:imageData];
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        // Update the UI
+//                        [self.images addObject:image];
+//                        //User *usr = [self.friends objectAtIndex:i];
+//                        user.imageKey = [self.images count]-1;
+//                        if ([self.images count]==[self.friends count]) {
+//                            [self.tableView reloadData];
+//                        }
+//                        NSLog(@"Set the image %d", [self.images count]);
+//                        
+//                    });
+//                }
+//            });
         }
         self.loadedFriends = YES;
     }
@@ -230,21 +245,7 @@
     dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
     dispatch_async(imagesQueue, ^{
         for (int i=0; i<[self.friends count]; i++) {
-            User *user = [self.friends objectAtIndex:i];
-            NSURL *url = [user imageURL];
-            NSData *imageData = [NSData dataWithContentsOfURL:url];
-            UIImage *image = [UIImage imageWithData:imageData];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                // Update the UI
-                [self.images addObject:image];
-                User *usr = [self.friends objectAtIndex:i];
-                usr.imageKey = [self.images count]-1;
-                if ([self.images count]==[self.friends count]) {
-                    [self.tableView reloadData];
-                }
-                NSLog(@"Set the image %d", [self.images count]);
-                
-            });
+
         }
     });
     if (self.refreshControl) {
@@ -278,6 +279,16 @@
 //    }
 }
 
+-(void)serverFailed {
+    if ([alert isVisible]) {
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
+        errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+        [errorAlert show];
+    }
+    
+    
+}
+
 -(void)receivedUser:(NSNotification*)notification {
     NSString * name =notification.name;
     //notification userinfo
@@ -286,12 +297,13 @@
     NSLog(@"Information =%@",info);
     NSString *temp = [info valueForKey:@"response"];
     if ([temp isEqualToString:@"FAILED"]) {
-        //ERROR HANDLING
+        errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+        [errorAlert show];
     } else {
         id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         if ([object count]>0) {
-            if ([[object objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
-                NSDictionary *result = [object objectAtIndex:0];
+            if ([object isKindOfClass:[NSDictionary class]]) {
+                NSDictionary *result = object;
                 NSDictionary *gamePlay = [result valueForKey:@"gameStats"];
                 NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", notification.name];
                 NSArray *filteredArray = [self.tempFriends filteredArrayUsingPredicate:predicate];
@@ -310,17 +322,39 @@
                 self.counter++;
                 if ((self.counter == self.target) && self.target!=0) {
                     [self sort];
+                    [alert dismissWithClickedButtonIndex:0 animated:YES];
                     if ([self.refreshControl isRefreshing]) {
                         [self.refreshControl endRefreshing];
                     }
-                    //[self.tableView reloadData];
+                    [self.tableView reloadData];
                 }
             } else {
                 //ERROR HANDLING
+                errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+                [errorAlert show];
             } } else {
                 //ERROR HANDLING
+                errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+                [errorAlert show];
             }
     }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex==1) {
+    if (alertView == errorAlert) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        self.reloading = YES;
+        [self viewDidLoad];
+            [alert show];
+
+    }
+    } else {
+        if ([self.refreshControl isRefreshing]) {
+            [self.refreshControl endRefreshing];
+        }
+    }
+
 }
 
 -(void)sort {
@@ -356,9 +390,11 @@
     User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", user.userID];
     NSArray *filteredArray = [self.friends filteredArrayUsingPredicate:predicate];
-    user = [filteredArray objectAtIndex:0];
-    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
-    [finalFriends removeObject:[filteredArray objectAtIndex:0]];
+    if  (self.friends) {
+        user = [filteredArray objectAtIndex:0];
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
+        [finalFriends removeObject:[filteredArray objectAtIndex:0]];
+    }
     [UtilityMethods setFriends:finalFriends];
     [self.tableView reloadData];
 }
@@ -544,12 +580,37 @@
                 }
                 if ([self.friends objectAtIndex:[indexPath row]]) {
                     if (tableView == self.tableView) {
-                        cell.image.image = [self.images objectAtIndex:[[self.friends objectAtIndex:[indexPath row]] imageKey]];
+                        dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
+                        dispatch_async(imagesQueue, ^{
+                            User *user = [self.friends objectAtIndex:[indexPath row]];
+                            NSURL *url = [user imageURL];
+                            NSData *imageData = [NSData dataWithContentsOfURL:url];
+                            UIImage *image = [UIImage imageWithData:imageData];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                // Update the UI
+                                cell.image.image = image;
+                                
+                            });
+                        });
+                        //cell.image.image = [self.images objectAtIndex:[[self.friends objectAtIndex:[indexPath row]] imageKey]];
                         cell.name.text = [[self.friends objectAtIndex:[indexPath row]] name];
                         cell.online.text = @"Offline";
                     } else {
+                        dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
+                        dispatch_async(imagesQueue, ^{
+                            User *user = [self.searchFriends objectAtIndex:[indexPath row]];
+                            NSURL *url = [user imageURL];
+                            NSData *imageData = [NSData dataWithContentsOfURL:url];
+                            UIImage *image = [UIImage imageWithData:imageData];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                // Update the UI
+                                cell.image.image = image;
+                                
+                            });
+                        });
+
                         cell.name.text = [[self.searchFriends objectAtIndex:[indexPath row]] name];
-                        cell.image.image = [self.images objectAtIndex:[[self.searchFriends objectAtIndex:[indexPath row]] imageKey]];
+                        //cell.image.image = [self.images objectAtIndex:[[self.searchFriends objectAtIndex:[indexPath row]] imageKey]];
                         cell.online.text = @"Offline";
                     }
                     
@@ -574,7 +635,19 @@
                     if (self.me) {
                         NSLog(@"HELLO");
                     }
-                    cell.image.image = [self.images objectAtIndex:[self.me imageKey]];
+                    dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
+                    dispatch_async(imagesQueue, ^{
+                    User *user = self.me;
+                    NSURL *url = [user imageURL];
+                    NSData *imageData = [NSData dataWithContentsOfURL:url];
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // Update the UI
+                        cell.image.image = image;
+                        
+                    });
+                    });
+                    //cell.image.image = [self.images objectAtIndex:[self.me imageKey]];
                     cell.name.text = [self.me name];
                     cell.score.text = [NSString stringWithFormat:@"%d", [self.me score]];
                     cell.position.text = [NSString stringWithFormat:@"%d", [self.me position]];
@@ -621,9 +694,18 @@
                 }
                 if (tableView == self.tableView) {
                     User *user = [self.friends objectAtIndex:[indexPath row]];
-                    if ([self.images count]>[user imageKey]) {
-                        cell.image.image = [self.images objectAtIndex:[user imageKey]];
-                    }
+                    dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
+                    dispatch_async(imagesQueue, ^{
+                        User *user = [self.friends objectAtIndex:[indexPath row]];
+                        NSURL *url = [user imageURL];
+                        NSData *imageData = [NSData dataWithContentsOfURL:url];
+                        UIImage *image = [UIImage imageWithData:imageData];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // Update the UI
+                            cell.image.image = image;
+                            
+                        });
+                    });
                     
                     cell.name.text = [user name];
                     cell.score.text = [NSString stringWithFormat:@"%d", [user score]];
@@ -633,9 +715,19 @@
                     cell.position.text = [NSString stringWithFormat:@"%d", [user position]];
                 } else {
                     User *user = [self.searchFriends objectAtIndex:[indexPath row]];
-                    if ([self.images count]>[user imageKey]) {
-                        cell.image.image = [self.images objectAtIndex:[user imageKey]];
-                    }
+                    dispatch_queue_t imagesQueue = dispatch_queue_create("Images", NULL);
+                    dispatch_async(imagesQueue, ^{
+                        User *user = [self.searchFriends objectAtIndex:[indexPath row]];
+                        NSURL *url = [user imageURL];
+                        NSData *imageData = [NSData dataWithContentsOfURL:url];
+                        UIImage *image = [UIImage imageWithData:imageData];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            // Update the UI
+                            cell.image.image = image;
+                            
+                        });
+                    });
+
                     cell.name.text = [user name];
                     cell.score.text = [NSString stringWithFormat:@"%d", [user score]];
                     if ([cell.score.text isEqualToString:@"(null)"]) {
@@ -730,7 +822,8 @@
             vc.sender = NULL;
         }
         int row = [[self.tableView indexPathForSelectedRow] row];
-        vc.image = [self.images objectAtIndex:[[self.friends objectAtIndex:row] imageKey]];
+        LeaderboardTableViewCell *cell = (LeaderboardTableViewCell*)[self.tableView cellForRowAtIndexPath:[self.tableView indexPathForSelectedRow]];
+        vc.image = cell.imageView.image;
         vc.userID = [[self.friends objectAtIndex:row] userID];
         vc.userName = [[self.friends objectAtIndex:row] name];
         vc.user = [self.friends objectAtIndex:row];
@@ -739,7 +832,8 @@
         }
         if (self.search) {
             row = [[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow] row];
-            vc.image = [self.images objectAtIndex:[[self.searchFriends objectAtIndex:row] imageKey]];
+            LeaderboardTableViewCell *cell = (LeaderboardTableViewCell*)[self.searchDisplayController.searchResultsTableView cellForRowAtIndexPath:[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow]];
+            vc.image = cell.imageView.image;
             vc.userID = [[self.searchFriends objectAtIndex:row] userID];
             vc.userName = [[self.searchFriends objectAtIndex:row] name];
             vc.user = [self.searchFriends objectAtIndex:row];

@@ -21,9 +21,11 @@
 NSArray *gamePlayKeys;
 NSArray *niceKeys;
 NSDictionary *gamePlay;
+ServerCommunication *comms;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    comms = [[ServerCommunication alloc] initWithData];
   //  self.tableView.hidden = YES;
    // self.serverLabel.text = @"Connecting to server...";
   //  self.serverLabel.hidden = NO;
@@ -126,10 +128,10 @@ NSDictionary *gamePlay;
         self.serverLabel.text = @"Connecting to server...";
         self.serverLabel.hidden = NO;
         if ([self.sender isEqualToString:@"friend"]) {
-            [ServerCommunication getUser:self.userID];
+            [comms getUser:self.userID];
         } else {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [ServerCommunication getUser:[defaults valueForKey:@"userID"]];
+            [comms getUser:[defaults valueForKey:@"userID"]];
         }
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(receivedNotification:)

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopicHomeViewController : UIViewController
+@interface TopicHomeViewController : UIViewController<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *played;
@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *points;
 @property (weak, nonatomic) IBOutlet UILabel *averageScore;
 @property (weak, nonatomic) IBOutlet UILabel *totalCorrect;
+@property (weak, nonatomic) IBOutlet UIButton *favouritesButton;
+- (IBAction)clickedFavourite:(id)sender;
 @property NSString *topicName;
 @property UIImage *topicImage;
 

@@ -24,12 +24,17 @@ NSArray *favourites;
 NSArray *recent;
 NSArray *trending;
 NSString *topicSelected;
+UIImage *imageSelected;
 NSArray *fimages;
 NSArray *rimages;
 NSArray *timages;
-NSString *name;
+NSString *username;
 NSString *pictureURL;
 NSString *userID;
+
+UIAlertView *alert;
+UIAlertView *errorAlert;
+ServerCommunication *comms;
 
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -55,6 +60,7 @@ NSString *userID;
 - (void)clickedTopic:(NSNotification*)notification {
     NSDictionary *dict = notification.userInfo;
     topicSelected = [dict objectForKey:@"name"];
+    imageSelected = [dict objectForKey:@"image"];
     [self performSegueWithIdentifier:@"showTopic" sender:self];
 }
 
@@ -71,10 +77,19 @@ NSString *userID;
         self.image.layer.masksToBounds = YES;
         self.image.layer.shouldRasterize = YES;
         self.image.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        self.played.text = [NSString stringWithFormat:@"%d", [user gamesPlayed]];
+        self.won.text = [NSString stringWithFormat:@"%d", [user wins]];
+        self.lost.text = [NSString stringWithFormat:@"%d", [user losses]];
     } else {
+    alert = [[UIAlertView alloc] initWithTitle:@"Connecting to server..." message:@"This may take a moment."
+                                          delegate:self
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:nil];
+        [alert show];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *facebookID = [defaults valueForKey:@"userID"];
-    [ServerCommunication getUser:facebookID];
+    comms = [[ServerCommunication alloc] initWithData];
+    [comms getHomeUser];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedUser:)
                                                  name:@"User" object:nil];
@@ -87,7 +102,7 @@ NSString *userID;
                                           NSError *error) {
         if (!error) {
             NSDictionary *dict = result;
-            name = [dict objectForKey:@"name"];
+            username = [dict objectForKey:@"name"];
             userID = [dict objectForKey:@"id"];
             self.name.text = [dict objectForKey:@"name"];
             //self.friends = [result objectForKey:@"data"];
@@ -96,7 +111,7 @@ NSString *userID;
             pictureURL = [NSString stringWithFormat:@"%@",[[pictureData objectForKey:@"data"] objectForKey:@"url"]];
             if ([defaults objectForKey:@"user"]) {
                 User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
-                user.name = name;
+                user.name = [dict objectForKey:@"name"];
                 user.imageURL = [NSURL URLWithString:pictureURL];
                 user.userID = [dict objectForKey:@"id"];
                 [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
@@ -126,18 +141,21 @@ NSString *userID;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Home" object:nil];
     NSString *temp = [info valueForKey:@"response"];
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
     if ([temp isEqualToString:@"FAILED"]) {
         self.loadedUser = NO;
     } else {
         id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         if ([object count]>0) {
-            if ([[object objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+   //         if ([[object objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                NSDictionary *result = [object objectAtIndex:0];
+                NSDictionary *result = object;
                 NSDictionary *gamePlay = [result valueForKey:@"gameStats"];
                 User *user = [[User alloc] initWithDictionary:gamePlay];
-                user.name = name;
+                user.name = username;
                 user.userID = userID;
+                user.favourites = [result objectForKey:@"favTopics"];
+                user.recents = [result objectForKey:@"recentTopics"];
                 if (pictureURL) {
                     user.imageURL = [NSURL URLWithString:pictureURL];
                 }
@@ -146,11 +164,30 @@ NSString *userID;
                 self.won.text = [NSString stringWithFormat:@"%@", [gamePlay valueForKey:@"wins"]];
                 self.lost.text = [NSString stringWithFormat:@"%@", [gamePlay valueForKey:@"losses"]];
                 self.loadedUser = YES;
-            } else {
+            
+        //    } else {
                 //ERROR HANDLING
-            } } else {
+         //       self.loadedUser = NO;
+             } else {
                 //ERROR HANDLING
+                self.loadedUser = NO;
             }
+    }
+    if (!self.loadedUser) {
+        errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Try again" otherButtonTitles: nil];
+        [errorAlert show];
+    }
+    [self.tableView reloadData];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView == errorAlert) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *facebookID = [defaults valueForKey:@"userID"];
+        [comms getUser:facebookID];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receivedUser:)
+                                                     name:@"User" object:nil];
     }
 }
 
@@ -205,23 +242,25 @@ NSString *userID;
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TopicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
     if (cell==nil) {
         cell = [[TopicTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     switch (indexPath.section) {
         case 0:
-            cell.testData = favourites;
-            cell.images = fimages;
+            cell.testData = [user favourites];
+            //cell.images = fimages;
             break;
             
         case 1:
-            cell.testData = recent;
-            cell.images = rimages;
+            cell.testData = [user recents];
+            //cell.images = rimages;
             break;
             
         default:
-            cell.testData = trending;
-            cell.images = timages;
+            cell.testData = [user recents];
+            //cell.images = timages;
             break;
     }
    // [cell setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 200)];
@@ -253,8 +292,9 @@ NSString *userID;
     if ([[segue identifier] isEqualToString:@"showTopic"]) {
         TopicHomeViewController *vc = [segue destinationViewController];
         vc.hidesBottomBarWhenPushed = YES;
+        //vc.topicName = topicSelected;
         vc.topicName = topicSelected;
-        vc.topicImage = [UIImage imageNamed:@"hand-157251_640.png"];
+        vc.topicImage = imageSelected;
     }
     UIViewController *vc = [segue destinationViewController];
     vc.hidesBottomBarWhenPushed = YES;

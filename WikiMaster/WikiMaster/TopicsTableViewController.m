@@ -15,25 +15,45 @@
 
 @interface TopicsTableViewController ()
 
+@property NSArray *categories;
+@property NSMutableArray *subCategories;
+@property NSArray *imageURLs;
+@property NSMutableArray *images;
+@property NSString *topicChosen;
+@property NSArray *subtopics;
+
 @end
 
 @implementation TopicsTableViewController
 
-NSArray *categories;
-NSMutableArray *subCategories;
-NSArray *imageURLs;
-NSMutableArray *images;
-NSString *topicChosen;
-NSArray *subtopics;
+@synthesize categories;
+@synthesize subCategories;
+@synthesize imageURLs;
+@synthesize images;
+@synthesize topicChosen;
+@synthesize subtopics;
+
+
+UIAlertView *alert;
+UIAlertView *errorAlert;
+UIAlertView *errorAlert2;
+UIAlertView *errorAlert3;
+
+
 
 -(void)viewWillAppear:(BOOL)animated {
     self.tableView.backgroundColor = [UtilityMethods getColour];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Topics" object:nil];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    alert = [[UIAlertView alloc] initWithTitle:@"Connecting to server..." message:@"This may take a moment."
+                                      delegate:self
+                             cancelButtonTitle:nil
+                             otherButtonTitles:nil];
+    [alert show];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Topics" object:nil];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -53,8 +73,8 @@ NSArray *subtopics;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(receivedCategories:)
                                                  name:@"Categories" object:nil];
-    
-    [ServerCommunication getCategories];
+    ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
+    [comms getCategories];
 }
 
 - (void)receivedCategories:(NSNotification*)notification {
@@ -67,6 +87,9 @@ NSArray *subtopics;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSString *temp = [info valueForKey:@"response"];
     if ([temp isEqualToString:@"FAILED"]) {
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
+        errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+        [errorAlert show];
 
     } else {
         id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
@@ -74,17 +97,49 @@ NSArray *subtopics;
             categories = object;
             [self receivedSubCategories:NULL];
         } else {
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+            errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+            [errorAlert show];
 
         }
     }
 
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+    if (alertView == errorAlert) {
+        subCategories = [[NSMutableArray alloc] initWithObjects: nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(receivedCategories:)
+                                                     name:@"Categories" object:nil];
+        ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
+        [comms getCategories];
+    } else if (alertView == errorAlert2) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedTopics:) name:@"getTopic" object:nil];
+        ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
+        [comms getSubCategories:topicChosen];
+    } else if (alertView == errorAlert3) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedInfoboxes:) name:@"categoryInfoboxes" object:nil];
+        ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
+        [comms getInfoboxes:topicChosen];
+    }
+        [alert show];
+    }
+    
+}
+
 -(void)clickedTopic:(NSNotification*)notification {
+    alert = [[UIAlertView alloc] initWithTitle:@"Connecting to server..." message:@"This may take a moment."
+                                      delegate:self
+                             cancelButtonTitle:nil
+                             otherButtonTitles:nil];
+    [alert show];
     NSDictionary *dict = notification.userInfo;
     topicChosen = [dict objectForKey:@"name"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedTopics:) name:@"getTopic" object:nil];
-    [ServerCommunication getSubCategories:topicChosen];
+    ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
+    [comms getSubCategories:topicChosen];
 }
 
 -(void)returnedTopics:(NSNotification*)notification {
@@ -92,15 +147,23 @@ NSArray *subtopics;
     NSString *temp = [info valueForKey:@"response"];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getTopic" object:nil];
     if ([temp isEqualToString:@"FAILED"]) {
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
+        errorAlert2 = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+        [errorAlert2 show];
 
     } else {
-        id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        NSError *error = nil;
+        temp = [[temp stringByReplacingOccurrencesOfString:@"\t" withString:@""] stringByReplacingOccurrencesOfString:@"\0" withString:@""];
+        NSData *data = [temp dataUsingEncoding:NSUTF8StringEncoding];
+        id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
         if ([object count]>0) {
             subtopics = object;
             [self performSegueWithIdentifier:@"showTopics" sender:self];
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
         } else {
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnedInfoboxes:) name:@"categoryInfoboxes" object:nil];
-            [ServerCommunication getInfoboxes:topicChosen];
+            ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
+            [comms getInfoboxes:topicChosen];
         }
     }
 }
@@ -111,15 +174,22 @@ NSArray *subtopics;
     NSLog(@"Received Notification with name =%@",notification.name);
     NSLog(@"Information =%@",info);
     if ([temp isEqualToString:@"FAILED"]) {
-        
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
+        errorAlert3 = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+        [errorAlert3 show];
+
     } else {
         id object = [NSJSONSerialization JSONObjectWithData:[temp dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
         if ([object count]>0) {
             subtopics = object;
             [self performSegueWithIdentifier:@"showInfoboxes" sender:self];
             [[NSNotificationCenter defaultCenter] removeObserver:self name:@"categoryInfoboxes" object:nil];
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
         } else {
-            
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+            errorAlert3 = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
+            [errorAlert3 show];
+
             //[self performSegueWithIdentifier:@"showTopic" sender:self];
         }
     }
@@ -158,10 +228,12 @@ NSArray *subtopics;
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedSubCategories:) name:@"Subcategories" object:nil];
         } else {
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedSubCategories:) name:@"Subcategories" object:nil];
-            [ServerCommunication getSubCategories:[categories objectAtIndex:[subCategories count]]];
+            ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
+            [comms getSubCategories:[categories objectAtIndex:[subCategories count]]];
         }
     } else {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clickedTopic:) name:@"Topics" object:nil];
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
         [self.tableView reloadData];
     }
     

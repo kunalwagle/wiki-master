@@ -7,6 +7,7 @@
 //
 
 #import "UtilityMethods.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @implementation UtilityMethods
 
@@ -65,6 +66,10 @@ static NSMutableArray *colours;
     dataPath = [dataPath stringByAppendingPathComponent:@"friends"];
     NSMutableArray *friends = [NSKeyedUnarchiver unarchiveObjectWithFile:dataPath];
     return friends;
+}
+
++(NSString*)getAccessTokenString {
+    return [[FBSDKAccessToken currentAccessToken] tokenString];
 }
 
 @end

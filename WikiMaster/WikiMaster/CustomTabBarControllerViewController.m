@@ -25,7 +25,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [self setSelectedIndex:1];
+    [self setSelectedIndex:0];
 }
 
 /*

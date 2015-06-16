@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface QuizLoadingViewController : UIViewController
+@interface QuizLoadingViewController : UIViewController<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *welcomeMessage;
 @property (weak, nonatomic) IBOutlet UILabel *quizName;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 @property (weak, nonatomic) IBOutlet UILabel *connectingMessage;
 @property (weak, nonatomic) IBOutlet UILabel *countdown;
+@property NSString *infoboxName;
 
 @end
