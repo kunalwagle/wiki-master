@@ -40,6 +40,7 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
+    [request setTimeoutInterval:20];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (conn) {
         NSLog(@"Connection Successful");
@@ -61,6 +62,7 @@
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
+    [request setTimeoutInterval:20];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (conn) {
         NSLog(@"Connection Successful");
@@ -76,6 +78,7 @@
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setTimeoutInterval:20];
     // [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://146.169.47.18:3000/api/profile/%@", accessToken]]];
     [request setURL:[NSURL URLWithString:@"http://146.169.47.18:3000/api/profile/games"]];
     [request setHTTPMethod:@"POST"];
@@ -94,6 +97,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://146.169.47.18:3000/api/users/id/%@", userID]]];
     [request setHTTPMethod:@"GET"];
+    [request setTimeoutInterval:20];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     if (conn) {
         NSLog(@"Connection Successful");
@@ -104,6 +108,7 @@
 
 -(void)getCategories {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setTimeoutInterval:20];
     [request setURL:[NSURL URLWithString:@"http://146.169.47.18:3000/api/wiki/categories"]];
     [request setHTTPMethod:@"GET"];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -118,6 +123,7 @@
 
 -(void)getSubCategories:(NSString *)category {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setTimeoutInterval:20];
     category = [NSString stringWithFormat:@"http://146.169.47.18:3000/api/wiki/categories/%@/subcategories", category];
     category = [category stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(category);
@@ -133,6 +139,7 @@
 
 -(void)getInfoboxes:(NSString *)category {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setTimeoutInterval:20];
     category = [NSString stringWithFormat:@"http://146.169.47.18:3000/api/wiki/categories/%@/infoboxes", category];
     category = [category stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(category);
@@ -155,6 +162,7 @@
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:@"http://146.169.47.18:3000/api/game/new"]];
+    [request setTimeoutInterval:20];
     [request setHTTPMethod:@"POST"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
@@ -168,6 +176,52 @@
 
 }
 
+-(void)acceptChallenge:(NSString *)gameID {
+    NSString *accessToken = [UtilityMethods getAccessTokenString];
+    NSString *post = [NSString stringWithFormat:@"access_token=%@&gameId=%@", accessToken, gameID];
+    post = [post stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(post);
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://146.169.47.18:3000/api/game/play"]];
+    [request setTimeoutInterval:20];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+    
+}
+
+-(void)getNew2PlayerGame:(NSString *)infoboxName second:(NSString*)second {
+    NSString *accessToken = [UtilityMethods getAccessTokenString];
+    NSString *post = [NSString stringWithFormat:@"access_token=%@&topic=%@&challengedId=%@", accessToken, infoboxName, second];
+    post = [post stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(post);
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"http://146.169.47.18:3000/api/game/new"]];
+    [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:20];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn) {
+        NSLog(@"Connection Successful");
+    } else {
+        NSLog(@"Connection could not be made");
+    }
+    
+}
+
 -(void)addFavourite:(NSString *)infoboxName {
     NSString *accessToken = [UtilityMethods getAccessTokenString];
     NSString *post = [NSString stringWithFormat:@"access_token=%@&topic=%@", accessToken, infoboxName];
@@ -178,6 +232,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:@"http://146.169.47.18:3000/api/profile/favourites"]];
     [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:20];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
@@ -198,8 +253,11 @@
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://146.169.47.18:3000/api/wiki/infoboxes/%@/statistics", infoboxName]]];
+    NSString *url = [NSString stringWithFormat:@"http://146.169.47.18:3000/api/wiki/infoboxes/%@/statistics", infoboxName];
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:20];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
@@ -224,6 +282,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:@"http://146.169.47.18:3000/api/game/result"]];
     [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:20];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
@@ -248,8 +307,10 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateFavourite" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Subcategories" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"getTopic" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"acceptChallenge" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"getTopicStats" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"New1PlayerGame" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"New2PlayerGame" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"GamesList" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateUser" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Post1PlayerGame" object:nil userInfo:dict];
@@ -281,6 +342,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"getTopic" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateFavourite" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"New1PlayerGame" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"New2PlayerGame" object:nil userInfo:dict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"acceptChallenge" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"GamesList" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"updateUser" object:nil userInfo:dict];

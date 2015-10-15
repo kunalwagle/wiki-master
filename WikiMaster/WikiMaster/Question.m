@@ -82,7 +82,7 @@
 }
 
 -(void)setQuestionString:(NSString *)questionString {
-    self.question = questionString;
+    self.question = [self stringByStrippingHTML:questionString];
     NSLog(self.question);
 }
 
@@ -94,15 +94,42 @@
 }
 
 -(void)setCorrectAnswer:(NSString *)correct {
-    self.correct = correct;
+    self.correct = [self stringByStrippingHTML:correct];
 }
 
 -(void)addIncorrect:(NSString *)incorrect {
     if (self.incorrect) {
-        [self.incorrect addObject:incorrect];
+        [self.incorrect addObject:[self stringByStrippingHTML:incorrect]];
     } else {
-        self.incorrect = [[NSMutableArray alloc] initWithObjects:incorrect, nil];
+        self.incorrect = [[NSMutableArray alloc] initWithObjects:[self stringByStrippingHTML:incorrect], nil];
     }
+}
+
+
+-(NSString *) stringByStrippingHTML:(NSString*)finalContent {
+    NSRange r;
+    //NSString *finalContent = self.content.copy;
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n\n"];
+    while ((r = [finalContent rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+        finalContent = [finalContent stringByReplacingCharactersInRange:r withString:@""];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&apos;" withString:@"'"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&ndash;" withString:@"-"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&lsquo;" withString:@"'"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&rsquo;" withString:@"'"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&pound;" withString:@"£"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&eacute;" withString:@"e"];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&rdquo;" withString:@"\""];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&ldquo;" withString:@"\""];
+    finalContent = [finalContent stringByReplacingOccurrencesOfString:@"&euml" withString:@"e"];
+    NSData *data = [finalContent dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *newStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+    return newStr;
 }
 
 

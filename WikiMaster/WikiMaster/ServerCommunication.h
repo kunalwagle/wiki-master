@@ -30,6 +30,8 @@
 -(void)addFavourite:(NSString *)infoboxName;
 -(void)getTopicStats:(NSString *)infoboxName;
 -(void)getGames;
+-(void)getNew2PlayerGame:(NSString *)infoboxName second:(NSString*)second;
+-(void)acceptChallenge:(NSString *)gameID;
 
 @property (nonatomic, strong) NSMutableData *responding;
 

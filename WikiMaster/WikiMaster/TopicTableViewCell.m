@@ -66,7 +66,7 @@
         NSString *title = [dict objectForKey:@"name"];
         NSDictionary *img = [dict objectForKey:@"image"];
         NSString *aurl = [img objectForKey:@"url"];
-        cell.name.text = title;
+        cell.name.text = [title capitalizedString];
         cell.image.image = [UIImage imageNamed:@"default_topic.png"];
         dispatch_queue_t articleImageQueue = dispatch_queue_create("Article Image Queue",NULL);
         if (aurl && ![aurl isEqualToString:@""]) {
@@ -78,7 +78,9 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI
-                    [cell.image setImage:image];
+                    if (image) {
+                        [cell.image setImage:image];
+                    }
                     NSLog(@"Set the image");
                     
                 });
@@ -92,7 +94,7 @@
         
     } else {
         NSDictionary *item = [self.testData objectAtIndex:[indexPath row]];
-        cell.name.text = [item objectForKey:@"name"];
+        cell.name.text = [[item objectForKey:@"name"] capitalizedString];
         cell.image.image = [UIImage imageNamed:@"default_topic.png"];
         NSDictionary *image = [item objectForKey:@"image"];
         NSString *aurl = [image objectForKey:@"url"];
@@ -106,7 +108,10 @@
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI
-                    [cell.image setImage:image];
+                    if (image) {
+                        [cell.image setImage:image];
+                    }
+                    
                     NSLog(@"Set the image");
                     
                 });
@@ -133,7 +138,16 @@
     NSLog(@"Look we pressed something at index path: %d", [indexPath row]);
     TopicViewCell *cell = (TopicViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:cell.name.text forKey:@"name"];
+    if (self.data) {
+         NSDictionary *dict2 = [self.data objectAtIndex:[indexPath row]];
+        [dict setObject:[dict2 objectForKey:@"name"] forKey:@"name"];
+    } else {
+        NSDictionary *item = [self.testData objectAtIndex:[indexPath row]];
+        [dict setObject:[item objectForKey:@"name"] forKey:@"name"];
+    }
+   
+
+    
     [dict setObject:cell.image.image forKey:@"image"];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Home" object:nil userInfo:dict];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"Topics" object:nil userInfo:dict];

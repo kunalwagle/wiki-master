@@ -14,6 +14,7 @@
 #import "ProfileViewController.h"
 #import "ServerCommunication.h"
 #import "LeaderboardTableViewCell.h"
+#import "QuizLoadingViewController.h"
 
 @interface FriendsListTableViewController ()
 
@@ -390,10 +391,13 @@ UIAlertView *errorAlert;
     User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[defaults objectForKey:@"user"]];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@", user.userID];
     NSArray *filteredArray = [self.friends filteredArrayUsingPredicate:predicate];
-    if  (self.friends) {
-        user = [filteredArray objectAtIndex:0];
-        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
-        [finalFriends removeObject:[filteredArray objectAtIndex:0]];
+    if  ([filteredArray count]>0) {
+        for (int i=0; i<[filteredArray count]; i++) {
+            user = [filteredArray objectAtIndex:i];
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
+            [finalFriends removeObject:[filteredArray objectAtIndex:i]];
+        }
+
     }
     [UtilityMethods setFriends:finalFriends];
     [self.tableView reloadData];
@@ -844,6 +848,15 @@ UIAlertView *errorAlert;
         }
 
         vc.hidesBottomBarWhenPushed = YES;
+    } else {
+        QuizLoadingViewController *vc = (QuizLoadingViewController*)[segue destinationViewController];
+        int row = [[self.tableView indexPathForSelectedRow] row];
+        vc.secondID = [[self.friends objectAtIndex:row] userID];
+        vc.infoboxName = self.infoboxName;
+        if (self.search) {
+            row = [[self.searchDisplayController.searchResultsTableView indexPathForSelectedRow] row];
+            vc.secondID = [[self.searchFriends objectAtIndex:row] userID];
+        }
     }
 }
 

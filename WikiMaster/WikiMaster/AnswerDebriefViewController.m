@@ -41,10 +41,10 @@
     }
     int finalTime = MAX(0, (self.time+30)-timer);
     if (correctness) {
-        self.tick.image = [UIImage imageNamed:@"Tick.png"];
+        self.tick.image = [UIImage imageNamed:@"hand-157251_640.png"];
         self.totalPoints.text = [NSString stringWithFormat:@"%d", [self.correctAnswerBonus.text intValue] + finalTime];
     } else {
-        self.tick.image = [UIImage imageNamed:@"Cross.png"];
+        self.tick.image = [UIImage imageNamed:@"dislike-157252_640.png"];
         self.totalPoints.text = @"0";
         if (self.outOfTime) {
             self.tick.image = [UIImage imageNamed:@"exclamation.png"];

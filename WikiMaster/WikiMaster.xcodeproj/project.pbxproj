@@ -22,6 +22,7 @@
 		0C0BEBA21B2EE31200F8DEE1 /* GameHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C0BEBA11B2EE31200F8DEE1 /* GameHistoryTableViewController.m */; };
 		0C0BEBA41B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C0BEBA31B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png */; };
 		0C26DB4A1B14951400902409 /* ServerCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C26DB491B14951400902409 /* ServerCommunication.m */; };
+		0C2EFE2C1B30E4AB00A92E09 /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C2EFE2B1B30E4AB00A92E09 /* ResultViewController.m */; };
 		0C3AAAC61B1257580058D233 /* CreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */; };
 		0C3AAAC91B12580B0058D233 /* ManualSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C3AAAC81B12580B0058D233 /* ManualSignInViewController.m */; };
 		0C5E58731B19F1EF00A87A3F /* FriendsListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E58721B19F1EF00A87A3F /* FriendsListTableViewController.m */; };
@@ -88,6 +89,8 @@
 		0C878D991B17525200780F54 /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C878D981B17525200780F54 /* exclamation.png */; };
 		0C878D9C1B18A2F700780F54 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9B1B18A2F700780F54 /* SettingsViewController.m */; };
 		0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C878D9E1B18A45100780F54 /* UtilityMethods.m */; };
+		0C8838141B2FC0D500FF5E3E /* checker-flags-297188_1280.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8838131B2FC0D500FF5E3E /* checker-flags-297188_1280.png */; };
+		0C8838161B2FC16700FF5E3E /* Controller-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C8838151B2FC16700FF5E3E /* Controller-50@2x.png */; };
 		0CDA77EF1B2491AC00131B1E /* TopicHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CDA77EE1B2491AC00131B1E /* TopicHomeViewController.m */; };
 		0CEF69071B14DE9B0009F137 /* QuizLoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF69061B14DE9B0009F137 /* QuizLoadingViewController.m */; };
 		0CEF69421B1606F70009F137 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CEF69411B1606F70009F137 /* Question.m */; };
@@ -145,6 +148,8 @@
 		0C0BEBA31B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Trophy Filled-50@2x.png"; sourceTree = "<group>"; };
 		0C26DB481B14951400902409 /* ServerCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunication.h; sourceTree = "<group>"; };
 		0C26DB491B14951400902409 /* ServerCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunication.m; sourceTree = "<group>"; };
+		0C2EFE2A1B30E4AB00A92E09 /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
+		0C2EFE2B1B30E4AB00A92E09 /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		0C3AAAC41B1257580058D233 /* CreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccountViewController.h; sourceTree = "<group>"; };
 		0C3AAAC51B1257580058D233 /* CreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccountViewController.m; sourceTree = "<group>"; };
 		0C3AAAC71B12580B0058D233 /* ManualSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualSignInViewController.h; sourceTree = "<group>"; };
@@ -232,6 +237,8 @@
 		0C878D9B1B18A2F700780F54 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		0C878D9D1B18A45100780F54 /* UtilityMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilityMethods.h; sourceTree = "<group>"; };
 		0C878D9E1B18A45100780F54 /* UtilityMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilityMethods.m; sourceTree = "<group>"; };
+		0C8838131B2FC0D500FF5E3E /* checker-flags-297188_1280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checker-flags-297188_1280.png"; sourceTree = "<group>"; };
+		0C8838151B2FC16700FF5E3E /* Controller-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Controller-50@2x.png"; sourceTree = "<group>"; };
 		0CDA77ED1B2491AC00131B1E /* TopicHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicHomeViewController.h; sourceTree = "<group>"; };
 		0CDA77EE1B2491AC00131B1E /* TopicHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicHomeViewController.m; sourceTree = "<group>"; };
 		0CEF69051B14DE9B0009F137 /* QuizLoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizLoadingViewController.h; sourceTree = "<group>"; };
@@ -368,6 +375,8 @@
 				0C5F144E1B0CDBF4009946CA /* SecondViewController.h */,
 				0C5F144F1B0CDBF4009946CA /* SecondViewController.m */,
 				0C5F14511B0CDBF4009946CA /* Main.storyboard */,
+				0C2EFE2A1B30E4AB00A92E09 /* ResultViewController.h */,
+				0C2EFE2B1B30E4AB00A92E09 /* ResultViewController.m */,
 				0C0BEBA31B2EE87A00F8DEE1 /* Trophy Filled-50@2x.png */,
 				0C0BEBA01B2EE31200F8DEE1 /* GameHistoryTableViewController.h */,
 				0C0BEBA11B2EE31200F8DEE1 /* GameHistoryTableViewController.m */,
@@ -415,10 +424,12 @@
 				0CEF69911B163A7E0009F137 /* FinalTotalsViewController.m */,
 				0CEF698D1B1634A80009F137 /* AnswerDebriefViewController.h */,
 				0CEF698E1B1634A80009F137 /* AnswerDebriefViewController.m */,
+				0C8838151B2FC16700FF5E3E /* Controller-50@2x.png */,
 				0CEF69401B1606F70009F137 /* Question.h */,
 				0CEF69411B1606F70009F137 /* Question.m */,
 				0CEF69051B14DE9B0009F137 /* QuizLoadingViewController.h */,
 				0CEF69061B14DE9B0009F137 /* QuizLoadingViewController.m */,
+				0C8838131B2FC0D500FF5E3E /* checker-flags-297188_1280.png */,
 				0CEF698A1B162E370009F137 /* GamePlayViewController.h */,
 				0CEF698B1B162E370009F137 /* GamePlayViewController.m */,
 				0C878D981B17525200780F54 /* exclamation.png */,
@@ -642,6 +653,7 @@
 				0C5F14C51B120F00009946CA /* GooglePlus.bundle in Resources */,
 				0C5F149C1B10EA63009946CA /* Slide5.jpg in Resources */,
 				0C5F149F1B10EA63009946CA /* Slide8.jpg in Resources */,
+				0C8838161B2FC16700FF5E3E /* Controller-50@2x.png in Resources */,
 				0C5F14991B10EA63009946CA /* Slide2.jpg in Resources */,
 				0CF80C3A1B1DBE8400C7CA35 /* Guest Filled-32.png in Resources */,
 				0C5F14581B0CDBF4009946CA /* LaunchScreen.xib in Resources */,
@@ -669,6 +681,7 @@
 				0C0BEB881B287AE600F8DEE1 /* 1.jpg in Resources */,
 				0C5F14801B10C227009946CA /* Turquoise.png in Resources */,
 				0C5F149B1B10EA63009946CA /* Slide4.jpg in Resources */,
+				0C8838141B2FC0D500FF5E3E /* checker-flags-297188_1280.png in Resources */,
 				0C0BEB8D1B287AE600F8DEE1 /* 6.jpg in Resources */,
 				0C0BEB8A1B287AE600F8DEE1 /* 3.jpg in Resources */,
 				0C5F149A1B10EA63009946CA /* Slide3.jpg in Resources */,
@@ -707,6 +720,7 @@
 				0CEF69071B14DE9B0009F137 /* QuizLoadingViewController.m in Sources */,
 				0C6CF1431B246D6F00FFCF4F /* InfoboxViewController.m in Sources */,
 				0CEF698F1B1634A80009F137 /* AnswerDebriefViewController.m in Sources */,
+				0C2EFE2C1B30E4AB00A92E09 /* ResultViewController.m in Sources */,
 				0C878D9F1B18A45100780F54 /* UtilityMethods.m in Sources */,
 				0C6CF13A1B21D56200FFCF4F /* TopicsTableViewController.m in Sources */,
 				0C3AAAC61B1257580058D233 /* CreateAccountViewController.m in Sources */,

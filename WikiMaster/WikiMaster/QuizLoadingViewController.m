@@ -31,9 +31,17 @@ UIAlertView *errorAlert;
 - (void)viewDidLoad {
     [super viewDidLoad];
     comms = [[ServerCommunication alloc] initWithData];
-    quizName.text = self.infoboxName;
-    [comms getNew1PlayerGame:self.infoboxName];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotQuiz:) name:@"New1PlayerGame" object:nil];
+    quizName.text = [self.infoboxName capitalizedString];
+    if (self.secondID) {
+        [comms getNew2PlayerGame:self.infoboxName second:self.secondID];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotQuiz:) name:@"New2PlayerGame" object:nil];
+    } else if (self.gameID) {
+        [comms acceptChallenge:self.gameID];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotQuiz:) name:@"acceptChallenge" object:nil];
+    } else {
+        [comms getNew1PlayerGame:self.infoboxName];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotQuiz:) name:@"New1PlayerGame" object:nil];
+    }
     
     //[self performSelector:@selector(gotQuiz) withObject:nil afterDelay:1.0 ];
     // Do any additional setup after loading the view.
@@ -93,10 +101,14 @@ UIAlertView *errorAlert;
 //                }
             } else {
                 //ERROR HANDLING
+                errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't generate enough questions" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Return to Home" otherButtonTitles: nil];
+                [errorAlert show];
 //                errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
 //                [errorAlert show];
             } } else {
                 //ERROR HANDLING
+                errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't generate enough questions" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Return to Home" otherButtonTitles: nil];
+                [errorAlert show];
 //                errorAlert = [[UIAlertView alloc] initWithTitle:@"Couldn't connect to server" message:@"Sorry about that" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles: @"Try again", nil];
 //                [errorAlert show];
             }

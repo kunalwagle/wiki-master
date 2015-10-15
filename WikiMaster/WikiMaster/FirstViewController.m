@@ -233,7 +233,7 @@ ServerCommunication *comms;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -253,10 +253,14 @@ ServerCommunication *comms;
             //cell.images = fimages;
             break;
             
-        case 1:
-            cell.testData = [user recents];
+        case 1: {
+            NSMutableArray *reverse = [[NSMutableArray alloc] initWithCapacity:[[user recents] count]];
+            for (int i=[[user recents] count]-1; i>=0; i--) {
+                [reverse addObject:[[user recents] objectAtIndex:i]];
+            }
+            cell.testData = reverse;
             //cell.images = rimages;
-            break;
+            break; }
             
         default:
             cell.testData = [user recents];

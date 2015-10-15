@@ -15,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *connectingMessage;
 @property (weak, nonatomic) IBOutlet UILabel *countdown;
 @property NSString *infoboxName;
+@property NSString *secondID;
+@property NSString *gameID;
 
 @end

@@ -133,7 +133,7 @@ UIImage *img;
     if (self.isSearching) {
         dict = [self.searchInfoboxes objectAtIndex:[indexPath row]];
     }
-    NSString *title = [dict objectForKey:@"name"];
+    NSString *title = [[dict objectForKey:@"name"] capitalizedString];
     BOOL articleCount = [[dict objectForKey:@"canPlay"] boolValue];
     if (articleCount) {
         cell.alpha = 0.5;
@@ -155,7 +155,9 @@ UIImage *img;
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Update the UI
-                [cell.image setImage:image];
+                if (image) {
+                    [cell.image setImage:image];
+                }
                 NSLog(@"Set the image");
                 
             });

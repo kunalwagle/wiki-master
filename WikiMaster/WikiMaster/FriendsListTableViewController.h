@@ -18,5 +18,6 @@
 @property User *me;
 @property UIRefreshControl *refreshControl;
 @property BOOL reloading;
+@property NSString *infoboxName;
 
 @end

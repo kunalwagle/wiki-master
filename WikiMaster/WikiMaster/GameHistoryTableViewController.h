@@ -10,4 +10,6 @@
 
 @interface GameHistoryTableViewController : UITableViewController
 
+@property UIRefreshControl *refreshControl;
+
 @end

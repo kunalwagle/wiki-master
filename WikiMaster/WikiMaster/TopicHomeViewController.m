@@ -26,7 +26,7 @@ UIAlertView *errorAlert;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.image.image = self.topicImage;
-    self.name.text = self.topicName;
+    self.name.text = [self.topicName capitalizedString];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gotStats:) name:@"getTopicStats" object:nil];
     ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Connecting to server..." message:@"This may take a moment" delegate:self cancelButtonTitle:nil otherButtonTitles: nil];
@@ -82,10 +82,12 @@ UIAlertView *errorAlert;
     self.view.backgroundColor = [UtilityMethods getColour];
     if ([self isFavourited]) {
         [self.favouritesButton.imageView setImage:[UIImage imageNamed:@"Christmas Star Filled-50.png"]];
+        [self.favouritesButton setTitle:@"Remove from favourites" forState:UIControlStateNormal];
         [self.favouritesButton.imageView setTintColor:[UIColor colorWithRed:252.0/255.0
                                                   green:194.0/255.0 blue:0 alpha:1.0]];
     } else {
         [self.favouritesButton.imageView setImage:[UIImage imageNamed:@"Christmas Star-50.png"]];
+        [self.favouritesButton setTitle:@"Add to favourites" forState:UIControlStateNormal];
         [self.favouritesButton.imageView setTintColor:[UIColor whiteColor]];
         
     }
@@ -109,7 +111,7 @@ UIAlertView *errorAlert;
                                               delegate:self
                                      cancelButtonTitle:nil
                                      otherButtonTitles:nil];
-            //[alert show];
+           // [alert show];
             ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
             //[comms getInfoboxes:topicChosen];
         }
@@ -124,6 +126,7 @@ UIAlertView *errorAlert;
     if ([[segue identifier] isEqualToString:@"challenge"]) {
         FriendsListTableViewController *vc = (FriendsListTableViewController*)[segue destinationViewController];
         vc.friendsScreen = YES;
+        vc.infoboxName = self.topicName;
     } else if ([[segue identifier] isEqualToString:@"1playergame"]) {
         QuizLoadingViewController *vc = (QuizLoadingViewController*)[segue destinationViewController];
         vc.infoboxName = self.topicName;

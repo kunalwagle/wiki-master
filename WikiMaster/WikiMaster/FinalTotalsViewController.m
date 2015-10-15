@@ -35,9 +35,8 @@
     }
     self.correctness.text = [NSString stringWithFormat:@"%d out of 6", self.correctAnswers];
     self.total.text = [NSString stringWithFormat:@"%d", self.runningScore];
-    if (self.correctAnswers<=3) {
-        self.thumbs.image = [UIImage imageNamed:@"dislike-157252_640.png"];
-    }
+    self.thumbs.image = [UIImage imageNamed:@"checker-flags-297188_1280.png"];
+    [self.thumbs setTintColor:[UIColor whiteColor]];
     self.view.backgroundColor = [UtilityMethods getColour];
     ServerCommunication *comms = [[ServerCommunication alloc] initWithData];
     [comms post1PlayerGameResult:self.runningScore questionsCorrect:self.correctAnswers questionsWrong:6-self.correctAnswers];

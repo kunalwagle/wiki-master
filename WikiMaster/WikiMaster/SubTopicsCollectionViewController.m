@@ -106,7 +106,9 @@ UIAlertView *errorAlert;
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 // Update the UI
-                [cell.image setImage:image];
+                if (image) {
+                    [cell.image setImage:image];
+                }
                 NSLog(@"Set the image");
                 
             });
